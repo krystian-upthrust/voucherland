@@ -1,0 +1,52 @@
+@import "variables.scss";
+
+body{
+    background-color: #1D1D1D;
+}
+
+header {
+
+    .nav{
+        display: flex;
+        align-items: center;
+        height: 8vh;
+        background-color: transparent;
+
+        h1{
+            text-transform: uppercase;
+            margin-left: 25%;
+            margin-right: 15%;
+            font-family: $main_font;
+            @include test();
+            
+        }
+
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+    
+        
+    
+        }
+        
+        
+    }
+
+    
+    width: 100%;
+    height: fit-content;
+    border: 1px solid black;
+    border-radius: 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+
+    a{
+        text-decoration: none;
+        color: #ffffff;
+    }
+}
