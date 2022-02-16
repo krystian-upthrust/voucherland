@@ -1,52 +1,61 @@
 @import "variables.scss";
 
-body{
-    background-color: #1D1D1D;
+body {
+    width: 100%;
+    background-color: $dark_color;
 }
 
 header {
 
-    .nav{
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .nav {
+        width: 60%;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         height: 8vh;
         background-color: transparent;
+        padding-left: 100px;
+        font-family: $main_font;
 
-        h1{
+        h1 {
             text-transform: uppercase;
-            margin-left: 25%;
-            margin-right: 15%;
-            font-family: $main_font;
-            @include test();
-            
+            color: #ffffff;
+            font-size: 1.5rem;
         }
 
-        ul{
+        ul {
             list-style: none;
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-    
-        
-    
+            font-weight: 600;
+            margin-inline: 20px;
+            gap: 54px;
+            padding-block: 5px;
         }
-        
-        
-    }
 
-    
-    width: 100%;
-    height: fit-content;
-    border: 1px solid black;
-    border-radius: 1px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: white;
+        .login_content {
+            display: flex;
+            gap: 20px;
 
-    a{
-        text-decoration: none;
-        color: #ffffff;
+            .register {
+                @include btn_login_register_common();
+                background-color: $main_color;
+            }
+
+            .login {
+                @include btn_login_register_common();
+                background-color: $second_color;
+            }
+        }
+
+        .active {
+            border-bottom: 2px solid $main_color;
+        }
     }
 }

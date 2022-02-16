@@ -1,5 +1,15 @@
 $main_font: 'Poppins', sans-serif;
+$main_color: #ffba08;
+$second_color: #D3D3D3;
+$dark_color: #1d1d1d;
 
-@mixin test {
-    color: red;
+@mixin btn_login_register_common {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+
+    a { 
+        color: $dark_color;
+    }
 }
