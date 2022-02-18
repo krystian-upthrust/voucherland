@@ -2,15 +2,9 @@ import React from "react";
 
 function Nav() {
   return (
-    <nav className="nav">
+    <nav className="nav close_nav">
 
       <div className="nav_content">
-        <div className="nav_menu_mobile">
-          <div className="line" />
-          <div className="line line_sided" />
-          <div className="line" />
-        </div>
-
         <ul className="nav_content_menu">
           <li className="active">home</li>
           <li>vouchers</li>
@@ -23,7 +17,6 @@ function Nav() {
         </div>
       </div>
 
-      {/* nav menu mobile? */}
     </nav>
   );
 }

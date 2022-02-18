@@ -1,0 +1,148 @@
+@import "./variables.scss";
+
+// screen breakpoints
+$small: 300px; // not used ... mobile-first design
+$medium: 768px; // tablet
+$large: 1024px; // smaller screens desktop
+$extra_large: 1280px; // bigger screens desktop
+$wide: 1440px; // wide screens
+$ultra_wide: 1920px; // ultra wide
+
+@media screen and (min-width: $small) {
+    header {
+        h1 {
+            top: 30px;
+            left: $main_padding_small;
+            font-size: 20px;
+        }
+
+        .nav_menu_mobile {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav{
+            width: 70%;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .banner {
+            flex-direction: column;
+
+            &_content {
+                padding: $main_padding_small;
+                padding-top: 100px;
+            }
+
+            &_quote {
+                font-size: 28px;
+            }
+
+            &_description {
+                font-weight: 100;
+                font-size: 16px;
+                line-height: 1.5rem;
+            }
+
+            &_image_container {
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+                    
+                .banner_image {
+                    margin: auto;
+                    border-radius: 10px;
+                    // src:  url("./../../public/resources/images/full-banner-img.webp");
+                    // background: url("./../../public/resources/images/full-banner-img.webp");
+                }
+            }
+        }
+
+        .scroller{
+            position: relative;
+            margin-top: 50px;
+            bottom: 20px;
+            left: 50%;
+        }
+    }
+}
+
+// tablet
+@media screen and (min-width: $medium) {
+    .header {
+        h1 {
+            top: 30px;
+            left: $main_padding_small;
+            font-size: 20px;
+        }
+
+        .nav {
+            width: 50%;
+        }
+    }
+}
+
+// smaller desktops
+@media screen and (min-width: $large) {
+    .header {
+        h1 {
+            left: $main_padding_large;
+            font-size: 1.5rem;
+        }
+
+        .nav_menu_mobile {
+            display: none;
+        }
+
+        .nav{   
+            border-radius: 0;
+        }
+
+        .banner {
+            height: 100%;
+            flex-direction: row;
+
+            &_content {
+                flex: 1;
+                padding: 0;
+                padding-left: $main_padding_large;
+                justify-content: center;
+            }
+
+            &_quote {
+                font-size: 4rem;
+            }
+
+            &_description {
+                width: 60%;
+                padding: 0;
+            }
+
+            &_image_container {
+                padding: 0;
+                display: block;
+
+                .banner_image {
+                    // background: url("./../../public/resources/images/banner-img.png");
+                    // src: url("./../../public/resources/images/banner-img.png");
+                    background-position: right;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}
+
+// big screens
+@media screen and (min-width: $extra_large) {
+}
+
+// wide screen
+@media screen and (min-width: $wide) {
+}
+
+//ultra wide
+@media screen and (min-width: $ultra_wide) {
+}

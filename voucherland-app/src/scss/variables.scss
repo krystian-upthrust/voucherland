@@ -11,9 +11,10 @@ $description_color: #5f5f5f;
 $tag_color: #023e8a;
 
 // main size settings
-$main_padding: 100px;
+$main_padding_small: 20px;
+$main_padding_large: 100px;
 
-// reused styles settings
+// reused style settings
 @mixin main_btn_style($background_color: transparent, $border: none, $color: $text_color) {
   width: fit-content;
   border-radius: 8px;
