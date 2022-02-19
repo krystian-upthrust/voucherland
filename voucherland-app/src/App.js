@@ -19,6 +19,7 @@ export default function App() {
 
   return (
     <UserContext.Provider value={{ isAdmin: isAdmin, setIsAdmin: setIsAdmin }}>
+      
       <section className="app">
         <Header />
         <Cookies />
@@ -32,6 +33,7 @@ export default function App() {
           </Routes>
         </Router>
       </section>
+
     </UserContext.Provider>
   );
 }
