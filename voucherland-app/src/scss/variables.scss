@@ -20,11 +20,12 @@ $main_padding_large: 100px;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   text-transform: capitalize;
   border: $border;
   outline: none;
   background-color: $background_color;
   color: $color;
+  font-family: $main_font;
 }
