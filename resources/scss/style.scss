@@ -509,11 +509,11 @@ header {
       color: $description_color;
     }
 
-    .contact_btn {
-      @include btn_login_register_common();
-      background-color: $main_color;
-      width: fit-content;
-    }
+    // .contact_btn {
+    //   @include btn_login_register_common();
+    //   background-color: $main_color;
+    //   width: fit-content;
+    // }
   }
 }
 

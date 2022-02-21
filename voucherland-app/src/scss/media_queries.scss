@@ -1,12 +1,12 @@
 @import "./variables.scss";
 
 // screen breakpoints
-$small: 300px; // not used ... mobile-first design
-$medium: 768px; // tablet
-$large: 1024px; // smaller screens desktop
-$extra_large: 1280px; // bigger screens desktop
-$wide: 1440px; // wide screens
-$ultra_wide: 1920px; // ultra wide
+$small: 300px;
+$medium: 768px;
+$large: 1024px;
+$extra_large: 1280px;
+$wide: 1440px;
+$ultra_wide: 1920px;
 
 @media screen and (min-width: $small) {
     .header {
@@ -101,7 +101,7 @@ $ultra_wide: 1920px; // ultra wide
             &_description {
                 font-weight: 100;
                 font-size: 16px;
-                line-height: 1.5rem;
+                line-height: $main_line_height;
             }
 
             &_image_container {
@@ -144,9 +144,98 @@ $ultra_wide: 1920px; // ultra wide
             width: 70%;
         }
     }
+
+    .home {
+        .deal_advantages {
+            padding: $main_padding_small;
+            padding-top: 50px;
+            padding-bottom: 60px;
+
+            &_container {
+                flex-direction: column;
+            }
+
+            &_image {
+                width: 100%;
+                height: auto;
+            }
+
+            &_content {
+                flex-direction: column;
+            }
+        }
+
+        .statistics {
+            flex-direction: column;
+        }
+
+        .collaboration {
+            flex-direction: column;
+            padding: 50px $main_padding_small;
+
+            &_image_mobile {
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 10px 10px 0 0;
+            }
+
+            &_image_desktop {
+                display: none;
+            }
+
+            &_content {
+                padding: 30px 20px;
+                border-radius: 0 0 10px 10px;
+            }
+        }
+    }
+
+    .login_register_image {
+        background: url("./../../public/resources/images/login-image-mobile.png") no-repeat top center;
+    }
+
+    .login_register_shadow {
+        background: linear-gradient(180deg, #1d1d1d 32.81%, rgba(29, 29, 29, 0.65) 100%);
+        transform: rotate(-180deg);
+    }
+
+    .login,
+    .register {
+        align-items: center;
+
+        .back_btn {
+            bottom: 50px;
+        }
+    }
+
+    .footer {
+        padding: 30px;
+
+        &_first {
+            gap: 20px;
+            flex-direction: column;
+
+            .sitemap {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        .privacy {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .trusted_companies {
+                align-items: center;
+                gap: 30px;
+            }
+        }
+    }
 }
 
-// tablet
 @media screen and (min-width: $medium) {
     .header {
         h1 {
@@ -166,7 +255,7 @@ $ultra_wide: 1920px; // ultra wide
 
                 .banner_image {
                     width: fit-content;
-                    
+
                     height: 100%;
                 }
             }
@@ -186,9 +275,31 @@ $ultra_wide: 1920px; // ultra wide
             width: 50%;
         }
     }
+
+    .home {
+        .deal_advantages {
+            &_content {
+                flex-direction: row;
+
+                .advantage_item {
+                    flex: 1;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+        .statistics {
+            &_item:first-child {
+                transform: translateX(-100px);
+            }
+
+            &_item:last-child {
+                transform: translateX(100px);
+            }
+        }
+    }
 }
 
-// smaller desktops
 @media screen and (min-width: $large) {
     .header {
         h1 {
@@ -210,7 +321,7 @@ $ultra_wide: 1920px; // ultra wide
             // padding-left: $main_padding_large;
             // font-family: $main_font;
             z-index: 999;
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             transform: none;
@@ -300,6 +411,7 @@ $ultra_wide: 1920px; // ultra wide
             visibility: visible;
         }
     }
+
     .cookies {
         background-color: $dark_color;
         position: fixed;
@@ -320,9 +432,157 @@ $ultra_wide: 1920px; // ultra wide
             width: 100%;
         }
     }
+
+    .home {
+        .deal_advantages {
+            padding: 0;
+            padding: $main_padding_large;
+
+            &_container {
+                flex-direction: row;
+            }
+
+            &_image {
+                width: 50%;
+                box-shadow: 20px 20px rgba($color: $main_color, $alpha: 0.35);
+            }
+
+            &_content {
+                flex-direction: column;
+
+                .advantage_item {
+                    flex: 1;
+                    flex-wrap: wrap;
+                }
+                .advantage_item:nth-child(even) {
+                    transform: translateX(65px);
+                }
+            }
+        }
+
+        .statistics {
+            flex-direction: row;
+
+            &_item:first-child {
+                transform: unset;
+            }
+
+            &_item:last-child {
+                transform: unset;
+            }
+        }
+
+        .collaboration {
+            flex-direction: row;
+            padding: $main_padding_large;
+
+            &_image_container {
+                max-width: 50%;
+            }
+
+            &_image_mobile {
+                display: none;
+            }
+
+            &_image_desktop {
+                display: block;
+                height: auto;
+                width: auto;
+                border-radius: 10px 0 0 10px;
+            }
+
+            &_content {
+                padding: 30px 20px 30px 50px;
+                border-radius: 0 10px 10px 0;
+            }
+        }
+    }
+
+    .login_register_image {
+        background: url("./../../public/resources/images/login-image-desktop.png") no-repeat right top;
+    }
+
+    .login_register_shadow {
+        background: linear-gradient(-90deg, #1d1d1d 25%, rgba(29, 29, 29, 0.65) 100%);
+    }
+
+    .login,
+    .register {
+        padding-left: $main_padding_large;
+        align-items: flex-start;
+
+        & h2 {
+            visibility: hidden;
+        }
+
+        & h2::before {
+            visibility: visible;
+            content: "Voucherland";
+            text-transform: uppercase;
+            font-size: 25px;
+            font-weight: 700;
+            font-family: $main_font;
+        }
+
+        .option {
+            margin: 10px;
+        }
+
+        .back_btn {
+            top: 50px;
+            left: $main_padding_large;
+            bottom: unset;
+        }
+    }
+
+    .footer {
+        padding: 50px;
+
+        &_first {
+            gap: 50px;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .footer_header {
+                flex: 2;
+
+                > p {
+                    width: 70%;
+                }
+            }
+
+            .footer_title {
+                font-size: 25px;
+            }
+
+            .trusted_by {
+                .trusted_companies {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 20px;
+
+                    > img {
+                        width: 100px;
+                        height: auto;
+                    }
+                }
+            }
+
+            .sitemap {
+                display: none;
+            }
+        }
+
+        .privacy {
+            flex-direction: row;
+            justify-content: space-between;
+            flex-flow: row-reverse;
+            gap: 20px;
+            padding: 30px 0 0 0;
+        }
+    }
 }
 
-// big screens
 @media screen and (min-width: $extra_large) {
     .header {
         h1 {
@@ -388,9 +648,20 @@ $ultra_wide: 1920px; // ultra wide
             }
         }
     }
+
+    .footer {
+        &_first {
+            gap: 70px;
+        }
+
+        .footer_header {
+            > p {
+                width: 60%;
+            }
+        }
+    }
 }
 
-// wide screen
 @media screen and (min-width: $wide) {
     .header {
         h1 {
@@ -454,9 +725,14 @@ $ultra_wide: 1920px; // ultra wide
             }
         }
     }
+
+    .footer {
+        &_first {
+            gap: 80px;
+        }
+    }
 }
 
-//ultra wide
 @media screen and (min-width: $ultra_wide) {
     .header {
         .nav {
@@ -468,6 +744,20 @@ $ultra_wide: 1920px; // ultra wide
                 &_menu {
                     gap: 150px;
                 }
+            }
+        }
+    }
+
+    .footer {
+        padding: 50px $main_padding_large;
+
+        &_first {
+            gap: 100px;
+        }
+
+        .footer_header {
+            > p {
+                width: 50%;
             }
         }
     }

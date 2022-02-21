@@ -1,0 +1,158 @@
+@import "./variables.scss";
+
+.login_register_image,
+.login_register_shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: -1;
+}
+
+// border: 1px solid red;
+.login,
+.register {
+    box-sizing: border-box;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    z-index: 99;
+
+    & h2 {
+        text-align: center;
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: 700;
+        padding: 20px;
+    }
+
+    & form {
+        width: 285px;
+        padding: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        z-index: 99;
+
+        .login_btn,
+        .register_btn {
+            @include main_btn_style($main_color, none, $dark_color);
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+
+    .checkbox_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        & div:first-child {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 12px;
+            position: relative;
+
+            & label {
+                padding-left: 25px;
+                cursor: pointer;
+            }
+
+            .input_checkbox {
+                cursor: pointer;
+
+                & input:checked ~ .costum_input_checkbox {
+                    background-color: $main_color;
+                }
+            }
+
+            .login_remember_me:hover ~.costum_input_checkbox, 
+            .input_checkbox:hover .costum_input_checkbox{
+                background-color: rgba($color: $main_color, $alpha: 0.5);
+            }
+
+            .costum_input_checkbox {
+                position: absolute;
+                left: 0;
+                height: 16px;
+                width: 16px;
+                background-color: $dark_color;
+                border: 1px solid $text_color;
+                border-radius: 5px;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                }
+            }
+
+            .login_remember_me:checked ~ .costum_input_checkbox {
+                background-color: $main_color;
+            }
+        }
+
+        & p:last-child {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 12px;
+        }
+    }
+
+    & input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    & input[type="text"],
+    & input[type="email"],
+    & input[type="password"] {
+        @include main_input_style();
+    }
+
+    .option {
+        width: 285px;
+        margin-top: 30px;
+        z-index: 99;
+
+        & p {
+            text-align: center;
+            font-size: 12px;
+            line-height: 12px;
+            margin-bottom: 10px;
+        }
+
+        &_btn {
+            @include main_btn_style($second_color, none, $dark_color);
+            width: 100%;
+        }
+    }
+
+    .back_btn {
+        @include main_btn_style($dark_color, 1px solid $main_color, $text_color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.5s ease-in-out;
+        z-index: 99;
+        position: absolute;
+
+        &:hover {
+            gap: 15px;
+        }
+    }
+}

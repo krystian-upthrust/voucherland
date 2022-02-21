@@ -1,3 +1,13 @@
-import {createContext} from "react";
+import { createContext } from "react";
 
-export const UserContext = createContext({isAdmin : false, setIsAdmin: (isAdmin) => {}});
+let user = {
+  firstname: "Krystian",
+  lastname: "Rola",
+  email: "test@gmail.com",
+  isAdmin: true,
+};
+
+export const UserContext = createContext({
+  user: user,
+  setUser: (user) => {},
+});

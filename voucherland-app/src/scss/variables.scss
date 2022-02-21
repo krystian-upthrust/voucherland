@@ -13,6 +13,7 @@ $tag_color: #023e8a;
 // main size settings
 $main_padding_small: 20px;
 $main_padding_large: 100px;
+$main_line_height: 24px;
 
 // reused style settings
 @mixin main_btn_style($background_color: transparent, $border: none, $color: $text_color) {
@@ -28,4 +29,20 @@ $main_padding_large: 100px;
   background-color: $background_color;
   color: $color;
   font-family: $main_font;
+}
+
+@mixin main_input_style {
+  color: $dark_color;
+  background-color: $text_color;
+  border-radius: 10px;
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: $main_line_height;
+  width: calc(100% - 40px); // 40px is the padding
+
+  &:focus {
+    border: 1px solid $main_color;
+  }
 }

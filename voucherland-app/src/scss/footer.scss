@@ -1,25 +1,29 @@
 @import "./variables.scss";
 
 .footer {
-    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
 
-    h3 { 
+    h3 {
         margin-top: 20px;
         margin-bottom: 10px;
         font-size: 20px;
     }
 
-    p{
+    p {
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;
     }
 
-    &_header{
+    &_first {
+        display: flex;
+    }
+
+    &_header {
+        flex: 3;
         display: flex;
         flex-direction: column;
     }
@@ -34,7 +38,7 @@
         flex-direction: column;
         gap: 10px;
 
-        &_content{
+        &_content {
             display: flex;
             gap: 10px;
         }
@@ -50,36 +54,29 @@
         }
     }
 
-    .contact_footer{
+    .contact_footer {
         > p {
             text-decoration: underline;
         }
     }
 
-    .trusted_by{
+    .trusted_by {
         display: flex;
         flex-direction: column;
-        
+
         .trusted_companies {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 30px;
-
         }
     }
 
-    .sitemap{
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
+    .sitemap {
         > p {
             text-transform: capitalize;
         }
     }
 
-    .line{
+    .line {
         width: 100%;
         height: 1px;
         background-color: white;
@@ -88,12 +85,11 @@
 
     .privacy {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+
         align-items: center;
         gap: 20px;
 
-        > p:last-child{
+        > p:last-child {
             text-decoration: underline;
         }
     }

@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .header {
+  max-height: 100vh;
   position: relative;
 
   h1 {
@@ -164,7 +165,7 @@
     &_description {
       font-weight: 100;
       font-size: 16px;
-      line-height: 1.5rem;
+      line-height: $main_line_height;
     }
 
     &_register_btn {
