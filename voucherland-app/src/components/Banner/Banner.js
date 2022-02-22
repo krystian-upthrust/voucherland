@@ -29,6 +29,10 @@ function Banner() {
           alt=""
         />
       </div>
+
+      <div className="scroller">
+        <div className="scroller_ball" />
+      </div>
     </section>
   );
 }

@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import Nav from "./Nav";
-import Banner from "./Banner";
 
 export default function Header() {
   useEffect(() => {
-    SetToWindowSize();
     ToggleMenu();
   }, []);
 
   return (
     <header className="header">
-      <h1>voucherland</h1>
+      <h1 className="header_title_mobile">voucherland</h1>
 
       {/* nav menu mobile */}
       <div className="nav_menu_mobile close_menu" id="mobile_menu">
@@ -20,22 +18,8 @@ export default function Header() {
       </div>
 
       <Nav />
-      <Banner />
-
-      <div className="scroller">
-        <div className="scroller_ball" />
-      </div>
     </header>
   );
-}
-
-function SetToWindowSize() {
-  document.getElementsByTagName("header")[0].style.height =
-    window.innerHeight + "px";
-  window.addEventListener("resize", () => {
-    document.getElementsByTagName("header")[0].style.height =
-      window.innerHeight + "px";
-  });
 }
 
 function ToggleMenu() {

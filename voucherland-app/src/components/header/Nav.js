@@ -7,9 +7,7 @@ function Nav() {
   return (
     <nav className="nav">
 
-      {/* h1 for desktop only ? */}
-
-      {/* is content needed... ? */}
+      <h1 className="header_title_desktop">voucherland</h1>
 
       <div className="nav_content">
         <ul className="nav_content_menu">
@@ -20,8 +18,8 @@ function Nav() {
         </ul>
 
         <div className="login_content">
-          <button className="register" onClick={()=>{navigate('/register')}} >register</button>
-          <button className="login" onClick={()=>{navigate('/login')}} >login</button>
+          <button className="nav_register" onClick={()=>{navigate('/register')}} >register</button>
+          <button className="nav_login" onClick={()=>{navigate('/login')}} >login</button>
         </div>
       </div>
 
