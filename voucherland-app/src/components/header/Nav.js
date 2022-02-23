@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate  } from "react-router-dom";
+import { FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 
 function Nav() {
   const navigate = useNavigate();

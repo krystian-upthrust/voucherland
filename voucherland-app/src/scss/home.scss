@@ -92,7 +92,6 @@
         .products {
             display: flex;
             gap: 20px;
-
         }
 
         .login_popup {
@@ -296,67 +295,6 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 20px;
-
-            .article_item {
-                flex: 1;
-                border: 1px solid $second_color;
-                border-radius: 12px;
-
-                &_image {
-                    flex: 1;
-                    width: 100%;
-                    height: auto;
-                }
-
-                &_content {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    padding: 15px;
-
-                    .tag {
-                        padding: 7px 12px;
-                        border-radius: 8px;
-                        width: fit-content;
-                        color: $text_color;
-                        font-weight: 500;
-                        font-size: 14px;
-                        background-color: $tag_color;
-                    }
-
-                    .title {
-                        color: $dark_color;
-                        font-size: 20px;
-                        font-weight: 700;
-                        margin-block: 20px;
-                        line-height: $main_line_height;
-                    }
-
-                    .read_article_container {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-top: 10px;
-
-                        .read_article_btn {
-                            @include main_btn_style($main_color, none, $dark_color);
-                            display: flex;
-                            align-items: center;
-
-                            &_arrow {
-                                margin-left: 10px;
-                            }
-                        }
-
-                        .read_time {
-                            color: $dark_color;
-                            font-size: 12px;
-                            font-weight: 400;
-                            line-height: 14px;
-                        }
-                    }
-                }
-            }
         }
     }
 }
@@ -459,6 +397,68 @@
         &_arrow {
             margin-left: 5px;
             font-weight: 700;
+        }
+    }
+}
+
+.article_item {
+    flex: 1;
+    border: 1px solid $second_color;
+    border-radius: 12px;
+    background-color: $text_color;
+
+    &_image {
+        flex: 1;
+        width: 100%;
+        height: auto;
+    }
+
+    &_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+
+        .tag {
+            padding: 7px 12px;
+            border-radius: 8px;
+            width: fit-content;
+            color: $text_color;
+            font-weight: 500;
+            font-size: 14px;
+            background-color: $tag_color;
+        }
+
+        .title {
+            color: $dark_color;
+            font-size: 20px;
+            font-weight: 700;
+            margin-block: 20px;
+            line-height: $main_line_height;
+        }
+
+        .read_article_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+
+            .read_article_btn {
+                @include main_btn_style($main_color, none, $dark_color);
+                display: flex;
+                align-items: center;
+
+                &_arrow {
+                    margin-left: 10px;
+                }
+            }
+
+            .read_time {
+                color: $dark_color;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14px;
+            }
         }
     }
 }

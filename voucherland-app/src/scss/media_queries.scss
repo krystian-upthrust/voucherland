@@ -248,6 +248,113 @@ $ultra_wide: 1920px;
         }
     }
 
+    .voucher_page {
+        .voucher_details {
+            flex-direction: column;
+            gap: 10px;
+            padding: 50px $main_padding_small;
+            padding-top: 90px;
+
+            .voucher_content {
+                .product_image_mobile {
+                    display: flex;
+                    justify-content: center;
+
+                    & img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+
+                .unsaved_btn {
+                    @include main_btn_style($main_color, none, $dark_color);
+                    width: 100%;
+                    margin-top: 30px;
+
+                    & .save_icon {
+                        font-size: 16px;
+                        margin-left: 10px;
+                        color: $dark_color;
+                    }
+                }
+
+                .saved_btn {
+                    @include main_btn_style(#f0fff0, 1px solid #70e000, $dark_color);
+                    width: 100%;
+                    margin-top: 30px;
+
+                    & .save_icon {
+                        font-size: 16px;
+                        margin-left: 10px;
+                        color: $dark_color;
+                    }
+                }
+            }
+
+            & .product_image_desktop {
+                display: none;
+            }
+        }
+
+        .voucher_countdown {
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .related_vouchers {
+            padding: 50px $main_padding_small;
+
+            &_header {
+                & .desktop {
+                    display: none;
+                }
+            }
+
+            &_items {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            & .product {
+                flex: 1 1 10%;
+            }
+
+            .back_to_voucher_btn {
+                margin: auto;
+            }
+        }
+    }
+
+    .articles {
+        & h2 {
+            padding: 50px $main_padding_small;
+        }
+
+        .recent_articles,
+        .collaborations,
+        .media {
+            padding: 50px $main_padding_small;
+            &_content {
+                flex-direction: column;
+            }
+        }
+    }
+
+    .article_details {
+        .article_details_content {
+            padding: 50px $main_padding_small;
+        }
+
+        .related_articles {
+            padding: 50px $main_padding_small;
+
+            &_content {
+                flex-direction: column;
+            }
+        }
+    }
+
     .login_register_image {
         background: url("./../../public/resources/images/login-image-mobile.png") no-repeat top center;
     }
@@ -390,6 +497,123 @@ $ultra_wide: 1920px;
                 .read_time {
                     display: none;
                 }
+            }
+        }
+    }
+
+    .voucher_page {
+        .voucher_details {
+            flex-direction: row;
+            padding: 100px $main_padding_small;
+
+            & .voucher_content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 10px;
+
+                & .product_image_mobile {
+                    display: none;
+                }
+
+                .unsaved_btn {
+                    @include main_btn_style($main_color, none, $dark_color);
+                    width: fit-content;
+                    margin: unset;
+                    margin-top: 30px;
+                }
+
+                .saved_btn {
+                    @include main_btn_style(#f0fff0, 1px solid #70e000, $dark_color);
+                    width: fit-content;
+                    margin: unset;
+                    margin-top: 30px;
+                }
+            }
+
+            & .product_image_desktop {
+                flex: 1;
+                display: block;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .voucher_countdown {
+            flex-direction: row;
+            gap: 60px;
+        }
+
+        .related_vouchers {
+            padding: 50px $main_padding_small;
+
+            & .mobile {
+                display: none;
+            }
+
+            &_header {
+                justify-content: space-between;
+
+                & .desktop {
+                    display: block;
+                    margin: unset;
+                }
+            }
+
+            &_items {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+    }
+
+    .articles {
+        .recent_articles,
+        .collaborations,
+        .media {
+            & .article_item {
+                flex: 0 0 40%;
+            }
+
+            &_content {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+            }
+        }
+    }
+
+    .article_details {
+        .article_details_content {
+            padding: 50px $main_padding_small;
+            .article_banner {
+                width: 70%;
+                margin: auto;
+            }
+
+            .article_text_content {
+                width: 60%;
+                margin: auto;
+            }
+        }
+
+        .related_articles {
+            padding: 50px $main_padding_small;
+
+            &_content {
+                & .article_item {
+                    flex: 0 0 40%;
+                }
+
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
             }
         }
     }
@@ -649,6 +873,118 @@ $ultra_wide: 1920px;
         }
     }
 
+    .voucher_page {
+        .voucher_details {
+            flex-direction: row;
+            padding: $main_padding_large;
+
+            & .voucher_content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 10px;
+
+                & .product_image_mobile {
+                    display: none;
+                }
+
+                .save_voucher_btn {
+                    width: fit-content;
+                    margin: unset;
+                }
+            }
+
+            & .product_image_desktop {
+                flex: 1;
+                display: block;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .voucher_countdown {
+            flex-direction: row;
+            gap: 60px;
+        }
+
+        .related_vouchers {
+            padding: $main_padding_large;
+
+            & .mobile {
+                display: none;
+            }
+
+            &_header {
+                justify-content: space-between;
+
+                & .desktop {
+                    display: block;
+                    margin: unset;
+                }
+            }
+
+            &_items {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+    }
+
+    .articles {
+        & h2 {
+            padding: $main_padding_large;
+        }
+
+        .recent_articles,
+        .collaborations,
+        .media {
+            padding: $main_padding_large;
+        }
+    }
+
+    .article_details {
+        & h2 {
+            width: 40%;
+            margin: auto;
+        }
+
+        .article_details_content {
+            position: relative;
+            padding: $main_padding_large;
+
+            .article_banner {
+                width: 60%;
+                margin: auto;
+            }
+
+            .article_text_content {
+                width: 50%;
+                margin: auto;
+            }
+
+            .back_btn {
+                position: absolute;
+                top: $main_padding_large;
+                left: $main_padding_large;
+            }
+        }
+
+        .related_articles {
+            padding: $main_padding_large;
+
+            & h2 {
+                width: 100%;
+                margin: unset;
+            }
+        }
+    }
+
     .login_register_image {
         background: url("./../../public/resources/images/login-image-desktop.png") no-repeat right top;
     }
@@ -747,6 +1083,25 @@ $ultra_wide: 1920px;
         }
     }
 
+    .articles {
+        .recent_articles,
+        .collaborations,
+        .media {
+            & .article_item {
+                flex: 0 0 20%;
+            }
+        }
+    }
+
+    .article_details {
+        
+        .related_articles {
+            & .article_item {
+                flex: 0 0 20%;
+            }
+        }
+    }
+
     .footer {
         &_first {
             gap: 70px;
@@ -771,6 +1126,14 @@ $ultra_wide: 1920px;
                     gap: 50px;
                 }
             }
+        }
+    }
+
+    .voucher_page {
+        .voucher_details {
+            width: 70%;
+            margin: auto;
+            padding-top: 150px;
         }
     }
 
