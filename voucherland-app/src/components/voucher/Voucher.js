@@ -39,7 +39,7 @@ export default function Voucher({
       </button>
 
       {/* when not logged in && mobile only  */}
-      {true && (
+      {false && (
         <div className="login_popup login_popup_mobile">
           <div className="login_popup_content">
             <p>To claim these vouchers, you must be logged in.</p>

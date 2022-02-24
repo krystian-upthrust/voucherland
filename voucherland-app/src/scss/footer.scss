@@ -33,27 +33,6 @@
         text-transform: uppercase;
     }
 
-    .socials {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        &_content {
-            display: flex;
-            gap: 10px;
-        }
-
-        &_item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: white;
-            color: $dark_color;
-            border-radius: 100%;
-            font-size: 20px;
-        }
-    }
-
     .contact_footer {
         > p {
             text-decoration: underline;
@@ -92,5 +71,26 @@
         > p:last-child {
             text-decoration: underline;
         }
+    }
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &_content {
+        display: flex;
+        gap: 10px;
+    }
+
+    &_item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: white;
+        color: $dark_color;
+        border-radius: 100%;
+        font-size: 20px;
     }
 }

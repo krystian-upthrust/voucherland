@@ -10,18 +10,21 @@ import "./scss/home.scss";
 import "./scss/login_register.scss";
 import "./scss/voucherpage.scss";
 import "./scss/articles.scss";
+import "./scss/contact.scss";
+import "./scss/vouchers.scss";
 
-import Header from "./components/header/Header";
-import Cookies from "./components/cookies/Cookies";
+import Header from "./components/Header/Header";
+import Cookies from "./components/Cookies/Cookies";
 import HomePage from "./pages/HomePage/HomePage";
 import VoucherDetailPage from "./pages/VoucherDetailPage/VoucherDetailPage";
 import ArticlesPage from "./pages/ArticlesPage/ArticlesPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import { UserContext } from "./context/UserContaxt";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ArticleDetailPage from "./pages/ArticlesPage/ArticleDetailPage";
+import VouchersPage from "./pages/VouchersPage/VouchersPage";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -41,7 +44,9 @@ export default function App() {
             vouchers_downloads={'965 downloads'}
           /> */}
 
-          <ArticleDetailPage />
+          {/* <ArticleDetailPage /> */}
+
+          <VouchersPage />
 
           {/* <LoginPage /> */}
           {/* <RegisterPage /> */}

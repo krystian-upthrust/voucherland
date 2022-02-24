@@ -219,52 +219,6 @@
         }
     }
 
-    .collaboration {
-        background-color: $voucher_backgroundColor;
-        display: flex;
-
-        &_image_container {
-            flex: 1;
-
-            > img {
-                object-fit: contain;
-            }
-        }
-
-        &_content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 20px;
-            background-color: $text_color;
-            color: $dark_color;
-
-            .tag {
-                color: inherit;
-                font-weight: 700;
-            }
-
-            .title {
-                color: inherit;
-                font-weight: 700;
-                font-size: 24px;
-                line-height: 29px;
-            }
-
-            .description {
-                font-size: 16px;
-                font-weight: 400;
-                color: $description_color;
-                line-height: $main_line_height;
-            }
-
-            .contact_btn {
-                @include main_btn_style($main_color, none, $dark_color);
-            }
-        }
-    }
-
     .articles {
         background-color: $text_color;
 
@@ -304,7 +258,7 @@
     background-color: $voucher_backgroundColor;
     border-radius: 8px;
     padding: 20px;
-    flex: 1 35%;
+    // flex: 0 0 25%;
     align-items: flex-start;
 
     &_discount {
@@ -459,6 +413,52 @@
                 font-weight: 400;
                 line-height: 14px;
             }
+        }
+    }
+}
+
+.collaboration {
+    background-color: $voucher_backgroundColor;
+    display: flex;
+
+    &_image_container {
+        flex: 1;
+
+        > img {
+            object-fit: contain;
+        }
+    }
+
+    &_content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px;
+        background-color: $text_color;
+        color: $dark_color;
+
+        .tag {
+            color: inherit;
+            font-weight: 700;
+        }
+
+        .title {
+            color: inherit;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+        }
+
+        .description {
+            font-size: 16px;
+            font-weight: 400;
+            color: $description_color;
+            line-height: $main_line_height;
+        }
+
+        .contact_btn {
+            @include main_btn_style($main_color, none, $dark_color);
         }
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Voucher from "../voucher/Voucher";
+import Voucher from "../Voucher/Voucher";
 import { FiArrowRight } from "react-icons/fi";
 
 export default function TopDeals() {

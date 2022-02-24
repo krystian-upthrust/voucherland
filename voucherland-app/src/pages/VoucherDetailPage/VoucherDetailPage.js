@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import CountdownElement from "../../components/Countdown/CountdownElement";
-import Header from "../../components/header/Header";
-import Voucher from "../../components/voucher/Voucher";
+import Header from "../../components/Header/Header";
+import Voucher from "../../components/Voucher/Voucher";
 
 export default function VoucherDetailPage({
   store_image,

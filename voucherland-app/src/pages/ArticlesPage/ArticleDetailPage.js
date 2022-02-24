@@ -1,6 +1,6 @@
 import React from "react";
 import Article from "../../components/Articles/Article";
-import Header from "../../components/header/Header";
+import Header from "../../components/Header/Header";
 import { FiArrowLeft } from "react-icons/fi";
 
 export default function ArticleDetailPage() {
