@@ -12,7 +12,7 @@ export default function Settings() {
 
       <div className="password">
         <label htmlFor="password"> password </label>
-        <input type="password" id="password" placeholder="password"/>
+        <input type="password" id="password" placeholder="password" />
       </div>
 
       <div className="password">

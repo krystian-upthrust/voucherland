@@ -25,7 +25,6 @@
         font-weight: 700;
         line-height: 29px;
         text-align: center;
-        padding: 50px $main_padding_small;
 
         & span {
             color: inherit;
@@ -44,9 +43,7 @@
     }
 
     &_options {
-        padding: 50px $main_padding_small 20px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
 
         border-bottom: 1px solid $second_color;
@@ -58,7 +55,6 @@
     }
 
     &_content {
-        padding: 50px $main_padding_small;
         display: flex;
         flex-direction: column;
         gap: 50px;
@@ -74,7 +70,6 @@
         .valid_vouchers_content,
         .expired_vouchers_content {
             display: flex;
-            flex-direction: column;
             gap: 20px;
         }
 
@@ -107,7 +102,6 @@
 
     &_content {
         background-color: $voucher_backgroundColor;
-        padding: $main_padding_small;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -190,7 +184,7 @@
 
             .newletter_btn {
                 @include main_btn_style($main_color, none, $dark_color);
-                margin-top: 10px;
+                margin-top: 20px;
             }
         }
     }
@@ -224,5 +218,6 @@
 
     &_save_btn{
         @include main_btn_style($main_color, none, $dark_color);
+        margin-top: 20px;
     }
 }

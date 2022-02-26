@@ -413,17 +413,42 @@ $ultra_wide: 1920px;
     }
   }
 
+  .account {
+    &_banner {
+      padding: 50px $main_padding_small;
+    }
+
+    &_options {
+      padding: 50px $main_padding_small 20px;
+      justify-content: space-between;
+    }
+
+    &_content {
+      padding: 50px $main_padding_small;
+
+      .valid_vouchers_content,
+      .expired_vouchers_content {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+
+  .newletter {
+    &_content {
+      padding: $main_padding_small;
+    }
+  }
+
+  .settings {
+  }
+
   .login_register_image {
-    background: url("./../../public/resources/images/login-image-mobile.png")
-      no-repeat top center;
+    background: url("./../../public/resources/images/login-image-mobile.png") no-repeat top center;
   }
 
   .login_register_shadow {
-    background: linear-gradient(
-      180deg,
-      #1d1d1d 32.81%,
-      rgba(29, 29, 29, 0.65) 100%
-    );
+    background: linear-gradient(180deg, #1d1d1d 32.81%, rgba(29, 29, 29, 0.65) 100%);
     transform: rotate(-180deg);
   }
 
@@ -732,6 +757,26 @@ $ultra_wide: 1920px;
 
       &_map {
         flex: 1;
+      }
+    }
+  }
+
+  .account {
+    &_options {
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    &_content {
+      .valid_vouchers_content,
+      .expired_vouchers_content {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        & .product {
+          flex: 0 0 40%;
+        }
       }
     }
   }
@@ -1064,11 +1109,10 @@ $ultra_wide: 1920px;
     &_secondToLast,
     &_thirdToLast {
       padding: 50px $main_padding_large;
-
     }
 
     &_lastchance {
-        padding-top: 100px;
+      padding-top: 100px;
     }
   }
 
@@ -1131,8 +1175,7 @@ $ultra_wide: 1920px;
       flex-direction: row;
       .contact_information,
       .contact_form {
-        padding: $main_padding_large 50px $main_padding_large
-          $main_padding_large;
+        padding: $main_padding_large 50px $main_padding_large $main_padding_large;
       }
 
       .contact_information {
@@ -1159,17 +1202,36 @@ $ultra_wide: 1920px;
     }
   }
 
+  .account {
+    &_banner {
+      padding: $main_padding_large;
+    }
+
+    &_options {
+      padding: 50px $main_padding_large 30px;
+    }
+
+    &_content {
+      padding: $main_padding_large;
+    }
+  }
+
+  .newletter {
+    &_content {
+      width: 50%;
+    }
+  }
+
+  .settings {
+    width: 50%;
+  }
+
   .login_register_image {
-    background: url("./../../public/resources/images/login-image-desktop.png")
-      no-repeat right top;
+    background: url("./../../public/resources/images/login-image-desktop.png") no-repeat right top;
   }
 
   .login_register_shadow {
-    background: linear-gradient(
-      -90deg,
-      #1d1d1d 25%,
-      rgba(29, 29, 29, 0.65) 100%
-    );
+    background: linear-gradient(-90deg, #1d1d1d 25%, rgba(29, 29, 29, 0.65) 100%);
   }
 
   .login,
@@ -1266,11 +1328,11 @@ $ultra_wide: 1920px;
     &_lastchance,
     &_secondToLast,
     &_thirdToLast {
-        & .vouchers_content {
-            & .product {
-              flex: 0 0 25%;
-            }
-          }
+      & .vouchers_content {
+        & .product {
+          flex: 0 0 25%;
+        }
+      }
     }
   }
 
@@ -1288,6 +1350,17 @@ $ultra_wide: 1920px;
     .related_articles {
       & .article_item {
         flex: 0 0 20%;
+      }
+    }
+  }
+
+  .account {
+    &_content {
+      .valid_vouchers_content,
+      .expired_vouchers_content {
+        & .product {
+          flex: 0 0 25%;
+        }
       }
     }
   }
@@ -1340,6 +1413,16 @@ $ultra_wide: 1920px;
         height: 450px;
       }
     }
+  }
+
+  .newletter {
+    &_content {
+      width: 30%;
+    }
+  }
+
+  .settings {
+    width: 30%;
   }
 
   .footer {

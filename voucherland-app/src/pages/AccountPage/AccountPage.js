@@ -82,10 +82,10 @@ export default function AccountPage() {
       </div>
 
       <div className="account_content">
-        {/* <ValidVouchers valid_vouchers={vouchers}/>
-        <ExpiredVouchers expired_vouchers={expired_vouchers}/> */}
+        <ValidVouchers valid_vouchers={vouchers}/>
+        <ExpiredVouchers expired_vouchers={expired_vouchers}/>
 
-        {/* <Newletter /> */}
+        <Newletter />
 
         <Settings />
       </div>
