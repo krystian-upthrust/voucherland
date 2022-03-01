@@ -13,6 +13,7 @@ import "./scss/articles.scss";
 import "./scss/contact.scss";
 import "./scss/vouchers.scss";
 import "./scss/account.scss";
+import "./scss/admin.scss";
 
 import Header from "./components/Header/Header";
 import Cookies from "./components/Cookies/Cookies";
@@ -27,6 +28,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ArticleDetailPage from "./pages/ArticlesPage/ArticleDetailPage";
 import VouchersPage from "./pages/VouchersPage/VouchersPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -47,6 +49,7 @@ export default function App() {
           {/* <ArticleDetailPage /> */}
 
           <Routes>
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
