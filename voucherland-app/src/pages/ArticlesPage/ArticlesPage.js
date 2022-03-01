@@ -1,5 +1,6 @@
 import React from "react";
 import Article from "../../components/Articles/Article";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
 export default function ArticlesPage() {
@@ -94,6 +95,7 @@ export default function ArticlesPage() {
           />
         </div>
       </article>
+      <Footer />
     </section>
   );
 }

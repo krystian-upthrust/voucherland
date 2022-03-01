@@ -52,6 +52,10 @@
             @include main_btn_style($second_color, none, $dark_color);
             font-size: 14px;
         }
+
+        & .active {
+            background-color: $main_color;
+        }
     }
 
     &_content {
@@ -94,6 +98,10 @@
                 margin-top: 40px;
             }
         }
+    }
+
+    & .footer {
+        background-color: $dark_color;
     }
 }
 
@@ -206,17 +214,16 @@
             font-size: 14px;
             font-weight: 400;
             line-height: 14px;
-            color: $dark_color
+            color: $dark_color;
         }
 
         & input {
             @include main_input_style();
             border: 1px solid $voucher_backgroundColor;
         }
-
     }
 
-    &_save_btn{
+    &_save_btn {
         @include main_btn_style($main_color, none, $dark_color);
         margin-top: 20px;
     }

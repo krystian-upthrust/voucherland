@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import { FiSearch } from "react-icons/fi";
 import { FaClock } from "react-icons/fa";
 import Voucher from "../../components/Voucher/Voucher";
+import Footer from "../../components/Footer/Footer";
 
 export default function VouchersPage() {
   let product_description =
@@ -16,17 +17,17 @@ export default function VouchersPage() {
   return (
     <section className="vouchers">
       <Header />
-      <div className="vouchers_banner">
+      <div className="vouchers_banner" >
         <h2>Daily new deals</h2>
         <form className="vouchers_banner_searchbar">
-          <input type="text" placeholder="Search for shop/brand" />
+          <input type="search" placeholder="Search for shop/brand" />
           <button>
              search <FiSearch />
           </button>
         </form>
       </div>
 
-      <div className="vouchers_lastchance">
+      <div className="vouchers_lastchance" >
         <h3 className="lastchance">
           <FaClock /> 24/02/2022 - Be quick
         </h3>
@@ -123,6 +124,8 @@ export default function VouchersPage() {
           />
         </div>
       </div>
+
+      <Footer />
     </section>
   );
 }

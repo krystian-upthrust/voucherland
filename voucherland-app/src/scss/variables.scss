@@ -23,7 +23,6 @@ $main_line_height: 24px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  text-transform: capitalize;
   border: $border;
   outline: none;
   background-color: $background_color;
@@ -40,7 +39,9 @@ $main_line_height: 24px;
   outline: none;
   font-size: 16px;
   line-height: $main_line_height;
-  width: calc(100% - 40px); // 40px is the padding
+  // width: calc(100% - 40px); // 40px is the padding
+  width: 100%;
+  border: 1px solid transparent;
 
   &:focus {
     border: 1px solid $main_color;

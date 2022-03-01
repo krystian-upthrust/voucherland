@@ -16,7 +16,7 @@ $ultra_wide: 1920px;
       color: $text_color;
       font-weight: 700;
       cursor: pointer;
-      top: 30px;
+      top: 20px;
       left: $main_padding_small;
       font-size: 20px;
     }
@@ -25,6 +25,25 @@ $ultra_wide: 1920px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 20px;
+      height: 20px;
+      z-index: 9991;
+      cursor: pointer;
+
+      .line {
+        width: 100%;
+        height: 3px;
+        background-color: $text_color;
+        transition: all 2s;
+
+        &_sided {
+          margin-right: 10px;
+          transform: translateX(-30%);
+        }
+      }
     }
 
     .nav {
@@ -73,7 +92,7 @@ $ultra_wide: 1920px;
           }
         }
 
-        .login_content {
+        .login_content_mobile {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -88,10 +107,10 @@ $ultra_wide: 1920px;
             @include main_btn_style($second_color, none, $dark_color);
           }
         }
+      }
 
-        .active {
-          border-bottom: 2px solid $main_color;
-        }
+      .login_content_desktop {
+        display: none;
       }
     }
   }
@@ -121,7 +140,6 @@ $ultra_wide: 1920px;
 
       &_content {
         padding: $main_padding_small;
-        padding-top: 100px;
       }
 
       &_quote {
@@ -227,6 +245,10 @@ $ultra_wide: 1920px;
     }
   }
 
+  .product {
+    flex: 1 1 10%;
+  }
+
   .collaboration {
     flex-direction: column;
     padding: 50px $main_padding_small;
@@ -316,10 +338,6 @@ $ultra_wide: 1920px;
         gap: 20px;
       }
 
-      & .product {
-        flex: 1 1 10%;
-      }
-
       .back_to_voucher_btn {
         margin: auto;
       }
@@ -328,13 +346,19 @@ $ultra_wide: 1920px;
 
   .vouchers {
     &_banner {
-      margin-top: 10px;
       padding: 50px $main_padding_small;
 
       &_searchbar {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
+
+        & input {
+          @include main_input_style();
+          padding: 10px;
+          font-size: 14px;
+        }
       }
     }
 
@@ -351,7 +375,7 @@ $ultra_wide: 1920px;
   }
 
   .articles {
-    & h2 {
+    > h2 {
       padding: 50px $main_padding_small;
     }
 
@@ -440,9 +464,6 @@ $ultra_wide: 1920px;
     }
   }
 
-  .settings {
-  }
-
   .login_register_image {
     background: url("./../../public/resources/images/login-image-mobile.png") no-repeat top center;
   }
@@ -490,12 +511,6 @@ $ultra_wide: 1920px;
 
 @media screen and (min-width: $medium) {
   .header {
-    h1 {
-      top: 30px;
-      left: $main_padding_small;
-      font-size: 20px;
-    }
-
     .nav {
       width: 50%;
     }
@@ -589,6 +604,10 @@ $ultra_wide: 1920px;
     }
   }
 
+  .product {
+    flex: 0 0 40%;
+  }
+
   .voucher_page {
     .voucher_details {
       flex-direction: row;
@@ -666,6 +685,10 @@ $ultra_wide: 1920px;
       &_searchbar {
         flex-direction: row;
         width: 50%;
+
+        & input {
+          @include main_input_style();
+        }
       }
     }
 
@@ -773,99 +796,12 @@ $ultra_wide: 1920px;
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
-
-        & .product {
-          flex: 0 0 40%;
-        }
       }
     }
   }
 }
 
 @media screen and (min-width: $large) {
-  .header {
-    h1 {
-      left: $main_padding_large;
-      font-size: 1.2rem;
-    }
-
-    &_title_mobile {
-      display: none;
-    }
-
-    .nav_menu_mobile {
-      display: none;
-    }
-
-    .nav {
-      width: unset;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-
-      height: 10vh;
-      padding-left: $main_padding_large;
-      background-color: transparent;
-      z-index: 999;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: none;
-      border-radius: 0;
-      color: $text_color;
-
-      .header_title_desktop {
-        display: flex;
-        text-transform: uppercase;
-        color: $text_color;
-        font-weight: 700;
-        cursor: pointer;
-        font-size: 20px;
-      }
-
-      &_content {
-        flex-direction: row;
-        justify-content: space-between;
-        padding-right: 20px;
-
-        &_menu {
-          list-style: none;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: center;
-          font-weight: 600;
-          margin-inline: 20px;
-          gap: 35px;
-          padding-block: 5px;
-
-          li {
-            color: $text_color;
-            font-weight: 700;
-          }
-        }
-
-        .login_content {
-          flex-direction: row;
-          gap: 20px;
-
-          .nav_register {
-            @include main_btn_style($main_color, none, $dark_color);
-          }
-
-          .nav_login {
-            @include main_btn_style($second_color, none, $dark_color);
-          }
-        }
-
-        .active {
-          border-bottom: 2px solid $main_color;
-        }
-      }
-    }
-  }
-
   .cookies {
     background-color: $dark_color;
     position: fixed;
@@ -888,44 +824,22 @@ $ultra_wide: 1920px;
   }
 
   .home {
+    .header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+
     .banner {
       flex-direction: row;
+      align-items: center;
 
       &_content {
-        flex: 1;
-        padding: 0;
-        padding-left: $main_padding_large;
+        padding: $main_padding_small;
         justify-content: center;
-      }
+      } 
 
-      &_quote {
-        font-size: 4rem;
-      }
-
-      &_description {
-        width: 60%;
-        padding: 0;
-      }
-
-      &_image_container {
-        padding: 0;
-        height: 100%;
-        max-height: unset;
-
-        .banner_image {
-          text-align: unset;
-          height: 100%;
-          margin: unset;
-        }
-
-        .mobile_image {
-          display: none;
-        }
-
-        .desktop_image {
-          display: block;
-        }
-      }
 
       .scroller {
         visibility: visible;
@@ -1005,7 +919,7 @@ $ultra_wide: 1920px;
 
       .article_item {
         .read_time {
-          display: block;
+          display: none;
         }
       }
     }
@@ -1118,7 +1032,7 @@ $ultra_wide: 1920px;
 
   .articles {
     & h2 {
-      padding: $main_padding_large;
+      padding: 0;
     }
 
     .recent_articles,
@@ -1313,13 +1227,142 @@ $ultra_wide: 1920px;
 
 @media screen and (min-width: $extra_large) {
   .header {
+    padding-inline: $main_padding_large;
+    display: flex;
+
+    & h1 {
+      font-size: 1.2rem;
+    }
+
+    &_title_mobile,
+    .nav_menu_mobile {
+      display: none;
+    }
+
     .nav {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       gap: 30px;
+      height: 100%;
+      background-color: transparent;
+      z-index: 999;
+      position: relative;
+      transform: none;
+      border-radius: 0;
+      color: $text_color;
+
+      .header_title_desktop {
+        display: flex;
+        text-transform: uppercase;
+        color: $text_color;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 20px;
+      }
 
       &_content {
         gap: 40px;
-        justify-content: unset;
+        flex-direction: row;
+        justify-content: center;
         padding-right: unset;
+
+        &_menu {
+          list-style: none;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          font-weight: 600;
+          margin-inline: 20px;
+          gap: 35px;
+          padding-block: 5px;
+
+          li {
+            color: $text_color;
+            font-weight: 700;
+          }
+        }
+
+        .login_content_mobile {
+          display: none;
+        }
+      }
+
+      .login_content_desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .nav_register {
+          @include main_btn_style($main_color, none, $dark_color);
+        }
+
+        .nav_login {
+          @include main_btn_style($second_color, none, $dark_color);
+        }
+      }
+    }
+  }
+  .home {
+    .header {
+      position: absolute;
+      top: 0;
+    }
+
+    .banner {
+      flex-direction: row;
+
+      &_content {
+        flex: 1;
+        padding: 0;
+        padding-left: $main_padding_large;
+        justify-content: center;
+      }
+
+      &_quote {
+        font-size: 4rem;
+      }
+
+      &_description {
+        width: 60%;
+        padding: 0;
+      }
+
+      &_image_container {
+        padding: 0;
+        height: 100%;
+        max-height: unset;
+
+        .banner_image {
+          text-align: unset;
+          height: 100%;
+          margin: unset;
+        }
+
+        .mobile_image {
+          display: none;
+        }
+
+        .desktop_image {
+          display: block;
+        }
+      }
+
+      .scroller {
+        visibility: visible;
+      }
+    }
+
+    .articles {
+      .article_item {
+        .read_time {
+          display: block;
+        }
       }
     }
   }
@@ -1337,6 +1380,11 @@ $ultra_wide: 1920px;
   }
 
   .articles {
+
+    > h2 {
+      padding: $main_padding_large;
+    }
+
     .recent_articles,
     .collaborations,
     .media {
@@ -1354,15 +1402,8 @@ $ultra_wide: 1920px;
     }
   }
 
-  .account {
-    &_content {
-      .valid_vouchers_content,
-      .expired_vouchers_content {
-        & .product {
-          flex: 0 0 25%;
-        }
-      }
-    }
+  .product {
+    flex: 0 0 25%;
   }
 
   .footer {

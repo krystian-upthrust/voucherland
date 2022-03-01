@@ -35,9 +35,7 @@ export default function App() {
     <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <section className="app">
         <Cookies />
-
-        <Router>
-          {/* <Header /> */}
+        <Router >
           {/* <VoucherDetailPage
             store_image={"https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"}
             product_name={"Komkommers"}
@@ -48,20 +46,17 @@ export default function App() {
 
           {/* <ArticleDetailPage /> */}
 
-          <AccountPage s/>
-
-          {/* <LoginPage /> */}
-          {/* <RegisterPage /> */}
-
-          {/* <Routes>
+          <Routes>
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/vouchers" element={<VouchersPage />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/" element={<HomePage />} />
-          </Routes> */}
+          </Routes>
         </Router>
 
-        <Footer />
       </section>
     </UserContext.Provider>
   );

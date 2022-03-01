@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
+
   return (
     <section className="banner">
       <div className="banner_content">
@@ -12,7 +15,20 @@ function Banner() {
           the majority. There are many variations of passages of Lorem Ipsum
           available, but the majority.
         </p>
-        <button className="banner_register_btn">register now</button>
+        <div className="banner_buttons">
+          <button
+            className="banner_register_btn"
+            onClick={() => { navigate("/register"); }}
+          >
+            Register now
+          </button>
+          <button
+            className="banner_collaboration_btn"
+            onClick={() => {navigate("/contact"); }}
+          >
+            Collaborate
+          </button>
+        </div>
       </div>
 
       <div className="banner_image_container">

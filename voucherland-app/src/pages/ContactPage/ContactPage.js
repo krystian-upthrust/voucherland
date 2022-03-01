@@ -2,6 +2,7 @@ import React from "react";
 import Socials from "../../components/Footer/Socials";
 import { FiMail, FiPhone } from "react-icons/fi";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 export default function ContactPage() {
   return (
@@ -113,6 +114,8 @@ export default function ContactPage() {
           ></iframe>
         </div>
       </div>
+
+      <Footer />
     </section>
   );
 }

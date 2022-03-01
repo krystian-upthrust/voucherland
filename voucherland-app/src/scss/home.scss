@@ -1,9 +1,8 @@
 @import "./variables.scss";
 
 .home {
-    .banner {
+   .banner {
         height: 100vh;
-        width: 100%;
         display: flex;
         position: relative;
 
@@ -28,6 +27,24 @@
             font-weight: 100;
             font-size: 16px;
             line-height: $main_line_height;
+        }
+
+        &_buttons {
+            display: flex;
+            gap: 20px;
+
+            & .banner_register_btn {
+                @include main_btn_style($main_color, none, $dark_color);
+
+                &:hover{
+                    // filter: grayscale(50%);
+                    filter: brightness(0.7);
+                }
+            }
+
+            &  .banner_collaboration_btn {
+                @include main_btn_style($second_color, none, $dark_color);
+            }
         }
 
         &_register_btn {
@@ -258,7 +275,6 @@
     background-color: $voucher_backgroundColor;
     border-radius: 8px;
     padding: 20px;
-    // flex: 0 0 25%;
     align-items: flex-start;
 
     &_discount {

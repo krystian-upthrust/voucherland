@@ -6,14 +6,14 @@ function DealAdvantage({
   advantage_description,
 }) {
   return (
-    <article class="advantage_item">
+    <article className="advantage_item">
 
-      <div class="advantage_item_header">
-        <div class="advantage_item_header_number"> {advantage_number} </div>
-        <p class="advantage_item_header_title"> {advantage_title} </p>
+      <div className="advantage_item_header">
+        <div className="advantage_item_header_number"> {advantage_number} </div>
+        <p className="advantage_item_header_title"> {advantage_title} </p>
       </div>
 
-      <div class="advantage_item_description">{advantage_description}</div>
+      <div className="advantage_item_description">{advantage_description}</div>
       
     </article>
   );

@@ -18,6 +18,10 @@
     color: $dark_color;
   }
 
+  & .footer {
+    background-color: $dark_color;
+  }
+
   &_banner {
     background-color: $dark_color;
     display: flex;
@@ -37,9 +41,6 @@
         display: flex;
         gap: 10px;
 
-        & input {
-            @include main_input_style();
-        }
 
         & button {
             @include main_btn_style($main_color, none, $dark_color);

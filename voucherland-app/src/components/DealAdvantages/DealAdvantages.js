@@ -5,17 +5,17 @@ export default function DealAdvantages() {
   let deal_advantage_description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.";
 
   return (
-    <section class="deal_content deal_advantages">
-      <h3 class="deal_advantages_header">Why get your deals in advance?</h3>
+    <section className="deal_content deal_advantages">
+      <h3 className="deal_advantages_header">Why get your deals in advance?</h3>
 
-      <div class="deal deal_advantages_container">
+      <div className="deal deal_advantages_container">
         <img
-          class="deal_advantages_image"
+          className="deal_advantages_image"
           src="./resources/images/full-banner-img.webp"
           alt="full-banner-pic"
         />
 
-        <div class="deal_items deal_advantages_content">
+        <div className="deal_items deal_advantages_content">
           <DealAdvantage
             advantage_number={"01"}
             advantage_title={"Save money"}
