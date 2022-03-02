@@ -4,6 +4,7 @@
     box-sizing: border-box;
     display: flex;
     background-color: $text_color;
+    position: relative;
 
     .nav {
         background-color: $admin_nav_color;
@@ -14,6 +15,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        position: fixed;
+        left: 0;
+        top: 0;
 
         &_header {
             padding: $main_padding_small;
@@ -102,6 +106,33 @@
 
     &_content {
         flex: 1;
+        padding-left: 300px;
+
+        .page_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            > h2 {
+                color: $dark_color;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 40px;
+            }
+
+            .header_btns {
+                display: flex;
+                gap: 10px;
+
+                .create_btn {
+                    @include admin_create_btn();
+                }
+
+                .delete_btn {
+                    @include admin_delete_btn();
+                }
+            }
+        }
     }
 
     .admin_vouchers {
@@ -243,85 +274,136 @@
             }
         }
 
-        .public_vouchers_tab {
+        .public_tab,
+        .private_tab,
+        .expired_tab {
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
 
+        .public_tab {
             > h3 {
-                color: $admin_green;
-                font-weight: 700;
-                font-size: 24px;
-                font-style: normal;
-                line-height: 29px;
-                margin-bottom: 10px;
-                padding-top: 50px;
+                @include admin_title_style($admin_green);
             }
+        }
+        .private_tab {
+            > h3 {
+                @include admin_title_style($main_color);
+            }
+        }
+        .expired_tab {
+            > h3 {
+                @include admin_title_style($admin_red);
+            }
+        }
 
-            .public_voucher_tabitem {
-                border: 1px solid $admin_border_color;
-                border-radius: 20px;
+        .public_voucher_tabitem,
+        .private_voucher_tabitem,
+        .expired_voucher_tabitem {
+            border: 1px solid $admin_border_color;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: $main_padding_small;
+
+            .item_header {
+                width: 100%;
+                height: 100%;
                 display: flex;
-                flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
-                padding: $main_padding_small;
                 cursor: pointer;
 
-                .item_header {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .date {
-                        font-size: 20px;
-                        font-weight: 700;
-                        line-height: 30px;
-                        color: $dark_color;
-                    }
-
-                    .colapse_minus {
-                        width: 20px;
-                        height: 20px;
-                        display: flex;
-                        align-items: center;
-                        position: relative;
-
-                        .line {
-                            position: absolute;
-                            height: 3px;
-                            width: 20px;
-                            background-color: $dark_color;
-                            border-radius: 5px;
-                        }
-
-                        .open_tab {
-                            animation: open_tab 1s 0s 1 forwards;
-                        }
-
-                        .close_tab {
-                            animation: close_tab 1s 0s 1 forwards;
-                        }
-                    }
+                .date {
+                    font-size: 20px;
+                    font-weight: 700;
+                    line-height: 30px;
+                    color: $dark_color;
                 }
 
-                .vouchers_collection {
+                .colapse_minus {
+                    width: 20px;
+                    height: 20px;
                     display: flex;
-                    flex-direction: column;
-                    justify-content: center;
                     align-items: center;
-                    gap: 10px;
-                    margin-top: 20px;
-                    width: calc(100% - $main_padding_small);
+                    position: relative;
+
+                    .line {
+                        position: absolute;
+                        height: 3px;
+                        width: 20px;
+                        background-color: $dark_color;
+                        border-radius: 5px;
+                    }
+
+                    .open_tab {
+                        animation: open_tab 1s 0s 1 forwards;
+                    }
+
+                    .close_tab {
+                        animation: close_tab 1s 0s 1 forwards;
+                    }
                 }
             }
+
+            .vouchers_collection {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin-top: 20px;
+                width: calc(100% - $main_padding_small);
+            }
+        }
+
+    }
+
+    .checkbox {
+        width: 20px;
+        height: 20px;
+        border: 1px solid $admin_border_color;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .checked {
+        background-color: $main_color;
+        border: 1px solid $main_color;
+
+        .checked_line1,
+        .checked_line2 {
+            position: absolute;
+            bottom: 3px;
+            left: 50%;
+            width: 3px;
+            background-color: $dark_color;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        .checked_line1 {
+            height: 50%;
+            border-bottom-right-radius: 10px;
+            transform: rotate( -35deg ) translate(-4px, -2px);
+        }
+
+        .checked_line2 {
+            height: 80%;
+            border-bottom-left-radius: 10px;
+            transform: rotate( 35deg ) translate(1.5px, 0px);
+
         }
     }
 }
 
-.public_voucher {
+.public_voucher,
+.private_voucher,
+.expired_voucher {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -332,14 +414,8 @@
 
     .voucher_info {
         display: flex;
+        align-items: center;
         gap: 30px;
-
-        .checkbox {
-            width: 20px;
-            height: 20px;
-            border: 1px solid $admin_border_color;
-            border-radius: 5px;
-        }
 
         .voucher_tag {
             color: $text_color;
@@ -404,8 +480,6 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
-            color: $admin_green;
-            border: 1px solid $admin_green;
             border-radius: 100%;
         }
 
@@ -422,6 +496,25 @@
             border-radius: 10px;
         }
     }
+
+    .public_lock {
+        color: $admin_green;
+        border: 1px solid $admin_green;
+    }
+
+    .private_lock {
+        color: $main_color;
+        border: 1px solid $main_color;
+    }
+
+    .expired_lock {
+        color: $admin_red;
+        border: 1px solid $admin_red;
+    }
+}
+
+.checked_voucher {
+    border: 2px solid $main_color;
 }
 
 @keyframes close_tab {

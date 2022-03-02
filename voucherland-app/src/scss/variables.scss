@@ -2,7 +2,7 @@
 $main_font: "Poppins", sans-serif;
 
 // main colors
-$main_color: #ffba08; 
+$main_color: #ffba08;
 $second_color: #e9ecef;
 $dark_color: #1d1d1d;
 $text_color: #ffffff;
@@ -12,11 +12,11 @@ $tag_color: #023e8a;
 
 $admin_nav_color: #495057;
 $admin_icon_color: #c4c4c4;
-$admin_stat_background_color: #F8F8F8;
-$admin_border_color: #D3D3D3;
-$admin_green : #0ca669;
-$admin_red: #DB4437;
-$admin_voucher_color: #F8F8F8;
+$admin_stat_background_color: #f8f8f8;
+$admin_border_color: #d3d3d3;
+$admin_green: #0ca669;
+$admin_red: #db4437;
+$admin_voucher_color: #f8f8f8;
 
 // main size settings
 $main_padding_small: 20px;
@@ -60,7 +60,7 @@ $main_line_height: 24px;
   border: none;
   outline: none;
   border-radius: 10px;
-  padding: 10px 20px; 
+  padding: 10px 20px;
   color: $text_color;
   font-size: 20px;
   font-weight: 700;
@@ -76,4 +76,14 @@ $main_line_height: 24px;
   @include admin_main_btn();
   background-color: $admin_red;
   opacity: 0.5;
+}
+
+@mixin admin_title_style($title_color) {
+  color: $title_color;
+  font-weight: 700;
+  font-size: 24px;
+  font-style: normal;
+  line-height: 29px;
+  margin-bottom: 10px;
+  padding-top: 50px;
 }

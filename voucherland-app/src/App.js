@@ -49,6 +49,10 @@ export default function App() {
           {/* <ArticleDetailPage /> */}
 
           <Routes>
+            {/* /admin/vouchers */ }
+            {/* /admin/articles */ }
+            {/* /admin/admins */ }
+
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/login" element={<LoginPage />} />
