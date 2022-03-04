@@ -6,11 +6,10 @@ import AdminVouchers from "../../components/Admin/Vouchers/AdminVouchers";
 
 export default function AdminPage() {
   const [toggleAdminNav, setToggleAdminNav] = useState({
-    vouchers: true,
+    vouchers: false,
     articles: false,
-    admins: false,
+    admins: true,
   });
-
   const ToggleVouchersScreen = () => {
     setToggleAdminNav({
       vouchers: true,
@@ -18,7 +17,6 @@ export default function AdminPage() {
       admins: false,
     });
   };
-
   const ToggleArticlesScreen = () => {
     setToggleAdminNav({
       vouchers: false,
@@ -26,7 +24,6 @@ export default function AdminPage() {
       admins: false,
     });
   };
-
   const ToggleAdminsScreen = () => {
     setToggleAdminNav({
       vouchers: false,

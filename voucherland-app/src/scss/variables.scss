@@ -75,7 +75,10 @@ $main_line_height: 24px;
 @mixin admin_delete_btn {
   @include admin_main_btn();
   background-color: $admin_red;
-  opacity: 0.5;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 @mixin admin_title_style($title_color) {
