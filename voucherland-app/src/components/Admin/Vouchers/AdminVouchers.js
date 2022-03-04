@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaLockOpen, FaLock, FaDownload } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
+import { FaLockOpen, FaLock } from "react-icons/fa";
 import PublicVouchersTab from "./PublicVouchersTab";
 import PublicVoucher from "./PublicVoucher";
 import PrivateVoucher from "./PrivateVoucher";
@@ -8,6 +7,7 @@ import PrivateVouchersTab from "./PrivateVouchersTab";
 import ExpiredVouchersTab from "./ExpiredVouchersTab";
 import ExpiredVoucher from "./ExpiredVoucher";
 import PageHeader from "../PageHeader";
+import Searchbar from "../Searchbar";
 
 export default function AdminVouchers() {
   const publicV = [<PublicVoucher />, <PublicVoucher />, <PublicVoucher />];
@@ -72,10 +72,7 @@ export default function AdminVouchers() {
           </div>
         </div>
 
-        <form className="searchbar">
-          <FiSearch />
-          <input type="search" placeholder="Search..." />
-        </form>
+        <Searchbar />
 
         <div className="admin_sub_menu">
           <ul>
