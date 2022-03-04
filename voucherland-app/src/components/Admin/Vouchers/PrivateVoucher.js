@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FaLock, FaDownload } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
+import Checkbox from '../Checkbox';
 
 export default  function PrivateVoucher() {
+
+  const [checked, setChecked] = useState(false);
+
+  const ToggleVouchersTab = () => {};
+
+  const ToggleCheckbox = (checked_value) => {
+    setChecked(checked_value);
+  };
+
   return (
-    <section className="private_voucher">
+    <section className={`public_voucher ${checked && 'checked_voucher' }`}>
         <article className="voucher_info">
-          <div className="checkbox" />
+          <Checkbox toggleBox={ToggleCheckbox}/>
           <p className="voucher_tag">ABC1</p>
           <div className="voucher_store_image">
             <img

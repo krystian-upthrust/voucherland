@@ -10,7 +10,6 @@ export default function PublicVoucher() {
 
   const ToggleCheckbox = (checked_value) => {
     setChecked(checked_value);
-    console.log([checked, checked_value]);
   };
 
   return (

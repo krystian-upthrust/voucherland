@@ -10,15 +10,22 @@ import PageHeader from "../PageHeader";
 import Searchbar from "../Searchbar";
 
 export default function AdminVouchers() {
-  const publicV = [<PublicVoucher />, <PublicVoucher />, <PublicVoucher />];
+  const publicV = [
+    <PublicVoucher />,
+    <PublicVoucher />,
+    <PublicVoucher />,
+    <PublicVoucher />,
+    <PublicVoucher />,
+  ];
   const privateV = [<PrivateVoucher />, <PrivateVoucher />, <PrivateVoucher />];
   const expiredV = [<ExpiredVoucher />, <ExpiredVoucher />, <ExpiredVoucher />];
 
   const [voucherMenu, setVoucherMenu] = useState({
-    public: true,
+    public: false,
     private: false,
     expired: false,
   });
+  const [searched, setSearched] = useState(true);
 
   useEffect(() => {
     ToggleAdminVoucherTab();
@@ -51,8 +58,10 @@ export default function AdminVouchers() {
   return (
     <section className="admin_vouchers">
       <article className="admin_vouchers_header">
-
-        <PageHeader page_title={"Vouchers"} create_btn_name={"Create voucher"}  />
+        <PageHeader
+          page_title={"Vouchers"}
+          create_btn_name={"Create voucher"}
+        />
 
         <div className="admin_statistics_content">
           <div className="admin_statistics">
@@ -151,12 +160,26 @@ export default function AdminVouchers() {
           />
         </div>
       )}
+
+      {searched && (
+        <div className="search_result">
+          <div className="search_result_header">
+            <h3>4 results</h3>
+            <button className="delete_btn">delete</button>
+          </div>
+          <div className="search_result_content">
+            <PublicVoucher />
+            <PublicVoucher />
+            <PrivateVoucher />
+            <ExpiredVoucher />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
 function ToggleAdminVoucherTab() {
-  console.log("hi");
   let tabs = document.getElementsByClassName("voucher_tab");
   let lines = document.getElementsByClassName("line");
 
