@@ -33,6 +33,7 @@ export default function AddAdmin({cancelPressed, addAdminPressed}) {
           <button className="cancel" onClick={cancelPressed}>Cancel</button>
           <button className="add_btn" onClick={addAdminPressed} >Add admin</button>
         </div>
+        
       </form>
     </section>
   );

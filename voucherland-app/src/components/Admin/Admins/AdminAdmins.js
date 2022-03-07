@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import DeleteAlertMessage from "../DeleteAlertMessage";
 import PageHeader from "../PageHeader";
 import AddAdmin from "./AddAdmin";
 import Admin from "./Admin";
-import DeleteAdmin from "./DeleteAdmin";
 
 const admins = [
   {
@@ -31,11 +31,11 @@ export default function AdminAdmins() {
   const [selectedAdmins, setSelectedAdmins] = useState([]);
 
   const EnableDelete = () => {
-    if(selectedAdmins.length === 0){
+    if (selectedAdmins.length === 0) {
       setEnableDelete(true);
     } else setEnableDelete(false);
 
-    console.log(selectedAdmins.length)
+    console.log(selectedAdmins.length);
   };
   const ToggleCreateNewAdmin = () => {
     setAddAdmin(!addAdmin);
@@ -45,10 +45,12 @@ export default function AdminAdmins() {
   };
 
   const HandleSelectedAdmin = (selectedAdmin, action) => {
-    if(action) {
+    if (action) {
       setSelectedAdmins([...selectedAdmins, selectedAdmin]);
-    }else {
-      let removedAdminFromSelected = selectedAdmins.filter( admin => admin.id != selectedAdmin.id );
+    } else {
+      let removedAdminFromSelected = selectedAdmins.filter(
+        (admin) => admin.id != selectedAdmin.id
+      );
       setSelectedAdmins([...removedAdminFromSelected]);
     }
   };
@@ -84,9 +86,10 @@ export default function AdminAdmins() {
       )}
 
       {deleteAdmin && (
-        <DeleteAdmin
+        <DeleteAlertMessage
+          deleteTitle={"Delete admins"}
+          deleteAmount={`${String(selectedAdmins.length)} admins`}
           cancelPressed={ToggleDeleteAdmin}
-          deleteAmount={String(selectedAdmins.length)}
           deletePressed={() => {
             console.log("deleted!");
           }}

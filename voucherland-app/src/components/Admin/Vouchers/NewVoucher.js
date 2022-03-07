@@ -1,49 +1,106 @@
-import React from "react";
-import { FaRegImage } from "react-icons/fa";
+import React, { useState } from "react";
+import {
+  FaRegImage,
+  FaLockOpen,
+  FaLock,
+  FaBookmark,
+  FaDownload,
+  FaCalendarAlt,
+  FaAngleLeft,
+} from "react-icons/fa";
 
 export default function NewVoucher() {
+  const [state, setState] = useState("public");
+  const [activities, setActivities] = useState(false);
+
   return (
     <section className="new_voucher">
-      <div className="voucher_form_container">
-        <form className="voucher_form">
+      <form className="voucher_form">
+        <h2>
+          <FaAngleLeft /> New Voucher
+          <span
+            className={`state_icon ${
+              state === "public" ? "public_state" : "private_state"
+            }`}
+          >
+            {state === "public" ? <FaLockOpen /> : <FaLock />}
+          </span>
+        </h2>
+
+        <div className="grid">
           <div className="brand">
-            <label htmlFor="brand">brand</label>
-            <input type="file" id="" name="" placeholder="" />
+            <label htmlFor="brand">brand logo path</label>
+            <div className="upload_brand">
+              <p> <FaRegImage /> Upload image here</p>
+              <input
+                type="file"
+                id="brand"
+                name="brand"
+                accept="image/*"
+              />  
+            </div>
           </div>
 
           <div className="preview">
-            <label htmlFor="preview">preview</label>
-            <input type="text" id="" name="" placeholder="" />
+            <p htmlFor="preview">preview</p>
+            <div className="preview_image">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"
+                alt="preview"
+              />
+            </div>
           </div>
 
           <div className="state">
-            <label htmlFor=""></label>
-            <input type="text" id="" name="" placeholder="" />
+            <label htmlFor="state">state</label>
+            <select name="state" id="state">
+              <option value="public">
+               public
+              </option>
+              <option value="private">
+                private
+              </option>
+            </select>
           </div>
 
           <div className="product_name">
-            <label htmlFor=""></label>
-            <input type="text" id="" name="" placeholder="Product name" />
+            <label htmlFor="product_name">product name</label>
+            <input
+              type="text"
+              id="product_name"
+              name="product_name"
+              placeholder="Product name"
+            />
           </div>
 
           <div className="expiry">
-            <label htmlFor=""></label>
-            <input type="text" id="" name="" placeholder="Expiry date" />
+            <label htmlFor="expiry">expiry date:time</label>
+            <input
+              type="text"
+              id="expiry"
+              name="expiry"
+              placeholder="Expiry date"
+            />
           </div>
 
           <div className="product_image">
-            <label htmlFor=""></label>
+            <label htmlFor="product_image">product image</label>
             <input type="text" id="product_image" name="product_image" />
           </div>
 
           <div className="discount_sort">
-            <label htmlFor="discount">discount</label>
+            <label htmlFor="discount">sort of discount</label>
             <input type="text" id="discount" name="discount" placeholder="-" />
           </div>
 
           <div className="precentage">
             <label htmlFor="precentage">precentage</label>
-            <input type="text" id="precentage" name="precentage" placeholder="-" />
+            <input
+              type="text"
+              id="precentage"
+              name="precentage"
+              placeholder="-"
+            />
           </div>
 
           <div className="pieces">
@@ -60,32 +117,43 @@ export default function NewVoucher() {
             <label htmlFor="description">description</label>
             <textarea name="description" id="description" />
           </div>
+        </div>
 
-          <div className="buttons">
-            <buttun className="delete">delete</buttun>
-            <button className="save_btn">Save changes</button>
+        <div className="buttons">
+          <buttun className="delete">delete</buttun>
+          <button className="save_btn">Save changes</button>
+        </div>
+
+        <div className="activity">
+          <p htmlFor="activity">Activity</p>
+          <div className="activities_content">
+            {activities ? "show" : "No activities yet."}
           </div>
+        </div>
+      </form>
 
-          <div className="activity">
-              <label htmlFor="activity">activity</label>
-              <textarea name="activity" id="activity" />
-          </div>
-
-        </form>
-      </div>
       <aside className="voucher_specs">
         <div className="specs">
-            <p>1234 saves</p>
-            <p>123 downloads</p>
-            <p>Creates on feb 15, 2022</p>
+          <p>
+            <FaBookmark /> 1234 saves
+          </p>
+          <p>
+            <FaDownload /> 123 downloads
+          </p>
+          <p>
+            <FaCalendarAlt /> Created on feb 15, 2022
+          </p>
         </div>
         <div className="made_by">
-            <div className="circle"/>
+          <h4>Made by</h4>
+          <div className="name">
+            <div className="circle" />
             <p>Jane Doe</p>
+          </div>
         </div>
         <div className="barcode_container">
-            <p>barcode</p>
-            <div className="barcode"></div>
+          <p>Barcode</p>
+          <div className="barcode"></div>
         </div>
       </aside>
     </section>

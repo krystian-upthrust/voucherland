@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaLockOpen, FaDownload } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
-import Checkbox from "../Checkbox";
+import Checkbox from "../Articles/Checkbox";
 
 export default function PublicVoucher() {
   const [checked, setChecked] = useState(false);

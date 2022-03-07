@@ -8,6 +8,7 @@ import ExpiredVouchersTab from "./ExpiredVouchersTab";
 import ExpiredVoucher from "./ExpiredVoucher";
 import PageHeader from "../PageHeader";
 import Searchbar from "../Searchbar";
+import DeleteAlertMessage from "../DeleteAlertMessage";
 
 export default function AdminVouchers() {
   const publicV = [
@@ -63,6 +64,7 @@ export default function AdminVouchers() {
           create_btn_name={"Create voucher"}
         />
 
+        {/* Split into reusable component! */}
         <div className="admin_statistics_content">
           <div className="admin_statistics">
             <p className="stat_name">#publicVouchersThisWeek</p>
@@ -174,6 +176,17 @@ export default function AdminVouchers() {
             <ExpiredVoucher />
           </div>
         </div>
+      )}
+
+      {false && (
+        <DeleteAlertMessage
+          deleteTitle={"Delete vouchers"}
+          deleteAmount={`2 vouchers`}
+          cancelPressed={() => {}}
+          deletePressed={() => {
+            console.log("deleted!");
+          }}
+        />
       )}
     </section>
   );
