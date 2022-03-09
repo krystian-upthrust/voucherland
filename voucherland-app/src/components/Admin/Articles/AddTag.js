@@ -1,5 +1,20 @@
 import React, { useState } from "react";
 
+const tagsColors = [
+  {
+    color: "red",
+  },
+  {
+    color: "blue",
+  },
+  {
+    color: "green",
+  },
+  {
+    color: "yellow",
+  },
+];
+
 export default function AddTag() {
   const [selectValue, setSelectValue] = useState(null);
 
@@ -31,7 +46,15 @@ export default function AddTag() {
                 {selectValue === null ? "select color" : selectValue}
               </div>
               <div className="options">
-                <p className="option" onClick={() => setSelectValue("red")}>
+                {tagsColors.map((color) => {
+                  return (
+                    <p className="option" onClick={() => setSelectValue(color.color)}>
+                      <span className={`color_circle ${color.color}`} /> {color.color}
+                    </p>
+                  );
+                })}
+
+                {/* <p className="option" onClick={() => setSelectValue("red")}>
                   <span className="color_circle red" /> red
                 </p>
                 <p className="option" onClick={() => setSelectValue("blue")}>
@@ -39,7 +62,7 @@ export default function AddTag() {
                 </p>
                 <p className="option" onClick={() => setSelectValue("green")}>
                   <span className="color_circle green" /> green
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useRoutes } from "react-router-dom";
 
 import "./App.scss";
 import "./scss/media_queries.scss";
@@ -30,6 +30,75 @@ import VouchersPage from "./pages/VouchersPage/VouchersPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 
+import {
+  ROUTE_ADMIN,
+  ROUTE_ADMIN_ADD_ARTICLE,
+  ROUTE_ADMIN_ADD_VOUCHER,
+  ROUTE_ADMIN_ADMINS,
+  ROUTE_ADMIN_ARTICLES,
+  ROUTE_ADMIN_VOUCHERS,
+  ROUTE_ARTICLES,
+  ROUTE_ARTICLES_DETAIL,
+  ROUTE_CONTACT,
+  ROUTE_HOME,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER,
+  ROUTE_VOUCHERS,
+  ROUTE_VOUCHERS_DETAIL,
+} from "./routes";
+import AdminVouchers from "./components/Admin/Vouchers/AdminVouchers";
+import AdminArticles from "./components/Admin/Articles/AdminArticles";
+import AdminAdmins from "./components/Admin/Admins/AdminAdmins";
+
+const routes = [
+  {
+    path: ROUTE_HOME,
+    // element: !user ? <Navigate to={ROUTE_AUTH_LOGIN} /> : <Layout />,
+    children: [
+      {
+        path: ROUTE_HOME,
+        element: <HomePage />,
+      },
+      {
+        path: ROUTE_VOUCHERS,
+        element: <VouchersPage />,
+        children: [
+          // {
+          //   path: ROUTE_VOUCHERS_DETAIL,
+          //   element: ,
+          // },
+        ],
+      },
+      {
+        path: ROUTE_ARTICLES,
+        element: <ArticlesPage />,
+        children: [
+        ],
+      },
+      {
+        path: ROUTE_ARTICLES_DETAIL,
+        element: <ArticleDetailPage />,
+      },
+      {
+        path: ROUTE_CONTACT,
+        element: <ContactPage />,
+      },
+      {
+        path: ROUTE_LOGIN,
+        element:<LoginPage />,
+      },
+      {
+        path: ROUTE_REGISTER,
+        element: <RegisterPage />,
+      },
+    ],
+  },
+];
+
+const Routes = () => {
+  return useRoutes(routes);
+};
+
 export default function App() {
   const [user, setUser] = useState({});
 
@@ -37,7 +106,7 @@ export default function App() {
     <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <section className="app">
         <Cookies />
-        <Router >
+        <Router>
           {/* <VoucherDetailPage
             store_image={"https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"}
             product_name={"Komkommers"}
@@ -48,22 +117,8 @@ export default function App() {
 
           {/* <ArticleDetailPage /> */}
 
-          <Routes>
-            {/* /admin/vouchers */ }
-            {/* /admin/articles */ }
-            {/* /admin/admins */ }
-
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/vouchers" element={<VouchersPage />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/" element={<HomePage />} />
-          </Routes>
+          <Routes />
         </Router>
-
       </section>
     </UserContext.Provider>
   );
