@@ -73,7 +73,8 @@ const articlesPublic = [
       },
     ],
     status: 'public'
-  },{
+  }, 
+  {
     id: 5,
     title: "New collaboration with the cola group",
     description:

@@ -129,8 +129,11 @@ code {
 }
 
 button:hover {
+  background-color: rgba($color: $dark_color, $alpha: 0.9);
   cursor: pointer;
+
   &:disabled:hover {
+    background-color: unset;
     cursor: unset;
   }
 }

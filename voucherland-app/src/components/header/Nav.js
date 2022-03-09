@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ROUTE_ARTICLES, ROUTE_CONTACT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_VOUCHERS } from "../../routes";
 // import { FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 
 export default function Nav() {
@@ -26,7 +27,7 @@ export default function Nav() {
       <h1
         className="header_title_desktop"
         onClick={() => {
-          navigate("/");
+          navigate(ROUTE_HOME);
         }}
       >
         voucherland
@@ -37,7 +38,7 @@ export default function Nav() {
           <li
             id="home"
             onClick={() => {
-              navigate("/");
+              navigate(ROUTE_HOME);
             }}
           >
             Home
@@ -45,7 +46,7 @@ export default function Nav() {
           <li
             id="vouchers"
             onClick={() => {
-              navigate("/vouchers");
+              navigate(ROUTE_VOUCHERS);
             }}
           >
             Vouchers
@@ -53,7 +54,7 @@ export default function Nav() {
           <li
             id="articles"
             onClick={() => {
-              navigate("/articles");
+              navigate(ROUTE_ARTICLES);
             }}
           >
             Articles
@@ -61,7 +62,7 @@ export default function Nav() {
           <li
             id="contact"
             onClick={() => {
-              navigate("/contact");
+              navigate(ROUTE_CONTACT);
             }}
           >
             Contact
@@ -71,11 +72,11 @@ export default function Nav() {
         <div className="login_content_mobile">
           <button
             className="nav_register"
-            onClick={() => navigate("/register")}
+            onClick={() => navigate(ROUTE_REGISTER)}
           >
             Register
           </button>
-          <button className="nav_login" onClick={() => navigate("/login")}>
+          <button className="nav_login" onClick={() => navigate(ROUTE_LOGIN)}>
             Login
           </button>
         </div>
@@ -85,7 +86,7 @@ export default function Nav() {
         <button
           className="nav_register"
           onClick={() => {
-            navigate("/register");
+            navigate(ROUTE_REGISTER);
           }}
         >
           Register
@@ -93,7 +94,7 @@ export default function Nav() {
         <button
           className="nav_login"
           onClick={() => {
-            navigate("/login");
+            navigate(ROUTE_LOGIN);
           }}
         >
           Login
