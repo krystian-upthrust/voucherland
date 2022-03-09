@@ -1,1284 +1,1284 @@
 @import "./variables.scss";
 
 .admin {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  background-color: $text_color;
+  position: relative;
+
+  .nav {
+    background-color: $admin_nav_color;
+    width: 300px;
+    height: 100vh;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
-    background-color: $text_color;
-    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 0;
 
-    .nav {
-        background-color: $admin_nav_color;
-        width: 300px;
-        height: 100vh;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+    &_header {
+      padding: $main_padding_small;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      > h1 {
+        padding: 30px 0;
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 70px;
+        text-align: center;
+      }
+
+      .menu {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        position: fixed;
-        left: 0;
-        top: 0;
-
-        &_header {
-            padding: $main_padding_small;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            > h1 {
-                padding: 30px 0;
-                font-size: 70px;
-                font-weight: 700;
-                line-height: 70px;
-                text-align: center;
-            }
-
-            .menu {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 10px;
-
-                > li {
-                    padding: 15px 20px;
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 20px;
-                    display: flex;
-                    gap: 20px;
-                    align-items: center;
-                    color: $text_color;
-                    background-color: $dark_color;
-                    border-radius: 10px;
-                    cursor: pointer;
-
-                    .icon {
-                        color: $text_color;
-                    }
-
-                    .rotate {
-                        transform: rotate(90deg);
-                    }
-                }
-            }
-        }
-
-        &_footer {
-            .admin_profile {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: $main_padding_small;
-                .profile_icon {
-                    background-color: $admin_icon_color;
-                    padding: 15px;
-                    color: $dark_color;
-                    font-size: 30px;
-                    line-height: 45px;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .profile_name {
-                    font-size: 20px;
-                    line-height: 20px;
-                    font-weight: 700;
-                }
-            }
-            .signout_btn {
-                background-color: $dark_color;
-                color: $main_color;
-                border: none;
-                outline: none;
-                width: 100%;
-                padding: 20px;
-                border-bottom-right-radius: 20px;
-                font-size: 20px;
-                font-weight: 700;
-                line-height: 20px;
-            }
-        }
-    }
-
-    &_content {
-        flex: 1;
-        padding-left: 300px;
-        box-sizing: border-box;
-    }
-
-    .admin_vouchers {
-        padding: 50px;
-
-        &_header {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-            .header_title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                > h2 {
-                    color: $dark_color;
-                    font-size: 30px;
-                    font-weight: 700;
-                    line-height: 40px;
-                }
-
-                .header_btns {
-                    display: flex;
-                    gap: 10px;
-                }
-            }
-
-            .admin_statistics_content {
-                display: flex;
-                gap: 30px;
-                justify-content: center;
-                align-items: center;
-
-                .admin_statistics {
-                    flex: 1;
-                    padding: $main_padding_small;
-                    background-color: $admin_stat_background_color;
-                    border: 1px solid $admin_border_color;
-                    border-radius: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    position: relative;
-
-                    > p {
-                        color: $dark_color;
-                    }
-
-                    .stat_name {
-                        font-size: 16px;
-                        font-weight: 400;
-                        line-height: $main_line_height;
-                        font-style: normal;
-                    }
-
-                    .stat_count {
-                        font-size: 30px;
-                        font-weight: 700;
-                        line-height: 40px;
-                    }
-
-                    .stat_percentage {
-                        color: $text_color;
-                        width: fit-content;
-                        position: absolute;
-                        bottom: 20px;
-                        right: 20px;
-                        border-radius: 20px;
-                        padding: 5px 10px;
-                    }
-
-                    .stat_percent_positive {
-                        background-color: $admin_green;
-                    }
-
-                    .stat_percent_negitive {
-                        background-color: $admin_red;
-                    }
-                }
-            }
-        }
-
-        .create_btn {
-            @include admin_create_btn();
-        }
-
-        .delete_btn {
-            @include admin_delete_btn();
-        }
-
-        .public_tab,
-        .private_tab,
-        .expired_tab {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .public_tab {
-            > h3 {
-                @include admin_title_style($admin_green);
-            }
-        }
-
-        .private_tab {
-            > h3 {
-                @include admin_title_style($main_color);
-            }
-        }
-
-        .expired_tab {
-            > h3 {
-                @include admin_title_style($admin_red);
-            }
-        }
-
-        .public_voucher_tabitem,
-        .private_voucher_tabitem,
-        .expired_voucher_tabitem {
-            border: 1px solid $admin_border_color;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: $main_padding_small;
-            height: fit-content;
-            transition: all 3s ease-in-out;
-
-            .item_header {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                cursor: pointer;
-                z-index: 10;
-
-                .date {
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 30px;
-                    color: $dark_color;
-                }
-
-                .colapse_minus {
-                    width: 20px;
-                    height: 20px;
-                    display: flex;
-                    align-items: center;
-                    position: relative;
-
-                    .line {
-                        position: absolute;
-                        height: 3px;
-                        width: 20px;
-                        background-color: $dark_color;
-                        border-radius: 5px;
-                    }
-
-                    .open_tab {
-                        animation: open_tab 1s 0s 1 forwards;
-                    }
-
-                    .close_tab {
-                        animation: close_tab 1s 0s 1 forwards;
-                    }
-                }
-            }
-
-            .vouchers_collection {
-                background-color: $admin_voucher_color;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-                height: auto;
-                max-height: 0;
-                opacity: 0;
-                transition: all 1s ease-in-out;
-
-                & .public_voucher,
-                & .private_voucher,
-                & .expired_voucher {
-                    width: calc(100% - $main_padding_small);
-                }
-            }
-
-            &.active_tab {
-                // animation: toggle_open 3s ease-in-out forwards;
-                // min-height: 250px;
-                // height: fit-content;
-                // transition: all 3s ease-in-out;
-            }
-
-            &.active_tab_content {
-                .vouchers_collection {
-                    opacity: 1;
-                    margin-top: 20px;
-                    background-color: $text_color;
-                    transition: all 1s ease-in-out;
-                    animation: toggle_open 3s ease-in-out forwards;
-                }
-            }
-        }
-
-        .search_result {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-
-            &_header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                padding-top: 30px;
-                padding-bottom: 30px;
-
-                > h3 {
-                    @include admin_title_style($dark_color);
-                    padding-top: 0;
-                    margin-bottom: 0;
-                }
-            }
-
-            &_content {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                padding-bottom: 30px;
-                width: 100%;
-
-                & .public_voucher,
-                & .private_voucher,
-                & .expired_voucher {
-                    width: calc(100% - 20px);
-                }
-            }
-        }
-    }
-
-    .checkbox {
-        width: 20px;
-        height: 20px;
-        border: 1px solid $admin_border_color;
-        border-radius: 5px;
-        cursor: pointer;
-        position: relative;
-    }
-
-    .checked {
-        background-color: $main_color;
-        border: 1px solid $main_color;
-
-        .checked_line1,
-        .checked_line2 {
-            position: absolute;
-            bottom: 3px;
-            left: 50%;
-            width: 3px;
-            background-color: $dark_color;
-            border-top-left-radius: 2px;
-            border-top-right-radius: 2px;
-        }
-
-        .checked_line1 {
-            height: 50%;
-            border-bottom-right-radius: 10px;
-            transform: rotate(-35deg) translate(-4px, -2px);
-        }
-
-        .checked_line2 {
-            height: 80%;
-            border-bottom-left-radius: 10px;
-            transform: rotate(35deg) translate(1.5px, 0px);
-        }
-    }
-
-    .page_header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        > h2 {
-            color: $dark_color;
-            font-size: 30px;
-            font-weight: 700;
-            line-height: 40px;
-        }
-        .header_btns {
-            display: flex;
-            gap: 10px;
-            .create_btn {
-                @include admin_create_btn();
-            }
-            .delete_btn {
-                @include admin_delete_btn();
-            }
-        }
-    }
-
-    .admin_sub_menu {
-        > ul {
-            list-style: none;
-            display: flex;
-
-            > li {
-                color: $admin_border_color;
-                padding: 10px 20px;
-                font-size: 16px;
-                font-weight: 400;
-                font-style: normal;
-                line-height: 16px;
-                cursor: pointer;
-                border-bottom: 1px solid $admin_border_color;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            & .public {
-                color: $admin_green;
-                border-bottom: 1px solid $admin_green;
-            }
-
-            & .private {
-                color: $main_color;
-                border-bottom: 1px solid $main_color;
-            }
-
-            & .expired {
-                color: $admin_red;
-                border-bottom: 1px solid $admin_red;
-            }
-        }
-    }
-
-    .searchbar {
-        color: $dark_color;
-        width: 100%;
-        display: flex;
+        justify-content: center;
         gap: 10px;
+
+        > li {
+          padding: 15px 20px;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 20px;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          color: $text_color;
+          background-color: $dark_color;
+          border-radius: 10px;
+          cursor: pointer;
+
+          .icon {
+            color: $text_color;
+          }
+
+          .rotate {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+
+    &_footer {
+      .admin_profile {
+        display: flex;
         align-items: center;
-        border-bottom: 1px solid $admin_border_color;
-        padding-bottom: 10px;
-        margin-top: 20px;
-
-        > input[type="search"] {
-            border: none;
-            outline: none;
-            font-size: 16px;
-            line-height: 16px;
-            font-style: normal;
-            font-weight: 400;
-            width: 100%;
-        }
-    }
-
-    .new_voucher {
-        display: flex;
-        min-height: calc(100vh - 100px); // 100px = 2*50px padding
-        padding: 50px;
-
-        .voucher_form {
-            flex: 3;
-            padding-right: 30px;
-
-            > h2 {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding-bottom: 30px;
-                border-bottom: 1px solid $admin_border_color;
-                color: $dark_color;
-                font-weight: 700;
-                font-size: 30px;
-                line-height: 40px;
-
-                .state_icon {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 10px;
-                    border-radius: 50%;
-                    margin-left: 10px;
-                    font-size: 20px;
-                }
-
-                .public_state {
-                    color: $admin_green;
-                    border: 1px solid $admin_green;
-                }
-
-                .private_state {
-                    color: $main_color;
-                    border: 1px solid $main_color;
-                }
-            }
-
-            .grid {
-                padding-top: 30px;
-                display: grid;
-                gap: 20px;
-                grid-auto-columns: 1fr;
-                grid-auto-rows: auto;
-                grid-template-areas:
-                    "brand brand preview state"
-                    "name name image image"
-                    "expiry expiry image image"
-                    "discount precentage pieces code"
-                    "description description description description";
-
-                & input,
-                & textarea {
-                    @include main_input_style();
-                    width: calc(100% - 40px);
-                    border: 1px solid $admin_border_color;
-                }
-
-                .preview,
-                .state,
-                .product_name,
-                .expiry,
-                .product_image,
-                .discount_sort,
-                .precentage,
-                .pieces,
-                .code,
-                .description {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-                    width: 100%;
-                    height: 100%;
-
-                    > label,
-                    > p {
-                        color: $dark_color;
-                        font-size: 14px;
-                        font-weight: 400;
-                        line-height: 14px;
-                    }
-                }
-
-                .brand {
-                    grid-area: brand;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-
-                    > label {
-                        color: $dark_color;
-                        font-size: 14px;
-                        font-weight: 400;
-                        line-height: 14px;
-                    }
-
-                    .upload_brand {
-                        background-color: $description_color;
-                        border-radius: 10px;
-                        position: relative;
-                        width: 100%;
-                        cursor: pointer;
-
-                        > p {
-                            padding: 10px 20px;
-                            display: flex;
-                            gap: 10px;
-                        }
-
-                        > input {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            padding: 0;
-                            opacity: 0;
-                            cursor: pointer;
-                        }
-                    }
-                }
-                .preview {
-                    grid-area: preview;
-                    width: 100%;
-                    height: 100%;
-
-                    &_image {
-                        width: 100%;
-                        height: 100%;
-                        border: 1px solid $admin_border_color;
-                        border-radius: 10px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        & img {
-                            width: 70%;
-                            height: 70%;
-                            object-fit: fill;
-                            color: $dark_color;
-                        }
-                    }
-                }
-                .state {
-                    grid-area: state;
-
-                    > select {
-                        color: $dark_color;
-                        background-color: $text_color;
-                        border-radius: 10px;
-                        padding: 8px 20px;
-                        border: none;
-                        outline: none;
-                        font-size: 16px;
-                        line-height: $main_line_height;
-                        width: 100%;
-                        border: 1px solid $admin_border_color;
-                    }
-                }
-                .product_name {
-                    grid-area: name;
-                }
-                .expiry {
-                    grid-area: expiry;
-                }
-                .product_image {
-                    grid-area: image;
-                }
-                .discount_sort {
-                    grid-area: discount;
-                }
-                .precentage {
-                    grid-area: precentage;
-                }
-                .pieces {
-                    grid-area: pieces;
-                }
-                .code {
-                    grid-area: code;
-                }
-                .description {
-                    grid-area: description;
-
-                    > textarea {
-                        resize: vertical;
-                    }
-                }
-            }
-
-            .buttons {
-                display: flex;
-                justify-content: flex-end;
-                gap: 10px;
-                padding: 30px 0;
-
-                .delete {
-                    @include main_btn_style($admin_border_color, none, $dark_color);
-                }
-                .save_btn {
-                    @include main_btn_style($main_color, none, $dark_color);
-                }
-            }
-
-            .activity {
-                background-color: $admin_voucher_color;
-                border-radius: 10px;
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-
-                > p {
-                    color: $dark_color;
-                    font-size: 16px;
-                    font-weight: 700;
-                    line-height: 16px;
-                    padding-bottom: 30px;
-                    border-bottom: 1px solid $admin_border_color;
-                }
-
-                .activities_content {
-                    padding-top: 30px;
-                    color: $description_color;
-                    font-size: 16px;
-                    line-height: $main_line_height;
-                    font-weight: 400;
-                }
-            }
-        }
-
-        .voucher_specs {
-            flex: 1;
-            padding-left: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            border-left: 1px solid $admin_border_color;
-
-            .specs {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                padding-bottom: 30px;
-                border-bottom: 1px solid $admin_border_color;
-
-                > p {
-                    color: $dark_color;
-                    font-weight: 400;
-                    font-size: 16ox;
-                    line-height: 20px;
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-                }
-            }
-
-            .made_by {
-                padding-bottom: 30px;
-                border-bottom: 1px solid $admin_border_color;
-
-                > h4 {
-                    color: $dark_color;
-                    font-weight: 700;
-                    font-size: 14px;
-                    line-height: 21px;
-                    padding-bottom: 10px;
-                }
-
-                .name {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-
-                    .circle {
-                        width: 20px;
-                        height: 20px;
-                        border-radius: 50%;
-                        background-color: $admin_icon_color;
-                    }
-
-                    > p {
-                        color: $dark_color;
-                        font-size: 16px;
-                        font-weight: 600;
-                        line-height: 20px;
-                    }
-                }
-            }
-
-            .barcode_container {
-                > p {
-                    color: $dark_color;
-                    font-weight: 700;
-                    font-size: 14px;
-                    line-height: 21px;
-                    padding-bottom: 10px;
-                }
-
-                .barcode {
-                    border: 1px solid $admin_border_color;
-                    border-radius: 20px;
-                    width: 100%;
-                    height: auto;
-                    min-height: 250px;
-                }
-            }
-        }
-    }
-
-    // articles screen
-    .admin_articles {
-        padding: 50px;
-        min-height: calc(100vh - 100px);
-        position: relative;
-
-        .article_container {
-            padding-top: 10px;
-
-            .public_articles,
-            .private_articles {
-                margin-top: 50px;
-
-                > h3 {
-                    color: $dark_color;
-                    font-size: 24px;
-                    font-weight: 700;
-                    line-height: 29px;
-                }
-
-                .article_content {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 20px;
-                }
-            }
-
-            .public_articles > h3 {
-                color: $admin_green;
-            }
-
-            .private_articles > h3 {
-                color: $main_color;
-            }
-        }
-
-        .tab {
-            border: 1px solid $admin_border_color;
-            border-radius: 20px;
-            padding: 20px;
-
-            .tab_title {
-                padding-bottom: 10px;
-
-                > h4 {
-                    color: $dark_color;
-                    font-weight: 400;
-                    font-size: 20px;
-                    line-height: 30px;
-                }
-            }
-
-            &_content {
-                // display: flex;
-                // flex-wrap: wrap;
-                // gap: 20px;
-
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-        }
-    }
-
-    // admins screen
-    .admins_screen {
-        min-height: 100vh;
-        max-height: 100vh;
-        padding: 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        overflow-y: hidden;
-
-        & .admins_content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            overflow-y: scroll;
-        }
-    }
-
-    .admin_item {
-        background-color: $admin_voucher_color;
-        border: 2px solid transparent;
-        display: flex;
-        gap: 20px;
-        align-items: center;
+        gap: 10px;
         padding: $main_padding_small;
-        border-radius: 10px;
-
-        > p {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: $main_line_height;
-            color: $dark_color;
+        .profile_icon {
+          background-color: $admin_icon_color;
+          padding: 15px;
+          color: $dark_color;
+          font-size: 30px;
+          line-height: 45px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
+        .profile_name {
+          font-size: 20px;
+          line-height: 20px;
+          font-weight: 700;
+        }
+      }
+      .signout_btn {
+        background-color: $dark_color;
+        color: $main_color;
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 20px;
+        border-bottom-right-radius: 20px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 20px;
+      }
     }
+  }
 
-    .add_admin {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba($color: $dark_color, $alpha: 0.85);
+  &_content {
+    flex: 1;
+    padding-left: 300px;
+    box-sizing: border-box;
+  }
+
+  .admin_vouchers {
+    padding: 50px;
+
+    &_header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .header_title {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > h2 {
+          color: $dark_color;
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 40px;
+        }
+
+        .header_btns {
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      .admin_statistics_content {
+        display: flex;
+        gap: 30px;
         justify-content: center;
         align-items: center;
 
-        &_form {
-            background-color: $text_color;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 50px;
+        .admin_statistics {
+          flex: 1;
+          padding: $main_padding_small;
+          background-color: $admin_stat_background_color;
+          border: 1px solid $admin_border_color;
+          border-radius: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          position: relative;
+
+          > p {
+            color: $dark_color;
+          }
+
+          .stat_name {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: $main_line_height;
+            font-style: normal;
+          }
+
+          .stat_count {
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 40px;
+          }
+
+          .stat_percentage {
+            color: $text_color;
+            width: fit-content;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
             border-radius: 20px;
-            width: 300px;
+            padding: 5px 10px;
+          }
 
-            > h3 {
-                color: $dark_color;
-                font-size: 24px;
-                font-weight: 700;
-                line-height: 19px;
-                text-align: center;
-            }
+          .stat_percent_positive {
+            background-color: $admin_green;
+          }
 
-            .email {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-
-                & label,
-                & input {
-                    color: $dark_color;
-                }
-
-                & label {
-                    font-size: 14px;
-                    font-weight: 400;
-                    line-height: 14px;
-                }
-
-                & input {
-                    @include main_input_style();
-                    border: 1px solid $admin_border_color;
-                    width: calc(100% - 50px);
-                }
-            }
-
-            .image_uploader {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-                .image {
-                    width: 200px;
-                    height: 200px;
-                    border-radius: 50%;
-                    background-color: $admin_border_color;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    &_replacement {
-                        color: $dark_color;
-                        font-size: 100px;
-                    }
-                }
-                .upload_btn {
-                    background-color: #f5f4f3;
-                    padding: 10px 20px;
-                    border-radius: 10px;
-                    position: relative;
-
-                    & label {
-                        color: $dark_color;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                    }
-
-                    & input[type="file"] {
-                        border: none;
-                        outline: none;
-                        opacity: 0;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                    }
-                }
-            }
-
-            .buttons {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 20px;
-                margin-top: 30px;
-                width: 100%;
-
-                .cancel {
-                    @include main_btn_style($second_color, none, $dark_color);
-                    text-transform: uppercase;
-                    flex: 1;
-                }
-
-                .add_btn {
-                    @include main_btn_style($main_color, none, $dark_color);
-                    text-transform: uppercase;
-                    flex: 1;
-                }
-            }
+          .stat_percent_negitive {
+            background-color: $admin_red;
+          }
         }
+      }
     }
+
+    .create_btn {
+      @include admin_create_btn();
+    }
+
+    .delete_btn {
+      @include admin_delete_btn();
+    }
+
+    .public_tab,
+    .private_tab,
+    .expired_tab {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .public_tab {
+      > h3 {
+        @include admin_title_style($admin_green);
+      }
+    }
+
+    .private_tab {
+      > h3 {
+        @include admin_title_style($main_color);
+      }
+    }
+
+    .expired_tab {
+      > h3 {
+        @include admin_title_style($admin_red);
+      }
+    }
+
+    .public_voucher_tabitem,
+    .private_voucher_tabitem,
+    .expired_voucher_tabitem {
+      border: 1px solid $admin_border_color;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: $main_padding_small;
+      height: fit-content;
+      transition: all 3s ease-in-out;
+
+      .item_header {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        z-index: 10;
+
+        .date {
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 30px;
+          color: $dark_color;
+        }
+
+        .colapse_minus {
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          position: relative;
+
+          .line {
+            position: absolute;
+            height: 3px;
+            width: 20px;
+            background-color: $dark_color;
+            border-radius: 5px;
+          }
+
+          .open_tab {
+            animation: open_tab 1s 0s 1 forwards;
+          }
+
+          .close_tab {
+            animation: close_tab 1s 0s 1 forwards;
+          }
+        }
+      }
+
+      .vouchers_collection {
+        background-color: $admin_voucher_color;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+        max-height: 0;
+        opacity: 0;
+        transition: all 1s ease-in-out;
+
+        & .public_voucher,
+        & .private_voucher,
+        & .expired_voucher {
+          width: calc(100% - $main_padding_small);
+        }
+      }
+
+      &.active_tab {
+        // animation: toggle_open 3s ease-in-out forwards;
+        // min-height: 250px;
+        // height: fit-content;
+        // transition: all 3s ease-in-out;
+      }
+
+      &.active_tab_content {
+        .vouchers_collection {
+          opacity: 1;
+          margin-top: 20px;
+          background-color: $text_color;
+          transition: all 1s ease-in-out;
+          animation: toggle_open 3s ease-in-out forwards;
+        }
+      }
+    }
+
+    .search_result {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        > h3 {
+          @include admin_title_style($dark_color);
+          padding-top: 0;
+          margin-bottom: 0;
+        }
+      }
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding-bottom: 30px;
+        width: 100%;
+
+        & .public_voucher,
+        & .private_voucher,
+        & .expired_voucher {
+          width: calc(100% - 20px);
+        }
+      }
+    }
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $admin_border_color;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .checked {
+    background-color: $main_color;
+    border: 1px solid $main_color;
+
+    .checked_line1,
+    .checked_line2 {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      width: 3px;
+      background-color: $dark_color;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    .checked_line1 {
+      height: 50%;
+      border-bottom-right-radius: 10px;
+      transform: rotate(-35deg) translate(-4px, -2px);
+    }
+
+    .checked_line2 {
+      height: 80%;
+      border-bottom-left-radius: 10px;
+      transform: rotate(35deg) translate(1.5px, 0px);
+    }
+  }
+
+  .page_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > h2 {
+      color: $dark_color;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 40px;
+    }
+    .header_btns {
+      display: flex;
+      gap: 10px;
+      .create_btn {
+        @include admin_create_btn();
+      }
+      .delete_btn {
+        @include admin_delete_btn();
+      }
+    }
+  }
+
+  .admin_sub_menu {
+    > ul {
+      list-style: none;
+      display: flex;
+
+      > li {
+        color: $admin_border_color;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 16px;
+        cursor: pointer;
+        border-bottom: 1px solid $admin_border_color;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      & .public {
+        color: $admin_green;
+        border-bottom: 1px solid $admin_green;
+      }
+
+      & .private {
+        color: $main_color;
+        border-bottom: 1px solid $main_color;
+      }
+
+      & .expired {
+        color: $admin_red;
+        border-bottom: 1px solid $admin_red;
+      }
+    }
+  }
+
+  .searchbar {
+    color: $dark_color;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid $admin_border_color;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+    > input[type="search"] {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      line-height: 16px;
+      font-style: normal;
+      font-weight: 400;
+      width: 100%;
+    }
+  }
+
+  .new_voucher {
+    display: flex;
+    min-height: calc(100vh - 100px); // 100px = 2*50px padding
+    padding: 50px;
+
+    .voucher_form {
+      flex: 3;
+      padding-right: 30px;
+
+      > h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $admin_border_color;
+        color: $dark_color;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 40px;
+
+        .state_icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          border-radius: 50%;
+          margin-left: 10px;
+          font-size: 20px;
+        }
+
+        .public_state {
+          color: $admin_green;
+          border: 1px solid $admin_green;
+        }
+
+        .private_state {
+          color: $main_color;
+          border: 1px solid $main_color;
+        }
+      }
+
+      .grid {
+        padding-top: 30px;
+        display: grid;
+        gap: 20px;
+        grid-auto-columns: 1fr;
+        grid-auto-rows: auto;
+        grid-template-areas:
+          "brand brand preview state"
+          "name name image image"
+          "expiry expiry image image"
+          "discount precentage pieces code"
+          "description description description description";
+
+        & input,
+        & textarea {
+          @include main_input_style();
+          width: calc(100% - 40px);
+          border: 1px solid $admin_border_color;
+        }
+
+        .preview,
+        .state,
+        .product_name,
+        .expiry,
+        .product_image,
+        .discount_sort,
+        .precentage,
+        .pieces,
+        .code,
+        .description {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          width: 100%;
+          height: 100%;
+
+          > label,
+          > p {
+            color: $dark_color;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+          }
+        }
+
+        .brand {
+          grid-area: brand;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          > label {
+            color: $dark_color;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+          }
+
+          .upload_brand {
+            background-color: $description_color;
+            border-radius: 10px;
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+
+            > p {
+              padding: 10px 20px;
+              display: flex;
+              gap: 10px;
+            }
+
+            > input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              padding: 0;
+              opacity: 0;
+              cursor: pointer;
+            }
+          }
+        }
+        .preview {
+          grid-area: preview;
+          width: 100%;
+          height: 100%;
+
+          &_image {
+            width: 100%;
+            height: 100%;
+            border: 1px solid $admin_border_color;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img {
+              width: 70%;
+              height: 70%;
+              object-fit: fill;
+              color: $dark_color;
+            }
+          }
+        }
+        .state {
+          grid-area: state;
+
+          > select {
+            color: $dark_color;
+            background-color: $text_color;
+            border-radius: 10px;
+            padding: 8px 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            line-height: $main_line_height;
+            width: 100%;
+            border: 1px solid $admin_border_color;
+          }
+        }
+        .product_name {
+          grid-area: name;
+        }
+        .expiry {
+          grid-area: expiry;
+        }
+        .product_image {
+          grid-area: image;
+        }
+        .discount_sort {
+          grid-area: discount;
+        }
+        .precentage {
+          grid-area: precentage;
+        }
+        .pieces {
+          grid-area: pieces;
+        }
+        .code {
+          grid-area: code;
+        }
+        .description {
+          grid-area: description;
+
+          > textarea {
+            resize: vertical;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 30px 0;
+
+        .delete {
+          @include main_btn_style($admin_border_color, none, $dark_color);
+        }
+        .save_btn {
+          @include main_btn_style($main_color, none, $dark_color);
+        }
+      }
+
+      .activity {
+        background-color: $admin_voucher_color;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+
+        > p {
+          color: $dark_color;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 16px;
+          padding-bottom: 30px;
+          border-bottom: 1px solid $admin_border_color;
+        }
+
+        .activities_content {
+          padding-top: 30px;
+          color: $description_color;
+          font-size: 16px;
+          line-height: $main_line_height;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .voucher_specs {
+      flex: 1;
+      padding-left: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      border-left: 1px solid $admin_border_color;
+
+      .specs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $admin_border_color;
+
+        > p {
+          color: $dark_color;
+          font-weight: 400;
+          font-size: 16ox;
+          line-height: 20px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+      }
+
+      .made_by {
+        padding-bottom: 30px;
+        border-bottom: 1px solid $admin_border_color;
+
+        > h4 {
+          color: $dark_color;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 21px;
+          padding-bottom: 10px;
+        }
+
+        .name {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: $admin_icon_color;
+          }
+
+          > p {
+            color: $dark_color;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+          }
+        }
+      }
+
+      .barcode_container {
+        > p {
+          color: $dark_color;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 21px;
+          padding-bottom: 10px;
+        }
+
+        .barcode {
+          border: 1px solid $admin_border_color;
+          border-radius: 20px;
+          width: 100%;
+          height: auto;
+          min-height: 250px;
+        }
+      }
+    }
+  }
+
+  // articles screen
+  .admin_articles {
+    padding: 50px;
+    min-height: calc(100vh - 100px);
+    position: relative;
+
+    .article_container {
+      padding-top: 10px;
+
+      .public_articles,
+      .private_articles {
+        margin-top: 50px;
+
+        > h3 {
+          color: $dark_color;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 29px;
+        }
+
+        .article_content {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+
+      .public_articles > h3 {
+        color: $admin_green;
+      }
+
+      .private_articles > h3 {
+        color: $main_color;
+      }
+    }
+
+    .tab {
+      border: 1px solid $admin_border_color;
+      border-radius: 20px;
+      padding: 20px;
+
+      .tab_title {
+        padding-bottom: 10px;
+
+        > h4 {
+          color: $dark_color;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 30px;
+        }
+      }
+
+      &_content {
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 20px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+  }
+
+  // admins screen
+  .admins_screen {
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: hidden;
+
+    & .admins_content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: scroll;
+    }
+  }
+
+  .admin_item {
+    background-color: $admin_voucher_color;
+    border: 2px solid transparent;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: $main_padding_small;
+    border-radius: 10px;
+
+    > p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: $main_line_height;
+      color: $dark_color;
+    }
+  }
+
+  .add_admin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: $dark_color, $alpha: 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_form {
+      background-color: $text_color;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 50px;
+      border-radius: 20px;
+      width: 300px;
+
+      > h3 {
+        color: $dark_color;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 19px;
+        text-align: center;
+      }
+
+      .email {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        & label,
+        & input {
+          color: $dark_color;
+        }
+
+        & label {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 14px;
+        }
+
+        & input {
+          @include main_input_style();
+          border: 1px solid $admin_border_color;
+          width: calc(100% - 50px);
+        }
+      }
+
+      .image_uploader {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .image {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background-color: $admin_border_color;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &_replacement {
+            color: $dark_color;
+            font-size: 100px;
+          }
+        }
+        .upload_btn {
+          background-color: #f5f4f3;
+          padding: 10px 20px;
+          border-radius: 10px;
+          position: relative;
+
+          & label {
+            color: $dark_color;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+
+          & input[type="file"] {
+            border: none;
+            outline: none;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+        width: 100%;
+
+        .cancel {
+          @include main_btn_style($second_color, none, $dark_color);
+          text-transform: uppercase;
+          flex: 1;
+        }
+
+        .add_btn {
+          @include main_btn_style($main_color, none, $dark_color);
+          text-transform: uppercase;
+          flex: 1;
+        }
+      }
+    }
+  }
 }
 
 .public_voucher,
 .private_voucher,
 .expired_voucher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: $admin_voucher_color;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  width: 100%;
+
+  .voucher_info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: $admin_voucher_color;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    width: 100%;
+    gap: 30px;
 
-    .voucher_info {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-
-        .voucher_tag {
-            color: $text_color;
-            background-color: $admin_green;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 14px;
-            border-radius: 10px;
-        }
-
-        .voucher_store_image {
-            width: 70px;
-            height: auto;
-            > img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-        }
-
-        & .product_name {
-            color: $dark_color;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: $main_line_height;
-        }
-
-        & .voucher_discount {
-            background-color: $main_color;
-            color: $dark_color;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 14px;
-            border-radius: 10px;
-        }
-
-        & .voucher_downloads {
-            background-color: $dark_color;
-            color: $text_color;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 14px;
-            padding: 5px 10px;
-        }
+    .voucher_tag {
+      color: $text_color;
+      background-color: $admin_green;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 14px;
+      border-radius: 10px;
     }
 
-    .voucher_category {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-
-        .voucher_lock {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            border-radius: 100%;
-        }
-
-        .voucher_deadline {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background-color: $admin_red;
-            color: $text_color;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 14px;
-            border-radius: 10px;
-        }
+    .voucher_store_image {
+      width: 70px;
+      height: auto;
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
+
+    & .product_name {
+      color: $dark_color;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: $main_line_height;
+    }
+
+    & .voucher_discount {
+      background-color: $main_color;
+      color: $dark_color;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      border-radius: 10px;
+    }
+
+    & .voucher_downloads {
+      background-color: $dark_color;
+      color: $text_color;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      padding: 5px 10px;
+    }
+  }
+
+  .voucher_category {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .voucher_lock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 100%;
+    }
+
+    .voucher_deadline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: $admin_red;
+      color: $text_color;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      border-radius: 10px;
+    }
+  }
 }
 
 .public_lock {
-    color: $admin_green;
-    border: 2px solid $admin_green;
-    background-color: #f0fff0;
+  color: $admin_green;
+  border: 2px solid $admin_green;
+  background-color: #f0fff0;
 }
 
 .private_lock {
-    color: $main_color;
-    border: 2px solid $main_color;
-    background-color: #ffffff;
+  color: $main_color;
+  border: 2px solid $main_color;
+  background-color: #ffffff;
 }
 
 .expired_lock {
-    color: $admin_red;
-    border: 2px solid $admin_red;
-    background-color: #ffeeee;
+  color: $admin_red;
+  border: 2px solid $admin_red;
+  background-color: #ffeeee;
 }
 
 .checked_voucher {
-    border: 2px solid $main_color !important;
+  border: 2px solid $main_color !important;
 }
 
 .article {
-    background-color: $admin_voucher_color;
-    border-radius: 10px;
-    position: relative;
+  background-color: $admin_voucher_color;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex: 1 0 45%;
+  border: 1px solid transparent;
+
+  &_content {
+    flex: 3;
+    padding: 20px;
     display: flex;
-    flex: 1 0 45%;
-    border: 1px solid transparent;
+    flex-direction: column;
+    justify-content: space-between;
 
-    &_content {
-        flex: 3;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    .content_header {
+      display: flex;
+      gap: 10px;
 
-        .content_header {
-            display: flex;
-            gap: 10px;
-
-            > h3 {
-                color: $dark_color;
-                font-weight: 700;
-                font-size: 16px;
-                line-height: 21px;
-            }
-        }
-
-        .description {
-            color: $description_color;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: $main_line_height;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-
-            .tag {
-                background-color: blue;
-                color: $text_color;
-                font-size: 14px;
-                font-weight: 700;
-                line-height: 14px;
-                padding: 5px 10px;
-                border-radius: 10px;
-            }
-        }
+      > h3 {
+        color: $dark_color;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 21px;
+      }
     }
 
-    &_image {
-        flex: 2;
-
-        > img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-        }
+    .description {
+      color: $description_color;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: $main_line_height;
     }
 
-    &_state {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        padding: 10px;
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .tag {
+        background-color: blue;
+        color: $text_color;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
     }
+  }
+
+  &_image {
+    flex: 2;
+
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  &_state {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .checked_article {
-    border: 1px solid $main_color !important;
+  border: 1px solid $main_color !important;
 }
 
 .delete_popup {
-    background-color: rgba($color: $text_color, $alpha: 0.8);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  background-color: rgba($color: $text_color, $alpha: 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        .delete_content {
-            background-color: $dark_color;
-            padding: 50px;
-            border-radius: 20px;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 20px;
+  .delete_content {
+    background-color: $dark_color;
+    padding: 50px;
+    border-radius: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
 
-            > h4 {
-                color: $text_color;
-                font-weight: 700;
-                font-size: 24px;
-                line-height: 29px;
-                text-align: center;
-                width: 100%;
-            }
+    > h4 {
+      color: $text_color;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+      width: 100%;
+    }
 
-            .message {
-                color: $text_color;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: $main_line_height;
-                text-align: center;
-                width: 100%;
-            }
+    .message {
+      color: $text_color;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: $main_line_height;
+      text-align: center;
+      width: 100%;
+    }
 
-            .buttons {
-                display: flex;
-                gap: 10px;
-                margin-top: 30px;
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
 
-                .cancel {
-                    @include main_btn_style($admin_border_color, none, $dark_color);
-                    flex: 1;
-                    text-transform: uppercase;
-                }
-                .detele_btn {
-                    @include main_btn_style($admin_red, none, $text_color);
-                    flex: 1;
-                    text-transform: uppercase;
-                }
-            }
-        }
+      .cancel {
+        @include main_btn_style($admin_border_color, none, $dark_color);
+        flex: 1;
+        text-transform: uppercase;
+      }
+      .detele_btn {
+        @include main_btn_style($admin_red, none, $text_color);
+        flex: 1;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 @keyframes close_tab {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(90deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
 }
 @keyframes open_tab {
-    from {
-        transform: rotate(90deg);
-    }
-    to {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 @keyframes toggle_open {
-    from {
-        max-height: 0;
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-        max-height: fit-content;
-    }
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: fit-content;
+  }
 }
