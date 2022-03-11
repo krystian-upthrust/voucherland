@@ -2,6 +2,7 @@ import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_ARTICLES_DETAIL } from "../../routes";
+import Tag from "../Admin/Articles/Tag";
 
 export default function Article({
   article_tag,
@@ -20,7 +21,7 @@ export default function Article({
       />
 
       <div className="article_item_content">
-        <p className="tag">{article_tag}</p>
+        <Tag tag={{"tagTitle" : article_tag}} />
         <h4 className="title">{article_title}</h4>
         <div className="read_article_container">
           <button

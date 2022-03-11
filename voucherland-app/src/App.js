@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, useRoutes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  useRoutes,
+} from "react-router-dom";
 
 import "./App.scss";
 import "./scss/media_queries.scss";
@@ -46,9 +51,11 @@ import {
   ROUTE_VOUCHERS,
   ROUTE_VOUCHERS_DETAIL,
 } from "./routes";
-import AdminVouchers from "./components/Admin/Vouchers/AdminVouchers";
-import AdminArticles from "./components/Admin/Articles/AdminArticles";
-import AdminAdmins from "./components/Admin/Admins/AdminAdmins";
+import AdminVouchers from "./pages/AdminPage/AdminVouchers";
+import AdminArticles from "./pages/AdminPage/AdminArticles";
+import AdminAdmins from "./pages/AdminPage/AdminAdmins";
+import NewArticle from "./components/Admin/Articles/NewArticle";
+import NewVoucher from "./components/Admin/Vouchers/NewVoucher";
 
 const routes = [
   {
@@ -72,8 +79,7 @@ const routes = [
       {
         path: ROUTE_ARTICLES,
         element: <ArticlesPage />,
-        children: [
-        ],
+        children: [],
       },
       {
         path: ROUTE_ARTICLES_DETAIL,
@@ -85,7 +91,7 @@ const routes = [
       },
       {
         path: ROUTE_LOGIN,
-        element:<LoginPage />,
+        element: <LoginPage />,
       },
       {
         path: ROUTE_REGISTER,
@@ -93,8 +99,32 @@ const routes = [
       },
       {
         path: ROUTE_ADMIN,
-        element: <AdminPage />,
-      }
+            element: <AdminVouchers />,
+            children: [
+              {
+                path: ROUTE_ADMIN_VOUCHERS,
+                element: <AdminVouchers />,
+              },
+              
+              
+            ],
+      },
+      {
+        path: ROUTE_ADMIN_VOUCHERS,
+        element: <AdminVouchers />,
+      },
+      {
+        path: ROUTE_ADMIN_ARTICLES,
+        element: <AdminArticles />,
+      },
+      {
+        path: ROUTE_ADMIN_ADMINS,
+        element: <AdminAdmins />,
+      },
+      {
+        path: ROUTE_ADMIN_ADD_VOUCHER,
+        element: <NewVoucher />,
+      },
     ],
   },
 ];

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+import { ROUTE_HOME, ROUTE_LOGIN } from "../../routes";
 
 export default function RegisterPage() {
   const nagivate = useNavigate();
@@ -21,13 +22,12 @@ export default function RegisterPage() {
 
       <div className="option">
         <p>already have an account? </p>
-        <button className="option_btn" onClick={() => nagivate("/login")}>
+        <button className="option_btn" onClick={() => nagivate(ROUTE_LOGIN)}>
           Login
         </button>
       </div>
 
-      <button className="back_btn" onClick={() => nagivate("/")}>
-        {" "}
+      <button className="back_btn" onClick={() => nagivate(ROUTE_HOME)}>
         <FiArrowLeft /> Go back
       </button>
     </section>

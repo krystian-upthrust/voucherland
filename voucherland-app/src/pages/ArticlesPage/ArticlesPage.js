@@ -12,6 +12,7 @@ export default function ArticlesPage() {
         <span>Explore</span> Voucherland
       </h2>
 
+      {/* split into components?  */}
       <article className="recent_articles">
         <h3>Recent articles</h3>
         <div className="recent_articles_content">

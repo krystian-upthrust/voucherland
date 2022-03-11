@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Voucher from "../Voucher/Voucher";
 import { FiArrowRight } from "react-icons/fi";
+import { ROUTE_LOGIN, ROUTE_VOUCHERS } from "../../routes";
 
 export default function TopDeals() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function TopDeals() {
         <button
           className="view_vouchers_btn desktop"
           onClick={() => {
-            navigate("/vouchers");
+            navigate(ROUTE_VOUCHERS);
           }}
         >
           View all vouchers <FiArrowRight className="view_vouchers_btn_arrow" />
@@ -70,7 +71,7 @@ export default function TopDeals() {
             <button
               className="login_btn"
               onClick={() => {
-                navigate("/login");
+                navigate(ROUTE_LOGIN);
               }}
             >
               Login
@@ -82,7 +83,7 @@ export default function TopDeals() {
       <button
         className="view_vouchers_btn mobile"
         onClick={() => {
-          navigate("/vouchers");
+          navigate(ROUTE_VOUCHERS);
         }}
       >
         View all vouchers <FiArrowRight className="view_vouchers_btn_arrow" />
