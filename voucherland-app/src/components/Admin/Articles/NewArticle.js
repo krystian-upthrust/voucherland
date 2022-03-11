@@ -35,6 +35,16 @@ export default function NewArticle() {
       : string;
   }
 
+  const UnfoldSelect = () => {
+    let selectBox = document.getElementById("selcet_box");
+
+    if (!selectBox.classList.contains("unfolded")) {
+      selectBox.classList.add("unfolded");
+    } else {
+      selectBox.classList.remove("unfolded");
+    }
+  };
+
   return (
     <section className="new_article">
       <div className="article_form">
@@ -73,10 +83,20 @@ export default function NewArticle() {
             <div className="detials2">
               <div className="state">
                 <label htmlFor="state">state</label>
-                <select name="state" id="state">
-                  <option value="public">public</option>
-                  <option value="private">private</option>
-                </select>
+                <div
+                  id="selcet_box"
+                  className="select_box"
+                  onClick={UnfoldSelect}
+                >
+                  <div className="select">
+                    <span className={`color_circle`} />
+                    some test text
+                  </div>
+                  <div className="options">
+                    <p className="option">public</p>
+                    <p className="option">public</p>
+                  </div>
+                </div>
               </div>
 
               <div className="image">

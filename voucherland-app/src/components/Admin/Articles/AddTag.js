@@ -22,7 +22,6 @@ export default function AddTag() {
     let selectBox = document.getElementById("selcet_box");
 
     if (!selectBox.classList.contains("unfolded")) {
-      console.log("hi");
       selectBox.classList.add("unfolded");
     } else {
       selectBox.classList.remove("unfolded");
@@ -53,16 +52,6 @@ export default function AddTag() {
                     </p>
                   );
                 })}
-
-                {/* <p className="option" onClick={() => setSelectValue("red")}>
-                  <span className="color_circle red" /> red
-                </p>
-                <p className="option" onClick={() => setSelectValue("blue")}>
-                  <span className="color_circle blue" /> blue
-                </p>
-                <p className="option" onClick={() => setSelectValue("green")}>
-                  <span className="color_circle green" /> green
-                </p> */}
               </div>
             </div>
           </div>

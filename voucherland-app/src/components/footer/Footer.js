@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="line" />
 
         <div className="privacy">
-          <p>&copy;2022 Voucherland</p>
+          <p>&copy; 2022 Voucherland</p>
           <p>Privacy policy</p>
         </div>
       </div>

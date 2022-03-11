@@ -418,6 +418,14 @@ $ultra_wide: 1920px;
       .contact_information,
       .contact_form {
         padding: 50px $main_padding_small;
+        grid-auto-columns: 1fr;
+        grid-template-areas:
+          "title"
+          "name"
+          "email"
+          "phone"
+          "subject"
+          "message";
       }
 
       .contact_information {
@@ -465,11 +473,16 @@ $ultra_wide: 1920px;
   }
 
   .login_register_image {
-    background: url("./../../public/resources/images/login-image-mobile.png") no-repeat top center;
+    background: url("./../../public/resources/images/login-image-mobile.png")
+      no-repeat top center;
   }
 
   .login_register_shadow {
-    background: linear-gradient(180deg, #1d1d1d 32.81%, rgba(29, 29, 29, 0.65) 100%);
+    background: linear-gradient(
+      180deg,
+      #1d1d1d 32.81%,
+      rgba(29, 29, 29, 0.65) 100%
+    );
     transform: rotate(-180deg);
   }
 
@@ -838,8 +851,7 @@ $ultra_wide: 1920px;
       &_content {
         padding: $main_padding_small;
         justify-content: center;
-      } 
-
+      }
 
       .scroller {
         visibility: visible;
@@ -945,7 +957,7 @@ $ultra_wide: 1920px;
     }
 
     &_content {
-      padding: 30px 20px 30px 50px;
+      padding: 50px;
       border-radius: 0 10px 10px 0;
     }
   }
@@ -1089,7 +1101,8 @@ $ultra_wide: 1920px;
       flex-direction: row;
       .contact_information,
       .contact_form {
-        padding: $main_padding_large 50px $main_padding_large $main_padding_large;
+        padding: $main_padding_large 50px $main_padding_large
+          $main_padding_large;
       }
 
       .contact_information {
@@ -1141,11 +1154,16 @@ $ultra_wide: 1920px;
   }
 
   .login_register_image {
-    background: url("./../../public/resources/images/login-image-desktop.png") no-repeat right top;
+    background: url("./../../public/resources/images/login-image-desktop.png")
+      no-repeat right top;
   }
 
   .login_register_shadow {
-    background: linear-gradient(-90deg, #1d1d1d 25%, rgba(29, 29, 29, 0.65) 100%);
+    background: linear-gradient(
+      -90deg,
+      #1d1d1d 25%,
+      rgba(29, 29, 29, 0.65) 100%
+    );
   }
 
   .login,
@@ -1380,7 +1398,6 @@ $ultra_wide: 1920px;
   }
 
   .articles {
-
     > h2 {
       padding: $main_padding_large;
     }
@@ -1404,6 +1421,17 @@ $ultra_wide: 1920px;
 
   .product {
     flex: 0 0 25%;
+  }
+
+  .contact {
+    .contact_form {
+      grid-auto-columns: 1fr;
+      grid-template-areas:
+        "title title"
+        "name email"
+        "phone subject"
+        "message message";
+    }
   }
 
   .footer {

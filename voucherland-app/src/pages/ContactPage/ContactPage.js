@@ -48,7 +48,7 @@ export default function ContactPage() {
               type="text"
               id="name"
               name="name"
-              placeholder="Krystian Rola"
+              placeholder="Jane Doe"
             />
           </div>
 
@@ -58,7 +58,7 @@ export default function ContactPage() {
               type="email"
               id="email"
               name="email"
-              placeholder="Krystian.rola@upthrust.eu"
+              placeholder="jane.doe@upthrust.eu"
             />
           </div>
 

@@ -107,8 +107,8 @@
 
     .contact_form {
       background-color: $voucher_backgroundColor;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      
       gap: 20px;
 
       & h3 {
@@ -135,6 +135,7 @@
         & input[type="email"],
         & textarea {
           @include main_input_style();
+          width: calc(100% - 50px);
         }
 
         & textarea {
@@ -142,6 +143,14 @@
           min-height: 200px;
         }
       }
+
+      > h3 {grid-area: title;}
+      .contect_form_name{grid-area: name;}
+      .contact_form_email{grid-area: email;}
+      .contact_form_phone{grid-area: phone;}
+      .contact_form_subject{grid-area: subject;}
+      .contact_form_message{grid-area: message;}
+
     }
   }
 

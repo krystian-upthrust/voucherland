@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ROUTE_CONTACT, ROUTE_REGISTER } from "../../routes";
 
 function Banner() {
   const navigate = useNavigate();
@@ -18,13 +19,13 @@ function Banner() {
         <div className="banner_buttons">
           <button
             className="banner_register_btn"
-            onClick={() => { navigate("/register"); }}
+            onClick={() => { navigate(ROUTE_REGISTER); }}
           >
             Register now
           </button>
           <button
             className="banner_collaboration_btn"
-            onClick={() => {navigate("/contact"); }}
+            onClick={() => {navigate(ROUTE_CONTACT); }}
           >
             Collaborate
           </button>

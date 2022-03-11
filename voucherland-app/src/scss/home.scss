@@ -454,9 +454,11 @@
         background-color: $text_color;
         color: $dark_color;
 
-        .tag {
+        & .tag {
             color: inherit;
             font-weight: 700;
+            padding: 0;
+            background-color: transparent;
         }
 
         .title {
