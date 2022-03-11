@@ -58,12 +58,12 @@ export default function AdminPage() {
         <div className="admin_content">
           {/* <AdminVouchers /> */}
           {/* <NewVoucher /> */}
-          {/* <AdminArticles /> */}
+          <AdminArticles />
           {/* <NewArticle /> */}
           {/* <AdminAdmins /> */}
           {/* <AddTag /> */}
 
-          <Routes />
+          {/* <Routes /> */}
         </div>
       
     </section>

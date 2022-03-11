@@ -91,6 +91,10 @@ const routes = [
         path: ROUTE_REGISTER,
         element: <RegisterPage />,
       },
+      {
+        path: ROUTE_ADMIN,
+        element: <AdminPage />,
+      }
     ],
   },
 ];
