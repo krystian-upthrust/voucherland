@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Checkbox from "../Articles/Checkbox";
+import Checkbox from "../Checkbox";
 
 export default function Admin({enableDelete, handleSelectedAdmin, admin}) { 
   const [checked, setChecked] = useState(false);

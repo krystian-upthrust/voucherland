@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaLockOpen, FaLock } from "react-icons/fa";
 import PublicVouchersTab from "../../components/Admin/Vouchers/PublicVouchersTab";
 import PublicVoucher from "../../components/Admin/Vouchers/PublicVoucher";
@@ -12,6 +12,9 @@ import DeleteAlertMessage from "../../components/Admin/DeleteAlertMessage";
 import AdminNav from "../../components/Admin/AdminNav";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_ADMIN_ADD_VOUCHER } from "../../routes";
+import PublicVouchers from "../../components/Admin/Vouchers/PublicVouchers";
+import PrivateVouchers from "../../components/Admin/Vouchers/PrivateVouchers";
+import ExpiredVouchers from "../../components/Admin/Vouchers/ExpiredVouchers";
 
 export default function AdminVouchers() {
   const navigate = useNavigate();
@@ -33,9 +36,6 @@ export default function AdminVouchers() {
   const [searched, setSearched] = useState(false);
   const [deleteAlert, setDeleteAlert] = useState(false);
 
-  useEffect(() => {
-    ToggleAdminVoucherTab();
-  }, []);
 
   const TogglePublicTab = () => {
     setVoucherMenu({
@@ -75,7 +75,7 @@ export default function AdminVouchers() {
               handleDeletePressed={() => setDeleteAlert(true)}
             />
 
-            {/* Split into reusable component! */}
+            {/* Split into reusable component with automated precantage indicator! */}
             <div className="admin_statistics_content">
               <div className="admin_statistics">
                 <p className="stat_name">#publicVouchersThisWeek</p>
@@ -122,62 +122,10 @@ export default function AdminVouchers() {
                 </ul>
               </div>
 
-              {voucherMenu.public && (
-                <div className="public_tab">
-                  <h3>Public vouchers</h3>
-
-                
-
-                  <PublicVouchersTab
-                    vouchers_date={"friday 18 march"}
-                    pulbic_vouchers={publicV}
-                  />
-                  <PublicVouchersTab
-                    vouchers_date={"saterday 19 march"}
-                    pulbic_vouchers={publicV}
-                  />
-                  <PublicVouchersTab
-                    vouchers_date={"monday 21 march"}
-                    pulbic_vouchers={publicV}
-                  />
-                </div>
-              )}
-
-              {voucherMenu.private && (
-                <div className="private_tab">
-                  <h3>Private vouchers</h3>
-                  <PrivateVouchersTab
-                    vouchers_date={"friday 18 april"}
-                    pulbic_vouchers={privateV}
-                  />
-                  <PrivateVouchersTab
-                    vouchers_date={"saterday 19 april"}
-                    pulbic_vouchers={privateV}
-                  />
-                  <PrivateVouchersTab
-                    vouchers_date={"monday 21 april"}
-                    pulbic_vouchers={privateV}
-                  />
-                </div>
-              )}
-
-              {voucherMenu.expired && (
-                <div className="expired_tab">
-                  <h3>Expired vouchers</h3>
-                  <ExpiredVouchersTab
-                    vouchers_date={"friday 18 january"}
-                    pulbic_vouchers={expiredV}
-                  />
-                  <ExpiredVouchersTab
-                    vouchers_date={"saterday 19 january"}
-                    pulbic_vouchers={expiredV}
-                  />
-                  <ExpiredVouchersTab
-                    vouchers_date={"monday 21 january"}
-                    pulbic_vouchers={expiredV}
-                  />
-                </div>
-              )}
+              {/* remake voucher item to AdminVoucher with adjustable state ?? */}
+              {voucherMenu.public && <PublicVouchers />}
+              {voucherMenu.private && <PrivateVouchers />}
+              {voucherMenu.expired && <ExpiredVouchers />}
             </>
           )}
 
@@ -212,20 +160,3 @@ export default function AdminVouchers() {
   );
 }
 
-function ToggleAdminVoucherTab() {
-  let tabs = document.getElementsByClassName("voucher_tab");
-  let lines = document.getElementsByClassName("line");
-
-  for (let index = 0; index < tabs.length; index++) {
-    tabs[index].addEventListener("click", () => {
-      console.log("event");
-      if (lines[1].classList.contains("close_tab")) {
-        lines[1].classList.remove("close_tab");
-        lines[1].classList.add("open_tab");
-      } else {
-        lines[1].classList.remove("open_tab");
-        lines[1].classList.add("close_tab");
-      }
-    });
-  }
-}

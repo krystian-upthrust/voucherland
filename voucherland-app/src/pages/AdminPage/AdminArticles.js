@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../../components/Admin/PageHeader";
-import { FaLockOpen, FaLock, FaDownload } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
+import { FaLockOpen, FaLock } from "react-icons/fa";
 import Searchbar from "../../components/Admin/Searchbar";
-import ArticleTab from "../../components/Admin/Articles/ArticleTab";
-import { Article } from "../../components/Admin/Articles/Article";
 import PublicArticles from "../../components/Admin/Articles/PublicArticles";
 import PrivateArticles from "../../components/Admin/Articles/PrivateArticles";
 import DeleteAlertMessage from "../../components/Admin/DeleteAlertMessage";
@@ -21,6 +18,7 @@ export default function AdminArticles() {
   return (
     <section className="admin admin_articles_nav">
       <AdminNav />
+
       <div className="admin_content">
         <section className="admin_articles">
           <article className="articles_header">
@@ -64,7 +62,7 @@ export default function AdminArticles() {
           )}
         </section>
 
-        {addArticle && <NewArticle />}
+        {/* {addArticle && <NewArticle />} */}
       </div>
     </section>
   );

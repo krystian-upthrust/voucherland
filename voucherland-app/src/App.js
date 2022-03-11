@@ -33,7 +33,6 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ArticleDetailPage from "./pages/ArticlesPage/ArticleDetailPage";
 import VouchersPage from "./pages/VouchersPage/VouchersPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
-import AdminPage from "./pages/AdminPage/AdminPage";
 
 import {
   ROUTE_ADMIN,

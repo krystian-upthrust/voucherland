@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { FaLock, FaDownload } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
-import Checkbox from '../Articles/Checkbox';
+import Checkbox from '../Checkbox';
 
 export default  function PrivateVoucher() {
 

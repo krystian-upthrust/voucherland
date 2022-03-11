@@ -81,9 +81,6 @@ export default function AdminAdmins() {
             ))}
           </div>
 
-          <Collapsable />
-          <Collapsable />
-
           {addAdmin && (
             <AddAdmin
               cancelPressed={ToggleCreateNewAdmin}
