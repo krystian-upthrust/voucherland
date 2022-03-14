@@ -104,12 +104,8 @@ export default function NewArticle() {
                       className="select_box"
                       onClick={UnfoldSelect}
                     >
-                      <div className="select">
-                        <span
-                          className={`select_state ${state === "public" ? "public" : "private"}`}
-                        >
-                          {state === "public" ? <FaLockOpen /> : <FaLock />}
-                        </span>
+                      <div className={`select ${state === "public" ? "public" : "private"}`} >
+                        {state === "public" ? <FaLockOpen /> : <FaLock />}
                         {state}
                       </div>
                       <div className="options">
