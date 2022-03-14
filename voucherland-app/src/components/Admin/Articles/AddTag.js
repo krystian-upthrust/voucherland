@@ -15,16 +15,16 @@ const tagsColors = [
   },
 ];
 
-export default function AddTag() {
-  const [selectValue, setSelectValue] = useState(null);
+export default function AddTag({ handleCancelPressed, handleAddPressed }) {
+  const [selectColor, setSelectColor] = useState(null);
 
   const UnfoldSelect = () => {
-    let selectBox = document.getElementById("selcet_box");
+    let selectColor = document.getElementById("selcet_color");
 
-    if (!selectBox.classList.contains("unfolded")) {
-      selectBox.classList.add("unfolded");
+    if (!selectColor.classList.contains("unfolded")) {
+      selectColor.classList.add("unfolded");
     } else {
-      selectBox.classList.remove("unfolded");
+      selectColor.classList.remove("unfolded");
     }
   };
 
@@ -39,16 +39,20 @@ export default function AddTag() {
           </div>
           <div className="color">
             <label htmlFor="color">color</label>
-            <div id="selcet_box" className="select_box" onClick={UnfoldSelect}>
+            <div id="selcet_color" className="select_box " onClick={UnfoldSelect}>
               <div className="select">
-                <span className={`color_circle ${selectValue}`} />
-                {selectValue === null ? "select color" : selectValue}
+                <span className={`color_circle ${selectColor}`} />
+                {selectColor === null ? "select color" : selectColor}
               </div>
               <div className="options">
                 {tagsColors.map((color) => {
                   return (
-                    <p className="option" onClick={() => setSelectValue(color.color)}>
-                      <span className={`color_circle ${color.color}`} /> {color.color}
+                    <p
+                      className="option"
+                      onClick={() => setSelectColor(color.color)}
+                    >
+                      <span className={`color_circle ${color.color}`} />
+                      {color.color}
                     </p>
                   );
                 })}
@@ -56,8 +60,12 @@ export default function AddTag() {
             </div>
           </div>
           <div className="buttons">
-            <button className="cancel">cancel</button>
-            <button className="add_btn">add tag</button>
+            <button className="cancel" onClick={handleCancelPressed}>
+              cancel
+            </button>
+            <button className="add_btn" onClick={handleAddPressed}>
+              add tag
+            </button>
           </div>
         </form>
       </div>

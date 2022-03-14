@@ -8,9 +8,12 @@ import {
   FaCalendarAlt,
   FaAngleLeft,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_ADMIN_VOUCHERS } from "../../../routes";
 import AdminNav from "../AdminNav";
 
 export default function NewVoucher() {
+  const navigate = useNavigate();
   const [state, setState] = useState("public");
   const [activities, setActivities] = useState(false);
 
@@ -18,7 +21,6 @@ export default function NewVoucher() {
     let selectBox = document.getElementById("selcet_box");
 
     if (!selectBox.classList.contains("unfolded")) {
-      
       selectBox.classList.add("unfolded");
     } else {
       selectBox.classList.remove("unfolded");
@@ -33,12 +35,12 @@ export default function NewVoucher() {
         <article className="new_voucher">
           <form className="voucher_form">
             <h2>
-              <FaAngleLeft /> New Voucher
-              <span
-                className={`state_icon ${
-                  state === "public" ? "public_state" : "private_state"
-                }`}
-              >
+              <FaAngleLeft
+                className="header_icon"
+                onClick={() => navigate(ROUTE_ADMIN_VOUCHERS)}
+              />
+              New Voucher
+              <span className={`state_icon ${state + "_state"}`}>
                 {state === "public" ? <FaLockOpen /> : <FaLock />}
               </span>
             </h2>
@@ -48,7 +50,6 @@ export default function NewVoucher() {
                 <label htmlFor="brand">brand logo path</label>
                 <div className="upload_brand">
                   <p>
-                    {" "}
                     <FaRegImage /> Upload image here
                   </p>
                   <input type="file" id="brand" name="brand" accept="image/*" />
@@ -56,7 +57,7 @@ export default function NewVoucher() {
               </div>
 
               <div className="preview">
-                <p htmlFor="preview">preview</p>
+                <label htmlFor="preview">preview</label>
                 <div className="preview_image">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"
@@ -72,16 +73,28 @@ export default function NewVoucher() {
                   className="select_box"
                   onClick={UnfoldSelect}
                 >
-                  <div className="select">
-                    <span className={`color_circle`} />
-                    some test text
+                  <div className={`select ${state}`}>
+                    {state === "public" ? <FaLockOpen /> : <FaLock />}
+                    {state}
                   </div>
                   <div className="options">
-                    <p className="option">
-                      public 
+                    <p
+                      className="option public"
+                      onClick={() => setState("public")}
+                    >
+                      <FaLockOpen /> public
                     </p>
-                    <p className="option">
-                      public 
+                    <p
+                      className="option private"
+                      onClick={() => setState("private")}
+                    >
+                      <FaLock /> private
+                    </p>
+                    <p
+                      className="option expired"
+                      onClick={() => setState("expired")}
+                    >
+                      <FaLock /> expired
                     </p>
                   </div>
                 </div>

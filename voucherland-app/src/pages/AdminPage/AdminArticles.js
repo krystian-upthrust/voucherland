@@ -7,9 +7,12 @@ import PrivateArticles from "../../components/Admin/Articles/PrivateArticles";
 import DeleteAlertMessage from "../../components/Admin/DeleteAlertMessage";
 import AdminNav from "../../components/Admin/AdminNav";
 import NewArticle from "../../components/Admin/Articles/NewArticle";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_ADMIN_ADD_ARTICLE } from "../../routes";
 
 export default function AdminArticles() {
-  const [addArticle, setAddArticle] = useState(false);
+  const navigate = useNavigate();
+
   const [subNav, setSubNav] = useState({
     public: true,
     private: false,
@@ -25,7 +28,7 @@ export default function AdminArticles() {
             <PageHeader
               pageTitle={"Articles"}
               createTitle={"Create article"}
-              handleCreatePressed={() => setAddArticle(true)}
+              handleCreatePressed={() => navigate(ROUTE_ADMIN_ADD_ARTICLE)}
             />
             <Searchbar />
           </article>
@@ -61,8 +64,6 @@ export default function AdminArticles() {
             />
           )}
         </section>
-
-        {/* {addArticle && <NewArticle />} */}
       </div>
     </section>
   );

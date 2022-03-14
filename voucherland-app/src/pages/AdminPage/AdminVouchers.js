@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { FaLockOpen, FaLock } from "react-icons/fa";
-import PublicVouchersTab from "../../components/Admin/Vouchers/PublicVouchersTab";
 import PublicVoucher from "../../components/Admin/Vouchers/PublicVoucher";
 import PrivateVoucher from "../../components/Admin/Vouchers/PrivateVoucher";
-import PrivateVouchersTab from "../../components/Admin/Vouchers/PrivateVouchersTab";
-import ExpiredVouchersTab from "../../components/Admin/Vouchers/ExpiredVouchersTab";
 import ExpiredVoucher from "../../components/Admin/Vouchers/ExpiredVoucher";
 import PageHeader from "../../components/Admin/PageHeader";
 import Searchbar from "../../components/Admin/Searchbar";

@@ -55,6 +55,7 @@ import AdminArticles from "./pages/AdminPage/AdminArticles";
 import AdminAdmins from "./pages/AdminPage/AdminAdmins";
 import NewArticle from "./components/Admin/Articles/NewArticle";
 import NewVoucher from "./components/Admin/Vouchers/NewVoucher";
+import AddTag from "./components/Admin/Articles/AddTag";
 
 const routes = [
   {
@@ -98,15 +99,7 @@ const routes = [
       },
       {
         path: ROUTE_ADMIN,
-            element: <AdminVouchers />,
-            children: [
-              {
-                path: ROUTE_ADMIN_VOUCHERS,
-                element: <AdminVouchers />,
-              },
-              
-              
-            ],
+        element: <Navigate to={ROUTE_ADMIN_VOUCHERS} />,
       },
       {
         path: ROUTE_ADMIN_VOUCHERS,
@@ -124,6 +117,10 @@ const routes = [
         path: ROUTE_ADMIN_ADD_VOUCHER,
         element: <NewVoucher />,
       },
+      {
+        path: ROUTE_ADMIN_ADD_ARTICLE,
+        element: <NewArticle />,
+      }
     ],
   },
 ];

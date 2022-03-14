@@ -606,6 +606,7 @@
             border-radius: 50%;
             width: 15px;
             height: 15px;
+            cursor: pointer;
           }
         }
 
@@ -888,37 +889,22 @@
       font-weight: 700;
       font-size: 30px;
       line-height: 40px;
-
-      .state_icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        border-radius: 50%;
-        margin-left: 10px;
-        font-size: 20px;
-      }
-
-      .public_state {
-        color: $admin_green;
-        border: 1px solid $admin_green;
-      }
-
-      .private_state {
-        color: $main_color;
-        border: 1px solid $main_color;
-      }
     }
 
     .grid {
+      padding-top: 30px;
       display: grid;
-      grid-auto-columns: auto;
+      grid-auto-columns: 1fr;
+      grid-auto-rows: 65px;
       grid-template-areas:
         "brand brand preview state"
         "name name image image"
         "expiry expiry image image"
         "discount precentage pieces code"
+        "description description description description"
+        "description description description description"
         "description description description description";
+      gap: 20px;
 
       .brand {
         grid-area: brand;
@@ -950,7 +936,6 @@
           }
         }
       }
-
       .preview {
         grid-area: preview;
         width: 100%;
@@ -958,17 +943,18 @@
 
         &_image {
           width: 100%;
-          height: 100%;
+          height: 80%;
           border: 1px solid $admin_border_color;
           border-radius: 10px;
           display: flex;
           justify-content: center;
           align-items: center;
+          object-fit: cover;
 
           & img {
-            width: 70%;
-            height: 70%;
-            object-fit: fill;
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
             color: $dark_color;
           }
         }
@@ -997,6 +983,13 @@
       }
       .product_image {
         grid-area: image;
+        width: 100%;
+        height: 100%;
+
+        > input { 
+          height: 100%;
+          width: 100%;
+        }
       }
       .discount_sort {
         grid-area: discount;
@@ -1014,29 +1007,84 @@
         grid-area: description;
 
         > textarea {
-          resize: vertical;
+          @include main_input_style();
+          resize: none;
+          height: 100%;
+          border: 1px solid $admin_border_color;
+          width: calc(100% - 40px);
         }
+      }
+
+      .brand,
+      .preview, 
+      .state,
+      .product_name,
+      .expiry,
+      .product_image,
+      .discount_sort,
+      .precentage,
+      .pieces,
+      .code,
+      .description {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        > label {
+          color: $dark_color;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 14px;
+        }
+
+        > input {
+          @include main_input_style();
+          border: 1px solid $admin_border_color;
+          width: calc(100% - 40px);
+          height: 100%;
+        }
+        
+      }
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+
+      .delete {
+        @include main_btn_style($admin_border_color, none, $dark_color);
+      }
+      .save_btn {
+        @include main_btn_style($main_color, none, $dark_color);
       }
     }
 
-    .state_icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-      border-radius: 50%;
-      margin-left: 10px;
-      font-size: 20px;
-    }
+    .activity {
+      margin-top: 50px;
+      background-color: $admin_voucher_color;
+      min-height: 200px;
+      border-radius: 10px;
+      padding: 20px;
 
-    .public_state {
-      color: $admin_green;
-      border: 1px solid $admin_green;
-    }
+      > p {
+        color: $dark_color;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 16px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $admin_border_color;
+      }
 
-    .private_state {
-      color: $main_color;
-      border: 1px solid $main_color;
+      .activities_content{
+        padding-top: 30px;
+        color: $dark_color;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: $main_line_height;
+      }
+
     }
   }
 
@@ -1084,6 +1132,34 @@
       }
     }
   }
+}
+
+// Header arrowicon in both the admins add new voucher and add new articles pages
+.header_icon {
+  cursor: pointer;
+}
+
+// new voucher and new article state 
+.state_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.public_state {
+  color: $admin_green;
+  border: 1px solid $admin_green;
+}
+.private_state {
+  color: $main_color;
+  border: 1px solid $main_color;
+}
+.expired_state {
+  color: $admin_red;
+  border: 1px solid $admin_red;
 }
 
 // single voucher item used in admins vouchers
@@ -1270,7 +1346,7 @@
 
 // add tag located in 'new article'
 .add_tag_popup {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -1279,6 +1355,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgba($color: $dark_color, $alpha: 0.85);
+  z-index: 999;
 
   .tag_form {
     padding: 50px;
@@ -1346,7 +1423,7 @@
   height: 40px;
   border: 1px solid $admin_border_color;
   z-index: 100;
-  background-color: $text_color;
+
 
   .select {
     border: none;
@@ -1360,6 +1437,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+  .select.public {
+    color: $admin_green;
+  }
+  .select.private {
+    color: $main_color;
+  }
+  .select.expired {
+    color: $admin_red;
   }
 
   .options {
@@ -1377,6 +1463,15 @@
       gap: 10px;
       border-top: 1px solid $admin_border_color;
       z-index: 10;
+    }
+    .option.public {
+      color: $admin_green;
+    }
+    .option.private {
+      color: $main_color;
+    }
+    .option.expired {
+      color: $admin_red;
     }
   }
 
@@ -1422,19 +1517,34 @@
 // tag background colors for article-tags and in add tag
 .red {
   color: $text_color;
-  background-color: red;
+  background-color: red !important;
 }
 .green {
   color: $text_color;
-  background-color: green;
+  background-color: green !important;
 }
 .blue {
   color: $text_color;
-  background-color: blue;
+  background-color: blue !important;
 }
 .yellow {
   color: $dark_color;
-  background-color: yellow;
+  background-color: yellow !important;
+}
+
+// tag styling used in articles and new article
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .tag {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
 }
 
 // admin main-nav indicator
