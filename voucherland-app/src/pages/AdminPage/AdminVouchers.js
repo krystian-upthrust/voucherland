@@ -126,6 +126,7 @@ export default function AdminVouchers() {
             </>
           )}
 
+          {/* split into complonent <SearchResult searchcontent /> */}
           {searched && (
             <div className="search_result">
               <div className="search_result_header">

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Navigate,
-  Route,
   useRoutes,
 } from "react-router-dom";
 
@@ -20,19 +19,21 @@ import "./scss/vouchers.scss";
 import "./scss/account.scss";
 import "./scss/admin.scss";
 
-import Header from "./components/Header/Header";
 import Cookies from "./components/Cookies/Cookies";
 import HomePage from "./pages/HomePage/HomePage";
 import VoucherDetailPage from "./pages/VoucherDetailPage/VoucherDetailPage";
 import ArticlesPage from "./pages/ArticlesPage/ArticlesPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
-import { UserContext } from "./context/UserContaxt";
-import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ArticleDetailPage from "./pages/ArticlesPage/ArticleDetailPage";
 import VouchersPage from "./pages/VouchersPage/VouchersPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
+import AdminVouchers from "./pages/AdminPage/AdminVouchers";
+import AdminArticles from "./pages/AdminPage/AdminArticles";
+import AdminAdmins from "./pages/AdminPage/AdminAdmins";
+import NewArticle from "./components/Admin/Articles/NewArticle";
+import NewVoucher from "./components/Admin/Vouchers/NewVoucher";
 
 import {
   ROUTE_ADMIN,
@@ -50,12 +51,7 @@ import {
   ROUTE_VOUCHERS,
   ROUTE_VOUCHERS_DETAIL,
 } from "./routes";
-import AdminVouchers from "./pages/AdminPage/AdminVouchers";
-import AdminArticles from "./pages/AdminPage/AdminArticles";
-import AdminAdmins from "./pages/AdminPage/AdminAdmins";
-import NewArticle from "./components/Admin/Articles/NewArticle";
-import NewVoucher from "./components/Admin/Vouchers/NewVoucher";
-import AddTag from "./components/Admin/Articles/AddTag";
+
 
 const routes = [
   {
@@ -130,10 +126,8 @@ const Routes = () => {
 };
 
 export default function App() {
-  const [user, setUser] = useState({});
 
   return (
-    <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <section className="app">
         <Cookies />
         <Router>
@@ -150,6 +144,5 @@ export default function App() {
           <Routes />
         </Router>
       </section>
-    </UserContext.Provider>
   );
 }
