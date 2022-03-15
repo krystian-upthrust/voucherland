@@ -1,7 +1,23 @@
 @import "./variables.scss";
 
 .home {
-   .banner {
+    & #home {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 1s ease-out forwards;
+            // animation in header
+        }
+    }
+
+    .banner {
         height: 100vh;
         display: flex;
         position: relative;
@@ -36,13 +52,13 @@
             & .banner_register_btn {
                 @include main_btn_style($main_color, none, $dark_color);
 
-                &:hover{
+                &:hover {
                     // filter: grayscale(50%);
                     filter: brightness(0.7);
                 }
             }
 
-            &  .banner_collaboration_btn {
+            & .banner_collaboration_btn {
                 @include main_btn_style($second_color, none, $dark_color);
             }
         }

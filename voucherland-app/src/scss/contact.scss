@@ -18,6 +18,22 @@
     color: $dark_color;
   }
 
+  // page indicator 
+  & #contact {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5%;
+      right: 0;
+      width: 0%;
+      height: 2px;
+      background-color: $main_color;
+      animation: page_indicator 2s ease-out forwards;
+    }
+  }
+
   &_header {
     color: $dark_color;
 

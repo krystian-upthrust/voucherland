@@ -1,6 +1,6 @@
 @import "./variables.scss";
 
-.voucher_page {
+.voucher_detail_page {
     background-color: $text_color;
 
     & .header {
@@ -16,6 +16,22 @@
 
     .nav_content_menu > li {
         color: $dark_color;
+    }
+
+    & #vouchers {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 2s ease-out forwards;
+            // animation in header
+        }
     }
 
     .voucher_details {

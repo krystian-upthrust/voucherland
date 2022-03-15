@@ -6,22 +6,6 @@ import { ROUTE_ARTICLES, ROUTE_CONTACT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER,
 export default function Nav() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    let home = document
-      .getElementById("home")
-      .addEventListener("click", function () {
-        home.addEventListener("click", () => {
-          home.classList.add("active");
-          vouchers.classList.remove("active");
-          articles.classList.remove("active");
-          contact.classList.remove("active");
-        });
-      });
-    let vouchers = document.getElementById("vouchers");
-    let articles = document.getElementById("articles");
-    let contact = document.getElementById("contact");
-  }, []);
-
   return (
     <nav className="nav">
       <h1
@@ -103,38 +87,3 @@ export default function Nav() {
     </nav>
   );
 }
-
-const PageIndicator = () => {
-  let home = document.getElementById("home");
-  let vouchers = document.getElementById("vouchers");
-  let articles = document.getElementById("articles");
-  let contact = document.getElementById("contact");
-
-  home.addEventListener("click", () => {
-    home.classList.add("active");
-    vouchers.classList.remove("active");
-    articles.classList.remove("active");
-    contact.classList.remove("active");
-  });
-
-  vouchers.addEventListener("click", () => {
-    home.classList.remove("active");
-    vouchers.classList.add("active");
-    articles.classList.remove("active");
-    contact.classList.remove("active");
-  });
-
-  articles.addEventListener("click", () => {
-    home.classList.remove("active");
-    vouchers.classList.remove("active");
-    articles.classList.add("active");
-    contact.classList.remove("active");
-  });
-
-  contact.addEventListener("click", () => {
-    home.classList.remove("active");
-    vouchers.classList.remove("active");
-    articles.classList.remove("active");
-    contact.classList.add("active");
-  });
-};

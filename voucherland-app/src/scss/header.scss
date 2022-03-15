@@ -4,21 +4,6 @@
   position: relative;
   height: 8vh;
 
-  .active {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -5%;
-      right: 0;
-      width: 0%;
-      height: 2px;
-      background-color: $main_color;
-      animation: page_indicator 2s ease-out forwards;
-    }
-  }
-
   .open_menu {
     .line {
       background-color: $dark_color;
@@ -134,8 +119,8 @@
   }
 }
 
-@keyframes page_indicator{
-  0%{
+@keyframes page_indicator {
+  0% {
     width: 0%;
   }
 

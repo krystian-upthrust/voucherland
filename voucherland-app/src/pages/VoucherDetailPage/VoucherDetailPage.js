@@ -21,7 +21,7 @@ export default function VoucherDetailPage({
     "https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg";
 
   return (
-    <section className="voucher_page">
+    <section className="voucher_detail_page">
       <Header />
       <article className="voucher_details">
         <div className="voucher_content">

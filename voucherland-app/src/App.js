@@ -129,7 +129,7 @@ export default function App() {
 
   return (
       <section className="app">
-        <Cookies />
+        <Cookies /> 
         <Router>
           {/* <VoucherDetailPage
             store_image={"https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"}

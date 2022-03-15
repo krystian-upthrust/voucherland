@@ -18,6 +18,23 @@
         color: $dark_color;
     }
 
+    // page indicator
+    & #articles {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 2s ease-out forwards;
+            // animation in header
+        }
+    }
+
     > h2 {
         color: $dark_color;
         font-size: 24px;
@@ -119,6 +136,23 @@
         color: $dark_color;
     }
 
+    // page indicator
+    & #articles {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 2s ease-out forwards;
+            // animation in header
+        }
+    }
+
     & h2 {
         color: $dark_color;
         font-size: 24px;
@@ -141,7 +175,7 @@
             }
         }
 
-        .article_text_content{
+        .article_text_content {
             & .article_main_text,
             & .article_additional_text {
                 color: $description_color;
@@ -151,12 +185,12 @@
                 margin-block: 10px;
             }
 
-            .article_intertitle{
+            .article_intertitle {
                 color: $dark_color;
                 font-size: 20px;
                 font-weight: 700;
                 line-height: 30px;
-                padding-top: 20px
+                padding-top: 20px;
             }
         }
 
@@ -172,7 +206,7 @@
         }
     }
 
-    .related_articles{
+    .related_articles {
         background-color: $voucher_backgroundColor;
 
         & h2 {
