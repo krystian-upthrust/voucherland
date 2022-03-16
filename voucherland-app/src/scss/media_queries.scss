@@ -112,6 +112,23 @@ $ultra_wide: 1920px;
       .login_content_desktop {
         display: none;
       }
+
+      .account_btn{ 
+        @include main_btn_style($main_color, none, $dark_color);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: max-content;
+      }
+      
+      .logout_btn{
+        @include main_btn_style($text_color, 1px solid $dark_color, $dark_color);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex: 1;
+        width: max-content;
+      }
     }
   }
 

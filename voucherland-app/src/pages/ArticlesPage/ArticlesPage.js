@@ -96,6 +96,7 @@ export default function ArticlesPage() {
           />
         </div>
       </article>
+      
       <Footer />
     </section>
   );

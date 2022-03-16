@@ -11,6 +11,8 @@ export const ROUTE_ARTICLES_DETAIL = "/articles/:id"
 
 export const ROUTE_CONTACT  = "/contact";
 
+export const ROUTE_ACCOUNT = "/account"
+
 export const ROUTE_ADMIN = "/admin";
 
 export const ROUTE_ADMIN_VOUCHERS = "/admin/vouchers";

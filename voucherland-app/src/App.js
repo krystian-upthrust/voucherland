@@ -36,6 +36,7 @@ import NewArticle from "./components/Admin/Articles/NewArticle";
 import NewVoucher from "./components/Admin/Vouchers/NewVoucher";
 
 import {
+  ROUTE_ACCOUNT,
   ROUTE_ADMIN,
   ROUTE_ADMIN_ADD_ARTICLE,
   ROUTE_ADMIN_ADD_VOUCHER,
@@ -56,6 +57,7 @@ import {
 const routes = [
   {
     path: ROUTE_HOME,
+    // element: <HomePage />,
     // element: !user ? <Navigate to={ROUTE_AUTH_LOGIN} /> : <Layout />,
     children: [
       {
@@ -74,12 +76,17 @@ const routes = [
       },
       {
         path: ROUTE_ARTICLES,
-        element: <ArticlesPage />,
-        children: [],
-      },
-      {
-        path: ROUTE_ARTICLES_DETAIL,
-        element: <ArticleDetailPage />,
+        // element: <ArticlesPage />,
+        children: [
+          {
+            path: ROUTE_ARTICLES,
+            element: <ArticlesPage />,
+          },
+          {
+            path: ROUTE_ARTICLES_DETAIL,
+            element: <ArticleDetailPage />,
+          },
+        ],
       },
       {
         path: ROUTE_CONTACT,
@@ -94,29 +101,39 @@ const routes = [
         element: <RegisterPage />,
       },
       {
+        path: ROUTE_ACCOUNT,
+        element: <AccountPage />,
+      },
+      {
         path: ROUTE_ADMIN,
-        element: <Navigate to={ROUTE_ADMIN_VOUCHERS} />,
+        // element: <Navigate to={ROUTE_ADMIN_VOUCHERS} />,
+        children: [
+          {
+            path: ROUTE_ADMIN,
+            element: <Navigate to={ROUTE_ADMIN_VOUCHERS} />,
+          },
+          {
+            path: ROUTE_ADMIN_VOUCHERS,
+            element: <AdminVouchers />,
+          },
+          {
+            path: ROUTE_ADMIN_ARTICLES,
+            element: <AdminArticles />,
+          },
+          {
+            path: ROUTE_ADMIN_ADMINS,
+            element: <AdminAdmins />,
+          },
+          {
+            path: ROUTE_ADMIN_ADD_VOUCHER,
+            element: <NewVoucher />,
+          },
+          {
+            path: ROUTE_ADMIN_ADD_ARTICLE,
+            element: <NewArticle />,
+          }
+        ]
       },
-      {
-        path: ROUTE_ADMIN_VOUCHERS,
-        element: <AdminVouchers />,
-      },
-      {
-        path: ROUTE_ADMIN_ARTICLES,
-        element: <AdminArticles />,
-      },
-      {
-        path: ROUTE_ADMIN_ADMINS,
-        element: <AdminAdmins />,
-      },
-      {
-        path: ROUTE_ADMIN_ADD_VOUCHER,
-        element: <NewVoucher />,
-      },
-      {
-        path: ROUTE_ADMIN_ADD_ARTICLE,
-        element: <NewArticle />,
-      }
     ],
   },
 ];
@@ -129,8 +146,10 @@ export default function App() {
 
   return (
       <section className="app">
-        <Cookies /> 
+        <Cookies />  {/* disabled in styles */}
         <Router>
+
+          {/*  */}
           {/* <VoucherDetailPage
             store_image={"https://upload.wikimedia.org/wikipedia/commons/c/cb/Colruyt_logo.svg"}
             product_name={"Komkommers"}

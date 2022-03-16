@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_ARTICLES, ROUTE_CONTACT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_VOUCHERS } from "../../routes";
-// import { FaUserAlt, FaSignOutAlt } from "react-icons/fa";
+import {
+  ROUTE_ACCOUNT,
+  ROUTE_ARTICLES,
+  ROUTE_CONTACT,
+  ROUTE_HOME,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER,
+  ROUTE_VOUCHERS,
+} from "../../routes";
+import { FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 
 export default function Nav() {
   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <nav className="nav">
@@ -54,35 +63,63 @@ export default function Nav() {
         </ul>
 
         <div className="login_content_mobile">
-          <button
-            className="nav_register"
-            onClick={() => navigate(ROUTE_REGISTER)}
-          >
-            Register
-          </button>
-          <button className="nav_login" onClick={() => navigate(ROUTE_LOGIN)}>
-            Login
-          </button>
+          {!loggedIn ? (
+            <>
+              <button
+                className="nav_register"
+                onClick={() => navigate(ROUTE_REGISTER)}
+              >
+                Register
+              </button>
+              <button
+                className="nav_login"
+                onClick={() => navigate(ROUTE_LOGIN)}
+              >
+                Login
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="account_btn"
+                onClick={() => navigate(ROUTE_ACCOUNT)}
+              >
+                <FaUserAlt /> My account
+              </button>
+              <button className="logout_btn">
+                Log out <FaSignOutAlt />
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       <div className="login_content_desktop">
-        <button
-          className="nav_register"
-          onClick={() => {
-            navigate(ROUTE_REGISTER);
-          }}
-        >
-          Register
-        </button>
-        <button
-          className="nav_login"
-          onClick={() => {
-            navigate(ROUTE_LOGIN);
-          }}
-        >
-          Login
-        </button>
+        {!loggedIn ? (
+          <>
+            <button
+              className="nav_register"
+              onClick={() => navigate(ROUTE_REGISTER)}
+            >
+              Register
+            </button>
+            <button className="nav_login" onClick={() => navigate(ROUTE_LOGIN)}>
+              Login
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="account_btn"
+              onClick={() => navigate(ROUTE_ACCOUNT)}
+            >
+              <FaUserAlt /> My account
+            </button>
+            <button className="logout_btn">
+              Log out <FaSignOutAlt />
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
