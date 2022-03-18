@@ -38,8 +38,12 @@ $main_line_height: 24px;
   font-family: $main_font;
 
   &:hover{
-    // background-color: rgba($color: #000000, $alpha: 0.1);
     filter: brightness(90%);
+  }
+
+  &:disabled:hover {
+    filter: none;
+    cursor: unset;
   }
 }
 

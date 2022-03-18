@@ -128,11 +128,11 @@ code {
     monospace;
 }
 
-button:hover {
-  cursor: pointer;
+// button:hover {
+//   cursor: pointer;
 
-  &:disabled:hover {
-    background-color: unset;
-    cursor: unset;
-  }
-}
+//   &:disabled:hover {
+//     opacity: 1;
+//     cursor: unset;
+//   }
+// }
