@@ -13,11 +13,17 @@ export default function RegisterPage() {
 
       <form>
         <h2>Register</h2>
-        <input type="text" placeholder="name" />
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <input type="password" placeholder="confirm password" />
-        <button className="register_btn">Register</button>
+        <input type="text" placeholder="name" onChange={() => {}} />
+        <input type="email" placeholder="email" onChange={() => {}} />
+        <input type="password" placeholder="password" onChange={() => {}} />
+        <input
+          type="password"
+          placeholder="confirm password"
+          onChange={() => {}}
+        />
+        <button className="register_btn" disabled>
+          Register
+        </button>
       </form>
 
       <div className="option">

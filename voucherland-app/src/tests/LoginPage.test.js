@@ -11,21 +11,24 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Testing Login Button", () => {
-  beforeEach(() => {
-    render(<LoginPage />);
-  });
+  const setup = () => render(<LoginPage />);
 
-  test("Button disabled on start ", async () => {
+  test("Button disabled on start", async () => {
+    setup();
+
     expect(
       await screen.findByRole("button", { name: /login/i })
     ).toBeDisabled();
   });
 
   test("Button enabled on enter email and password", async () => {
+    setup();
+
     userEvent.type(screen.getByPlaceholderText("email"), "jane.doe@gmail.com");
     userEvent.type(screen.getByPlaceholderText("password"), "jane.doe");
 
     expect(await screen.findByRole("button", { name: /login/i })).toBeEnabled();
   });
 });
+
 
