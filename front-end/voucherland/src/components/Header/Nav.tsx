@@ -16,26 +16,46 @@ import { FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 export default function Nav() {
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   return (
     <nav className="nav">
-      <h1 className="header_title_desktop" onClick={() => navigate(ROUTE_HOME)}>
+      <h1
+        className="header_title_desktop"
+        data-testid="desktop-header"
+        onClick={() => navigate(ROUTE_HOME)}
+      >
         voucherland
       </h1>
 
       <div className="nav_content">
         <ul className="nav_content_menu">
-          <li id="home" onClick={() => navigate(ROUTE_HOME)}>
+          <li
+            id="home"
+            data-testid="list-item-home"
+            onClick={() => navigate(ROUTE_HOME)}
+          >
             Home
           </li>
-          <li id="vouchers" onClick={() => navigate(ROUTE_VOUCHERS)}>
+          <li
+            id="vouchers"
+            data-testid="list-item-vouchers"
+            onClick={() => navigate(ROUTE_VOUCHERS)}
+          >
             Vouchers
           </li>
-          <li id="articles" onClick={() => navigate(ROUTE_ARTICLES)}>
+          <li
+            id="articles"
+            data-testid="list-item-articles"
+            onClick={() => navigate(ROUTE_ARTICLES)}
+          >
             Articles
           </li>
-          <li id="contact" onClick={() => navigate(ROUTE_CONTACT)}>
+          <li
+            id="contact"
+            data-testid="list-item-contact"
+            onClick={() => navigate(ROUTE_CONTACT)}
+          >
             Contact
           </li>
         </ul>
@@ -77,11 +97,16 @@ export default function Nav() {
           <>
             <button
               className="nav_register"
+              data-testid="nav-register-btn"
               onClick={() => navigate(ROUTE_REGISTER)}
             >
               Register
             </button>
-            <button className="nav_login" onClick={() => navigate(ROUTE_LOGIN)}>
+            <button
+              className="nav_login"
+              data-testid="nav-login-btn"
+              onClick={() => navigate(ROUTE_LOGIN)}
+            >
               Login
             </button>
           </>
@@ -89,11 +114,16 @@ export default function Nav() {
           <>
             <button
               className="account_btn"
+              data-testid="nav-account-btn"
               onClick={() => navigate(ROUTE_ACCOUNT)}
             >
               <FaUserAlt /> My account
             </button>
-            <button className="logout_btn" onClick={() => {}}>
+            <button
+              className="logout_btn"
+              data-testid="nav-logout-btn"
+              onClick={() => {}}
+            >
               Log out <FaSignOutAlt />
             </button>
           </>

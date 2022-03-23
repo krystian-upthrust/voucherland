@@ -8,6 +8,11 @@ const mockedNavigator = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockedNavigator,
+}));const mockedNavigator = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedNavigator,
 }));
 
 describe("Testing Login Button", () => {
