@@ -1,0 +1,222 @@
+@import "./variables.scss";
+
+.articles {
+    background-color: $text_color;
+
+    & .header {
+        .header_title_mobile,
+        .header_title_desktop {
+            color: $dark_color !important;
+        }
+
+        .line {
+            background-color: $dark_color !important;
+        }
+    }
+
+    .nav_content_menu > li {
+        color: $dark_color;
+    }
+
+    // page indicator
+    & #articles {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 2s ease-out forwards;
+            // animation in header
+        }
+    }
+
+    > h2 {
+        color: $dark_color;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        text-align: center;
+        position: relative;
+
+        & span {
+            position: relative;
+            color: inherit;
+
+            &::after {
+                content: "";
+                background-color: $main_color;
+                height: 2px;
+                width: 100%;
+                position: absolute;
+                bottom: -20%;
+                right: 0;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    & h3 {
+        margin-bottom: 30px;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        color: $dark_color;
+    }
+
+    .recent_articles {
+        background-color: $dark_color;
+
+        & h3 {
+            color: $text_color;
+        }
+
+        &_content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .article_item {
+            background-color: $text_color;
+        }
+    }
+
+    .collaborations {
+        &_content {
+            display: flex;
+            gap: 20px;
+        }
+    }
+
+    .media {
+        &_content {
+            display: flex;
+            gap: 20px;
+        }
+
+        & .article_item {
+            background-color: $dark_color;
+
+            .title {
+                font-weight: 700;
+                color: $text_color;
+            }
+
+            .tag {
+                background-color: $main_color;
+                color: $dark_color;
+            }
+
+            .read_time {
+                color: $text_color;
+            }
+        }
+    }
+}
+
+.article_details {
+    background-color: $text_color;
+
+    & .header {
+        .header_title_mobile,
+        .header_title_desktop {
+            color: $dark_color;
+        }
+
+        .line {
+            background-color: $dark_color;
+        }
+    }
+
+    .nav_content_menu > li {
+        color: $dark_color;
+    }
+
+    // page indicator
+    & #articles {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $main_color;
+            animation: page_indicator 2s ease-out forwards;
+            // animation in header
+        }
+    }
+
+    & h2 {
+        color: $dark_color;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        text-align: center;
+        position: relative;
+    }
+
+    .article_details_content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .article_banner {
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .article_text_content {
+            & .article_main_text,
+            & .article_additional_text {
+                color: $description_color;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: $main_line_height;
+                margin-block: 10px;
+            }
+
+            .article_intertitle {
+                color: $dark_color;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 30px;
+                padding-top: 20px;
+            }
+        }
+
+        .back_btn {
+            @include main_btn_style($text_color, 1px solid $main_color, $dark_color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &_arrow {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .related_articles {
+        background-color: $voucher_backgroundColor;
+
+        & h2 {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        &_content {
+            display: flex;
+            gap: 30px;
+        }
+    }
+}

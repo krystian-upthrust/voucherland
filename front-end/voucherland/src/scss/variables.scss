@@ -1,0 +1,102 @@
+// main fonts
+$main_font: "Poppins", sans-serif;
+
+// main colors
+$main_color: #ffba08;
+$second_color: #e9ecef;
+$dark_color: #1d1d1d;
+$text_color: #ffffff;
+$voucher_backgroundColor: #f5f3f4;
+$description_color: #5f5f5f;
+$tag_color: #023e8a;
+
+$admin_nav_color: #495057;
+$admin_icon_color: #c4c4c4;
+$admin_stat_background_color: #f8f8f8;
+$admin_border_color: #d3d3d3;
+$admin_green: #0ca669;
+$admin_red: #db4437;
+$admin_voucher_color: #f8f8f8;
+
+// main size settings
+$main_padding_small: 20px;
+$main_padding_large: 100px;
+$main_line_height: 24px;
+
+// reused style settings
+@mixin main_btn_style($background_color: transparent, $border: none, $color: $text_color) {
+  width: fit-content;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: $border;
+  outline: none;
+  background-color: $background_color;
+  color: $color;
+  font-family: $main_font;
+
+  &:hover{
+    filter: brightness(90%);
+  }
+
+  &:disabled:hover {
+    filter: none;
+    cursor: unset;
+  }
+}
+
+@mixin main_input_style {
+  color: $dark_color;
+  background-color: $text_color;
+  border-radius: 10px;
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: $main_line_height;
+  // width: calc(100% - 40px); // 40px is the padding
+  width: 100%;
+  border: 1px solid transparent;
+
+  &:focus {
+    border: 1px solid $main_color;
+  }
+}
+
+@mixin admin_main_btn {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: $text_color;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+@mixin admin_create_btn {
+  @include admin_main_btn();
+  background-color: $admin_green;
+}
+
+@mixin admin_delete_btn {
+  @include admin_main_btn();
+  background-color: $admin_red;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+@mixin admin_title_style($title_color) {
+  color: $title_color;
+  font-weight: 700;
+  font-size: 24px;
+  font-style: normal;
+  line-height: 29px;
+  margin-bottom: 10px;
+  padding-top: 50px;
+}
+

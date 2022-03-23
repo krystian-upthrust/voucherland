@@ -1,0 +1,130 @@
+@import "./variables.scss";
+
+.header {
+  position: relative;
+  height: 8vh;
+
+  .open_menu {
+    .line {
+      background-color: $dark_color;
+    }
+
+    .line_sided {
+      animation: open_menu_middle_line 0.2s ease-in-out forwards;
+    }
+
+    .line:first-child {
+      animation: open_menu_first_line 0.2s ease-in-out forwards;
+    }
+
+    .line:last-child {
+      animation: open_menu_last_line 0.2s ease-in-out forwards;
+    }
+  }
+
+  .close_menu {
+    .line_sided {
+      animation: close_menu_middle_line 0.2s ease-in-out forwards;
+    }
+
+    .line:first-child {
+      animation: close_menu_first_line 0.2s ease-in-out forwards;
+    }
+
+    .line:last-child {
+      animation: close_menu_last_line 0.2s ease-in-out forwards;
+    }
+  }
+
+  .open_nav {
+    animation: open_nav 1s ease-in-out forwards;
+  }
+
+  .close_nav {
+    animation: close_nav 1s ease-in-out forwards;
+  }
+}
+
+@keyframes open_menu_first_line {
+  0% {
+    transform: rotate(0deg) translateX(0%) translateY(0px);
+  }
+
+  100% {
+    transform: rotate(-45deg) translateX(-5%) translateY(10px);
+  }
+}
+@keyframes open_menu_last_line {
+  0% {
+    transform: rotate(0deg) translateX(0%) translateY(0px);
+  }
+
+  100% {
+    transform: rotate(45deg) translateX(-5%) translateY(-10px);
+  }
+}
+@keyframes close_menu_first_line {
+  0% {
+    transform: rotate(-45deg) translateX(-5%) translateY(10px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0%) translateY(0px);
+  }
+}
+@keyframes close_menu_last_line {
+  0% {
+    transform: rotate(45deg) translateX(-5%) translateY(-10px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0%) translateY(0px);
+  }
+}
+@keyframes open_menu_middle_line {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
+}
+@keyframes close_menu_middle_line {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes close_nav {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes open_nav {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes page_indicator {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

@@ -1,0 +1,99 @@
+@import "./variables.scss";
+
+.vouchers {
+  background-color: $text_color;
+
+  & .header {
+    .header_title_mobile,
+    .header_title_desktop {
+      color: $dark_color;
+    }
+
+    .line {
+      background-color: $dark_color;
+    }
+  }
+
+  .nav_content_menu > li {
+    color: $dark_color;
+  }
+
+  & #vouchers {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5%;
+      right: 0;
+      width: 0%;
+      height: 2px;
+      background-color: $main_color;
+      animation: page_indicator 2s ease-out forwards;
+      // animation in header
+    }
+  }
+
+  & .footer {
+    background-color: $dark_color;
+  }
+
+  &_banner {
+    background-color: $dark_color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    & h2 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      text-align: center;
+    }
+
+    &_searchbar {
+      display: flex;
+      gap: 10px;
+
+      & button {
+        @include main_btn_style($main_color, none, $dark_color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+
+  &_lastchance,
+  &_secondToLast,
+  &_thirdToLast {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    & h3 {
+      color: $dark_color;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    & .vouchers_content {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  & .lastchance {
+    color: red;
+  }
+
+  & .collaboration {
+    background-color: $voucher_backgroundColor;
+  }
+}
