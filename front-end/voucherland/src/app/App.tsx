@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -37,6 +37,7 @@ import {
   ROUTE_REGISTER,
   ROUTE_VOUCHERS,
 } from "../utils/routes";
+
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import AccountPage from "../pages/Account/AccountPage";
@@ -51,6 +52,8 @@ import VouchersPage from "../pages/Vouchers/VouchersPage";
 import Home from "../pages/Home/Home";
 import NewArticle from "../components/Admin/Articles/NewArticle";
 import Cookies from "../components/Cookies/Cookies";
+import { UserContext } from "../utils/context/UserContext";
+import { IAuth, IUser } from "../utils/types";
 
 const routes = [
   {
@@ -141,13 +144,33 @@ const Routes: FC = () => {
 };
 
 function App() {
+  const [cookies, setCookies] = useState<boolean>(false);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [logged, setLogged] = useState<boolean>(false);
+
+  useEffect(() => {
+    const cookie = localStorage.getItem("cookies");
+
+    cookie == null || cookie == undefined
+      ? setCookies(true)
+      : setCookies(false);
+  }, []);
+
   return (
     <section className="app">
-      <Cookies />
-
-      <Router>
-        <Routes />
-      </Router>
+      <UserContext.Provider
+        value={{
+          loggedIn: logged,
+          setLoggedIn: setLogged,
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        {cookies && <Cookies />}
+        <Router>
+          <Routes />
+        </Router>
+      </UserContext.Provider>
     </section>
   );
 }

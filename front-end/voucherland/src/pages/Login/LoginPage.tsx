@@ -6,6 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [enable, setEnable] = useState<boolean>(false);

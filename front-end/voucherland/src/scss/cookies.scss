@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .cookies {
-    display: none;
+    display: flex;
     flex-direction: column;
     border-radius: 8px;
     z-index: 9999;

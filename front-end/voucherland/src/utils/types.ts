@@ -1,3 +1,18 @@
+export interface IUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  admin: boolean;
+}
+
+export interface IAuth {
+  loggedIn: boolean;
+  setLoggedIn: (value: boolean) => void;
+  user: IUser | null;
+  setUser: (user: IUser | null) => void;
+}
+
 export interface IVoucher {
   id: number;
   name: string;

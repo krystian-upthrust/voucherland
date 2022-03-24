@@ -35,9 +35,6 @@ describe("[DevTest] Testing RegisterPage", () => {
     gobackBtn = testID("register-goback-btn");
   });
 
-  // additional test : test if next input is on focus if user pressed TAB
-  // second additional test : test if input focus on click
-
   test("[DevTest] Buttons render with correct names", () => {
     expect(loginBtn).toHaveTextContent("login");
     expect(registerBtn).toHaveTextContent("register");
