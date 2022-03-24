@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ROUTE_HOME, ROUTE_REGISTER } from "../../utils/routes";
 import { FiArrowLeft } from "react-icons/fi";
 
 export default function LoginPage() {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [enable, setEnable] = useState(true);
+  const navigate = useNavigate();
+  const [emailValue, setEmailValue] = useState<string>("");
+  const [passwordValue, setPasswordValue] = useState<string>("");
+  const [enable, setEnable] = useState<boolean>(false);
 
   useEffect(() => {
-    if (emailValue === "" && passwordValue === "") {
+    if (emailValue == "" && passwordValue == "") {
       setEnable(true);
     } else setEnable(false);
   }, [emailValue, passwordValue]);
@@ -18,7 +19,7 @@ export default function LoginPage() {
   const handleLogin = () => {
     // check email and passwrd
 
-    return <Link to={ROUTE_HOME} />;
+    return navigate(ROUTE_HOME);
   };
 
   return (
@@ -33,6 +34,7 @@ export default function LoginPage() {
           placeholder="email"
           value={emailValue}
           className="login_email"
+          data-testid="login-email-input"
           onChange={(event) => setEmailValue(event.target.value)}
         />
         <input
@@ -40,6 +42,7 @@ export default function LoginPage() {
           placeholder="password"
           value={passwordValue}
           className="login_password"
+          data-testid="login-password-input"
           onChange={(event) => setPasswordValue(event.target.value)}
         />
         <div className="checkbox_container">
@@ -48,6 +51,7 @@ export default function LoginPage() {
               <input
                 type="checkbox"
                 className="login_remember_me"
+                data-testid="login-remember-checkbox"
                 id="remember_me"
               />
               <span className="costum_input_checkbox"></span>
@@ -61,6 +65,7 @@ export default function LoginPage() {
         <button
           id="login_btn"
           className="login_btn"
+          data-testid="login-login-btn"
           onClick={handleLogin}
           disabled={enable}
         >
@@ -72,14 +77,19 @@ export default function LoginPage() {
         <p>no account yet?</p>
         <button
           className="option_btn"
-          onClick={() => <Link to={ROUTE_REGISTER} />}
+          data-testid="login-register-btn"
+          onClick={() => navigate(ROUTE_REGISTER)}
         >
           register
         </button>
       </div>
 
-      <button className="back_btn" onClick={() => <Link to={ROUTE_HOME} />}>
-        <FiArrowLeft className="back_btn_arrow" /> Go back
+      <button
+        className="back_btn"
+        data-testid="login-goback-btn"
+        onClick={() => navigate(ROUTE_HOME)}
+      >
+        <FiArrowLeft className="back_btn_arrow" /> go back
       </button>
     </section>
   );

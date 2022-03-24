@@ -1,11 +1,6 @@
 import React from "react";
 // Renders pages/componennts in an virtual DOM in order to run the tests
-import {
-  Matcher,
-  MatcherOptions,
-  render,
-  RenderResult,
-} from "@testing-library/react";
+import { render } from "@testing-library/react";
 // this import allows the usage of keywoord expect
 import "@testing-library/jest-dom/extend-expect";
 
@@ -15,7 +10,6 @@ import Nav from "../../components/Header/Nav";
 
 // setting up a mock-navigation for testing
 const mockedNavigator = jest.fn();
-
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockedNavigator,
@@ -72,14 +66,5 @@ describe("[DevTest] Testing <Nav/> Component", () => {
     //option 2
     expect(loginBtn).toBeInTheDocument();
   });
-  
 });
 
-test('[DevTest] Visible account/logout button after login', () => {
-  // const accountBtn = testID("nav-account-btn"),
-  //   logout = testID("nav-logout-btn");
-
-  const wrapper =  jest.spyOn(React, "useState");
-  wrapper.mockImplementation()
-
-});
