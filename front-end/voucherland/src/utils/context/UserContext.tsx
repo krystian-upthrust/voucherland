@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
-import { IAuth, IUser } from "../types";
+import { createContext } from "react";
+import { IUserContext } from "../types";
 
-export const UserContext = createContext<IAuth | null>(null);
+export const UserContext = createContext<IUserContext | null>(null);

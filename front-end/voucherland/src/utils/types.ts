@@ -6,9 +6,9 @@ export interface IUser {
   admin: boolean;
 }
 
-export interface IAuth {
+export interface IUserContext {
   loggedIn: boolean;
-  setLoggedIn: (value: boolean) => void;
+  setLoggedIn : (loggedIn: boolean) => void;
   user: IUser | null;
   setUser: (user: IUser | null) => void;
 }

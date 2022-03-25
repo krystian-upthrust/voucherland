@@ -1,26 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
 
 import { ROUTE_HOME, ROUTE_REGISTER } from "../../utils/routes";
-import { FiArrowLeft } from "react-icons/fi";
+import { IUser } from "../../utils/types";
+import { UserContext } from "../../utils/context/UserContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  
+
+  const userContext = useContext(UserContext);
+
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
-  const [enable, setEnable] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(true);
 
   useEffect(() => {
-    if (emailValue == "" && passwordValue == "") {
-      setEnable(true);
-    } else setEnable(false);
+    if (emailValue === "" || passwordValue === "") {
+      setDisable(true);
+    } else setDisable(false);
   }, [emailValue, passwordValue]);
 
-  const handleLogin = () => {
-    // check email and passwrd
+  const handleLogin: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
 
-    return navigate(ROUTE_HOME);
+    let user: IUser = {
+      firstName: "Jane Admin",
+      lastName: "doe",
+      email: emailValue,
+      password: passwordValue,
+      admin: true,
+    };
+
+    userContext?.setLoggedIn(true);
+    userContext?.setUser(user);
+
+    localStorage.setItem("logstate", "true");
+    localStorage.setItem("user", JSON.stringify(user));
+
+    navigate(ROUTE_HOME);
   };
 
   return (
@@ -28,7 +46,7 @@ export default function LoginPage() {
       <div className="login_register_image" />
       <div className="login_register_shadow" />
 
-      <form>
+      <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <input
           type="email"
@@ -64,11 +82,11 @@ export default function LoginPage() {
         </div>
 
         <button
+          type="submit"
           id="login_btn"
           className="login_btn"
           data-testid="login-login-btn"
-          onClick={handleLogin}
-          disabled={enable}
+          disabled={disable}
         >
           login
         </button>

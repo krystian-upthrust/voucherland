@@ -37,6 +37,8 @@ import {
   ROUTE_REGISTER,
   ROUTE_VOUCHERS,
 } from "../utils/routes";
+import { UserContext } from "../utils/context/UserContext";
+import { IUser } from "../utils/types";
 
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
@@ -52,8 +54,6 @@ import VouchersPage from "../pages/Vouchers/VouchersPage";
 import Home from "../pages/Home/Home";
 import NewArticle from "../components/Admin/Articles/NewArticle";
 import Cookies from "../components/Cookies/Cookies";
-import { UserContext } from "../utils/context/UserContext";
-import { IAuth, IUser } from "../utils/types";
 
 const routes = [
   {
@@ -146,27 +146,43 @@ const Routes: FC = () => {
 function App() {
   const [cookies, setCookies] = useState<boolean>(false);
   const [user, setUser] = useState<IUser | null>(null);
-  const [logged, setLogged] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    const loginState = localStorage.getItem("logstate");
+    const user = localStorage.getItem("user");
+
+    if (loginState !== null) {
+      if(loginState === "true") setLoggedIn(true);
+      if(loginState === "false") setLoggedIn(false);
+    } else setLoggedIn(false);
+
+    if (user !== null) {
+      setUser(JSON.parse(user));
+      console.log(JSON.parse(user));
+    }
+  }, []);
 
   useEffect(() => {
     const cookie = localStorage.getItem("cookies");
 
-    cookie == null || cookie == undefined
+    cookie == null || cookie === undefined
       ? setCookies(true)
       : setCookies(false);
   }, []);
 
   return (
     <section className="app">
+      {cookies && <Cookies />}
+
       <UserContext.Provider
         value={{
-          loggedIn: logged,
-          setLoggedIn: setLogged,
+          loggedIn: loggedIn,
+          setLoggedIn: setLoggedIn,
           user: user,
           setUser: setUser,
         }}
       >
-        {cookies && <Cookies />}
         <Router>
           <Routes />
         </Router>

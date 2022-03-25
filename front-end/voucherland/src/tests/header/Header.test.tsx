@@ -1,6 +1,6 @@
 import React from "react";
 // Renders pages/componennts in an virtual DOM in order to run the tests
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 // this import allows the usage of keywoord expect
 import "@testing-library/jest-dom/extend-expect";
 
@@ -18,8 +18,8 @@ jest.mock("react-router-dom", () => ({
 // first test
 test("[DevTest] Mobile header renders with correct title", () => {
   // rendering tested component
-  const { getByTestId } = render(<Header />);
-  const headerElement: HTMLElement = getByTestId("mobile-header");
+  render(<Header />);
+  const headerElement: HTMLElement = screen.getByTestId("mobile-header");
 
   // option 1 is to use textContent to get the text inside h1
   expect(headerElement.textContent).toBe("voucherland");
@@ -29,26 +29,23 @@ test("[DevTest] Mobile header renders with correct title", () => {
 });
 
 describe("[DevTest] Testing <Nav/> Component", () => {
-  let testID: any;
-
-  beforeEach(() => {
-    // Setting up tested component
-    const component = render(<Nav />);
-    testID = component.getByTestId;
-  });
+  const setup = () => render(<Nav />);
 
   test("[DevTest] Desktop header renders with correct title", () => {
-    const headerElement = testID("desktop-header");
+    setup();
+    const headerElement = screen.getByTestId("desktop-header");
 
     // using option 1 [see above] ... testing if h1 element content is correct
-    expect(headerElement.textContent).toBe("voucherland");
+    expect(headerElement).toHaveTextContent("voucherland");
   });
 
   test("[DevTest] Navigation renders with correct list items", () => {
-    const homeItem = testID("list-item-home"),
-      vouchersItem = testID("list-item-vouchers"),
-      articlesItem = testID("list-item-articles"),
-      contactItem = testID("list-item-contact");
+    setup();
+
+    const homeItem = screen.getByTestId("list-item-home"),
+      vouchersItem = screen.getByTestId("list-item-vouchers"),
+      articlesItem = screen.getByTestId("list-item-articles"),
+      contactItem = screen.getByTestId("list-item-contact");
 
     expect(homeItem).toHaveTextContent("Home");
     expect(vouchersItem).toHaveTextContent("Vouchers");
@@ -57,8 +54,10 @@ describe("[DevTest] Testing <Nav/> Component", () => {
   });
 
   test("[DevTest] Register/login buttons are visible at render", () => {
-    const registerBtn = testID("nav-register-btn");
-    const loginBtn = testID("nav-login-btn");
+    setup();
+
+    const registerBtn = screen.getByTestId("nav-register-btn");
+    const loginBtn = screen.getByTestId("nav-login-btn");
 
     // option 1
     expect(registerBtn).toBeVisible();
@@ -67,4 +66,3 @@ describe("[DevTest] Testing <Nav/> Component", () => {
     expect(loginBtn).toBeInTheDocument();
   });
 });
-

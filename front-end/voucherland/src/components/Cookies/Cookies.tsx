@@ -2,10 +2,11 @@ import React from "react";
 
 export default function Cookies() {
 
-
   const handleOkClick : React.MouseEventHandler<HTMLButtonElement> = () => {
     localStorage.setItem("cookies", "true");
   }
+
+  
 
   return (
     <section className="cookies">

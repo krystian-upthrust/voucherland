@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import LoginPage from "../../pages/Login/LoginPage";
@@ -13,8 +13,6 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("[DevTest] Testing LoginPage", () => {
-  let testID: any;
-
   let passwordInput: HTMLInputElement;
   let emailInput: HTMLInputElement;
   let checkboxInput: HTMLInputElement;
@@ -23,16 +21,14 @@ describe("[DevTest] Testing LoginPage", () => {
   let gobackBtn: HTMLButtonElement;
 
   beforeEach(() => {
-    const component = render(<LoginPage />);
-    testID = component.getByTestId;
+    render(<LoginPage />);
 
-    // set up the needed buttons and inputs
-    emailInput = testID("login-email-input");
-    passwordInput = testID("login-password-input");
-    checkboxInput = testID("login-remember-checkbox");
-    loginBtn = testID("login-login-btn");
-    registerBtn = testID("login-register-btn");
-    gobackBtn = testID("login-goback-btn");
+    emailInput = screen.getByTestId("login-email-input");
+    passwordInput = screen.getByTestId("login-password-input");
+    checkboxInput = screen.getByTestId("login-remember-checkbox");
+    loginBtn = screen.getByTestId("login-login-btn");
+    registerBtn = screen.getByTestId("login-register-btn");
+    gobackBtn = screen.getByTestId("login-goback-btn");
   });
 
   test("[DevTest] Buttons render with correct names", () => {
