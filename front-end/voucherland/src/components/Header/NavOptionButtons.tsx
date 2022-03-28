@@ -33,11 +33,16 @@ export default function NavOptionButtons() {
         <>
           <button
             className="nav_register"
+            data-testid="nav-register-btn"
             onClick={() => navigate(ROUTE_REGISTER)}
           >
             Register
           </button>
-          <button className="nav_login" onClick={() => navigate(ROUTE_LOGIN)}>
+          <button
+            className="nav_login"
+            data-testid="nav-login-btn"
+            onClick={() => navigate(ROUTE_LOGIN)}
+          >
             Login
           </button>
         </>
@@ -45,11 +50,16 @@ export default function NavOptionButtons() {
         <>
           <button
             className="account_btn"
+            data-testid="nav-account-btn"
             onClick={() => navigate(ROUTE_ACCOUNT)}
           >
             <FaUserAlt /> My account
           </button>
-          <button className="logout_btn" onClick={handleLogout}>
+          <button
+            className="logout_btn"
+            data-testid="nav-logout-btn"
+            onClick={handleLogout}
+          >
             Log out <FaSignOutAlt />
           </button>
         </>

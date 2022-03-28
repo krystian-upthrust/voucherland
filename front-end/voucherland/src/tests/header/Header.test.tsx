@@ -1,12 +1,15 @@
 import React from "react";
 // Renders pages/componennts in an virtual DOM in order to run the tests
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 // this import allows the usage of keywoord expect
 import "@testing-library/jest-dom/extend-expect";
 
 // importing the to-be tested components
 import Header from "../../components/Header/Header";
 import Nav from "../../components/Header/Nav";
+import { UserContext } from "../../utils/context/UserContext";
+import { IUser, IUserContext } from "../../utils/types";
+import NavOptionButtons from "../../components/Header/NavOptionButtons";
 
 // setting up a mock-navigation for testing
 const mockedNavigator = jest.fn();
@@ -29,40 +32,86 @@ test("[DevTest] Mobile header renders with correct title", () => {
 });
 
 describe("[DevTest] Testing <Nav/> Component", () => {
-  const setup = () => render(<Nav />);
+  let headerElement: HTMLElement,
+    homeItem: HTMLLIElement,
+    vouchersItem: HTMLLIElement,
+    articlesItem: HTMLLIElement,
+    contactItem: HTMLLIElement;
 
-  test("[DevTest] Desktop header renders with correct title", () => {
-    setup();
-    const headerElement = screen.getByTestId("desktop-header");
+  beforeEach(() => {
+    render(<Nav />);
 
+    headerElement = screen.getByTestId("desktop-header");
+    homeItem = screen.getByTestId("list-item-home");
+    vouchersItem = screen.getByTestId("list-item-vouchers");
+    articlesItem = screen.getByTestId("list-item-articles");
+    contactItem = screen.getByTestId("list-item-contact");
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  it("[DevTest] Desktop header renders with correct title", () => {
     // using option 1 [see above] ... testing if h1 element content is correct
     expect(headerElement).toHaveTextContent("voucherland");
   });
 
   test("[DevTest] Navigation renders with correct list items", () => {
-    setup();
-
-    const homeItem = screen.getByTestId("list-item-home"),
-      vouchersItem = screen.getByTestId("list-item-vouchers"),
-      articlesItem = screen.getByTestId("list-item-articles"),
-      contactItem = screen.getByTestId("list-item-contact");
-
     expect(homeItem).toHaveTextContent("Home");
     expect(vouchersItem).toHaveTextContent("Vouchers");
     expect(articlesItem).toHaveTextContent("Articles");
     expect(contactItem).toHaveTextContent("Contact");
   });
+});
 
-  test("[DevTest] Register/login buttons are visible at render", () => {
-    setup();
+describe("[DevTest] Testing <NavOptionButtons /> Component", () => {
+  let registerBtn: HTMLButtonElement;
+  let loginBtn: HTMLButtonElement;
+  let accountBtn: HTMLButtonElement;
+  let logoutBtn: HTMLButtonElement;
 
-    const registerBtn = screen.getByTestId("nav-register-btn");
-    const loginBtn = screen.getByTestId("nav-login-btn");
+  function ContextProvider(loginStatus: boolean) {
+    let testUser: IUser = {
+      firstName: "jane",
+      lastName: "doe",
+      email: "jane@gmail.com",
+      password: "jane123",
+      admin: true,
+    };
+
+    let userContext: IUserContext = {
+      loggedIn: loginStatus,
+      setLoggedIn: jest.fn(),
+      user: loginStatus ? testUser : null,
+      setUser: jest.fn(),
+    };
+
+    return (
+      <UserContext.Provider value={userContext}>
+        <NavOptionButtons />
+      </UserContext.Provider>
+    );
+  }
+
+  test("[DevTest] When logged out, Login & Register option buttons in header", () => {
+    render(ContextProvider(false));
+    registerBtn = screen.getByTestId("nav-register-btn");
+    loginBtn = screen.getByTestId("nav-login-btn");
 
     // option 1
     expect(registerBtn).toBeVisible();
 
     //option 2
     expect(loginBtn).toBeInTheDocument();
+  });
+
+  test("[DevTest] When logged in, Account & Logout option buttons in header", () => {
+    render(ContextProvider(true));
+    accountBtn = screen.getByTestId("nav-account-btn");
+    logoutBtn = screen.getByTestId("nav-logout-btn");
+
+    expect(accountBtn).toBeInTheDocument();
+    expect(logoutBtn).toBeInTheDocument();
   });
 });

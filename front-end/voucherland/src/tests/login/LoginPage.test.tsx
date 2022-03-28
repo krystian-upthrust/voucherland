@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import LoginPage from "../../pages/Login/LoginPage";
@@ -29,6 +29,10 @@ describe("[DevTest] Testing LoginPage", () => {
     loginBtn = screen.getByTestId("login-login-btn");
     registerBtn = screen.getByTestId("login-register-btn");
     gobackBtn = screen.getByTestId("login-goback-btn");
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   test("[DevTest] Buttons render with correct names", () => {
