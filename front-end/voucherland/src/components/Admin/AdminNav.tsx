@@ -10,28 +10,30 @@ import {
 } from "../../utils/routes";
 
 export default function AdminNav() {
-
   const navigate = useNavigate();
 
   return (
-    <nav className="nav">
+    <nav className="nav" data-testid="adminnav">
       <div className="nav_header">
         <h1>V.</h1>
         <ul className="menu">
           <li
             className="active_vouchers_tab"
+            data-testid="adminnav-vouchers"
             onClick={() => navigate(ROUTE_ADMIN_VOUCHERS)}
           >
             <FaTicketAlt className="icon rotate" /> Vouchers
           </li>
           <li
             className="active_articles_tab"
+            data-testid="adminnav-articles"
             onClick={() => navigate(ROUTE_ADMIN_ARTICLES)}
           >
             <MdArticle className="icon" /> Articles
           </li>
           <li
             className="active_admins_tab"
+            data-testid="adminnav-admins"
             onClick={() => navigate(ROUTE_ADMIN_ADMINS)}
           >
             <FaUserAlt className="icon" /> Admins
@@ -46,8 +48,8 @@ export default function AdminNav() {
           </div>
           <p className="profile_name">Jane Doe</p>
         </div>
-        <button className="signout_btn">
-          <FaSignOutAlt className="signout_icon" /> Afmelden
+        <button className="signout_btn" data-testid="adminnav-logout-btn">
+          <FaSignOutAlt className="signout_icon" /> Log out
         </button>
       </div>
     </nav>

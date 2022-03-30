@@ -17,7 +17,7 @@ export default function PageHeader({
 }: PageHeaderProps) {
   
   return (
-    <section className="page_header">
+    <section className="page_header" data-testid="pageheader">
       <h2>{pageTitle}</h2>
       <div className="header_btns">
         <button className="create_btn" onClick={handleCreatePressed}>

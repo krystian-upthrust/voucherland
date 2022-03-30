@@ -4,7 +4,7 @@ import { ROUTE_CONTACT } from "../../utils/routes";
 
 export default function Collaboration() {
   return (
-    <section className="collaboration">
+    <section className="collaboration" data-testid="collaboration">
       <div className="collaboration_image_container">
         <img
           className="collaboration_image_mobile"

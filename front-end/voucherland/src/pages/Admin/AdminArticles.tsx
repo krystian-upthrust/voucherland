@@ -114,7 +114,7 @@ export default function AdminArticles() {
   });
 
   return (
-    <section className="admin admin_articles_nav">
+    <section className="admin admin_articles_nav" data-testid="adminarticles" >
       <AdminNav />
 
       <div className="admin_content">

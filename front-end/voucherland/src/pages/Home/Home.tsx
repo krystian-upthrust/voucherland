@@ -42,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="home">
+    <section className="home" data-testid="home">
       <Header />
       <Banner />
       {vouchersData.length !== 0 && <TopDeals vouchers={vouchersData} />}

@@ -63,7 +63,7 @@ export default function AdminAdmins() {
   };
 
   return (
-    <section className="admin admin_admins_nav">
+    <section className="admin admin_admins_nav" data-testid="adminadmins"  >
       <AdminNav />
       <div className="admin_content">
         <section className="admins_screen">

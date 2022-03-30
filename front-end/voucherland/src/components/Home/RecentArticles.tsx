@@ -1,23 +1,25 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+
 import { ROUTE_ARTICLES } from "../../utils/routes";
 import { IArticle } from "../../utils/types";
 import Article from "../Global/Article";
 
 interface RecentArticlesProps {
-  articles :IArticle[]
+  articles: IArticle[];
 }
 
-export default function RecentArticles({articles} : RecentArticlesProps) {
+export default function RecentArticles({ articles }: RecentArticlesProps) {
   return (
-    <section className="articles">
+    <section className="articles" data-testid="articles">
       <div className="articles_header">
         <h2 className="articles_header_title">
           Explore our ideas and future plans
         </h2>
         <button
           className="articles_header_view_btn desktop"
+          data-testid="recentarticles-articele-btn"
           onClick={() => <Link to={ROUTE_ARTICLES} />}
         >
           View all articles <FiArrowRight className="btn_arrow" />
@@ -25,9 +27,9 @@ export default function RecentArticles({articles} : RecentArticlesProps) {
       </div>
 
       <div className="articles_items">
-        {
-          articles.map( article => <Article article={article} key={article.id}/>)
-        }
+        {articles.map((article) => (
+          <Article article={article} key={article.id} />
+        ))}
       </div>
 
       <button

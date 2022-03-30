@@ -4,10 +4,10 @@ import Collapsable from "../Collapsable";
 import PublicVoucher from "./PublicVoucher";
 
 const publicVouchers: JSX.Element[] = [
-  <PublicVoucher />,
-  <PublicVoucher />,
-  <PublicVoucher />,
-  <PublicVoucher />,
+  <PublicVoucher key={1} />,
+  <PublicVoucher key={2} />,
+  <PublicVoucher key={3} />,
+  <PublicVoucher key={4} />,
 ];
 
 export default function PublicVouchers() {

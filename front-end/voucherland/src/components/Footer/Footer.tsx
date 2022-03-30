@@ -8,7 +8,7 @@ import TrustedBy from "./TrustedBy";
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="footer_first">
         <FootHeader />
         <Socials />

@@ -15,7 +15,7 @@ export default function DeleteAlertMessage({
 }: DeleteAlertMessageProps) {
   
   return (
-    <section className="delete_popup">
+    <section className="delete_popup" data-testid="deletealertmessage" >
       <div className="delete_content">
         <h4>{deleteTitle}</h4>
 

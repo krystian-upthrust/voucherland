@@ -71,7 +71,7 @@ describe("[DevTest] Testing <NavOptionButtons /> Component", () => {
   let accountBtn: HTMLButtonElement;
   let logoutBtn: HTMLButtonElement;
 
-  function ContextProvider(loginStatus: boolean) {
+  function ContextProvider(loginStatus: boolean): JSX.Element {
     let testUser: IUser = {
       firstName: "jane",
       lastName: "doe",

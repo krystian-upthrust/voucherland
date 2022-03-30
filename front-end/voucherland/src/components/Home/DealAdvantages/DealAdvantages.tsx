@@ -5,7 +5,7 @@ export default function DealAdvantages() {
   let deal_advantage_description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.";
 
   return (
-    <section className="deal_content deal_advantages">
+    <section className="deal_content deal_advantages" data-testid="home-deal-advantages" >
       <h3 className="deal_advantages_header">Why get your deals in advance?</h3>
 
       <div className="deal deal_advantages_container">

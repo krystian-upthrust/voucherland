@@ -9,7 +9,7 @@ interface SearchbarProps {
 export default function Searchbar({ handleSearch, handleExit } : SearchbarProps) {
   
   return (
-    <form className="searchbar">
+    <form className="searchbar" data-testid="searchbar" >
       <FiSearch />
       <input
         type="search"

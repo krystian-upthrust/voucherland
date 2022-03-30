@@ -12,7 +12,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="header">
+    <header className="header" data-testid="header" >
       <h1 className="header_title_mobile" data-testid="mobile-header">
         voucherland
       </h1>

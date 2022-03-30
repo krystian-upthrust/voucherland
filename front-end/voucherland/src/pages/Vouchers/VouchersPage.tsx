@@ -1,28 +1,18 @@
-import React from 'react';
-
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import Collaboration from '../../components/Home/Collaboration';
-
-import { FiSearch } from "react-icons/fi";
+import React from "react";
 import { FaClock } from "react-icons/fa";
 
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Collaboration from "../../components/Home/Collaboration";
+import VouchersBanner from "../../components/Vouchers/VouchersBanner";
 
 export default function VouchersPage() {
   return (
-    <section className="vouchers">
+    <section className="vouchers" data-testid="voucherspage">
       <Header />
-      <div className="vouchers_banner" >
-        <h2>Daily new deals</h2>
-        <form className="vouchers_banner_searchbar">
-          <input type="search" placeholder="Search for shop/brand" />
-          <button>
-             search <FiSearch />
-          </button>
-        </form>
-      </div>
+      <VouchersBanner />
 
-      <div className="vouchers_lastchance" >
+      <div className="vouchers_lastchance">
         <h3 className="lastchance">
           <FaClock /> 24/02/2022 - Be quick
         </h3>
@@ -122,5 +112,5 @@ export default function VouchersPage() {
 
       <Footer />
     </section>
-  )
+  );
 }

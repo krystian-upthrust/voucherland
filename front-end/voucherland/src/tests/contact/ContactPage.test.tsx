@@ -17,17 +17,22 @@ test("[DevTest] Renders child components", () => {
   // should you test if children components render?
 
   render(<ContactPage />);
-
   let parent: HTMLElement = screen.getByTestId("contactpage");
-  let header: HTMLElement = screen.getByTestId("contact-header");
+  
+  let header : HTMLElement = screen.getByTestId('header');
+  let contactHeader: HTMLElement = screen.getByTestId("contact-header");
   let information: HTMLElement = screen.getByTestId("contact-information");
   let form: HTMLElement = screen.getByTestId("contact-form");
   let office: HTMLElement = screen.getByTestId("contact-office");
+  let footer : HTMLElement = screen.getByTestId('footer');
 
   expect(parent).toContainElement(header);
+  expect(parent).toContainElement(contactHeader);
   expect(parent).toContainElement(information);
   expect(parent).toContainElement(form);
   expect(parent).toContainElement(office);
+  expect(parent).toContainElement(footer);
+
 });
 
 describe("[DevTest] Testing <ContactForm />", () => {

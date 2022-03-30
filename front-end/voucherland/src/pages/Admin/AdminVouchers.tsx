@@ -49,7 +49,7 @@ export default function AdminVouchers() {
   };
 
   return (
-    <section className="admin admin_vouches_nav">
+    <section className="admin admin_vouches_nav" data-testid="adminvouchers" >
       <AdminNav />
 
       <div className="admin_content">

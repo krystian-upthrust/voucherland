@@ -6,7 +6,7 @@ export default function Banner() {
   const navigate = useNavigate();
 
   return (
-    <section className="banner">
+    <section className="banner" data-testid="home-banner">
       <div className="banner_content">
         <h2 className="banner_quote">
           Get your voucher now and <span> be ahead of the crowd.</span>
