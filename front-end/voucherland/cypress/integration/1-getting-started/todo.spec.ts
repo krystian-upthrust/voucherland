@@ -36,7 +36,7 @@ describe('example to-do app', () => {
 
   it('can add new todo items', () => {
     // We'll store our item text in a variable so we can reuse it
-    const newItem = 'Feed the cat'
+    const newItem = 'Feed the cat';
 
     // Let's get the input element and use the `type` command to
     // input our new list item. After typing the content of our item,

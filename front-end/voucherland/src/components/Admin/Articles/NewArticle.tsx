@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { ROUTE_ADMIN_ARTICLES } from "../../../utils/routes";
 import Tag from "../../Global/Tag";
 import AdminNav from "../AdminNav";
-import AddTag from "./AddTag";
+import AddTag from "./AddTag/AddTag";
 
 const tags = [
   {

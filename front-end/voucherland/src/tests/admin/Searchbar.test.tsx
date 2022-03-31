@@ -19,5 +19,6 @@ test("[DevTest] Input renders with the correct placeholder", () => {
 
   let searchInput: HTMLInputElement = screen.getByTestId("searchbar-input");
 
-  expect(searchInput.placeholder).toHaveTextContent("Search...");
+  expect(searchInput.placeholder).toBe("Search...");
 });
+

@@ -20,18 +20,25 @@ describe("[DevTest] <PageHeader />", () => {
       />
     );
 
-    createBtn = screen.getByTestId('pageheader-create-btn');
-    deleteBtn = screen.getByTestId('pageheader-delete-btn');
+    createBtn = screen.getByTestId("pageheader-create-btn");
+    deleteBtn = screen.getByTestId("pageheader-delete-btn");
   });
 
   test("Elements render correctly", () => {
-      let parent = screen.getByTestId('pageheader');
+    let parent = screen.getByTestId("pageheader");
 
-      expect(parent).toContainElement(createBtn);
-      expect(parent).toContainElement(deleteBtn);
+    expect(parent).toContainElement(createBtn);
+    expect(parent).toContainElement(deleteBtn);
   });
 
-  test('Buttons render with correct names', () => { 
-    
-   });
+  test("Title render with correct name", () => {
+    let pageTitle = screen.getByTestId("pageheader-title");
+
+    expect(pageTitle).toHaveTextContent("Test");
+  });
+
+  test("Buttons render with correct names", () => {
+    expect(createBtn).toHaveTextContent("Create Test");
+    expect(deleteBtn).toHaveTextContent("delete");
+  });
 });

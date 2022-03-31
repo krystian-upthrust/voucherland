@@ -13,11 +13,10 @@ export default function DeleteAlertMessage({
   cancelPressed,
   deletePressed,
 }: DeleteAlertMessageProps) {
-  
   return (
-    <section className="delete_popup" data-testid="deletealertmessage" >
+    <section className="delete_popup" data-testid="deletealertmessage">
       <div className="delete_content">
-        <h4>{deleteTitle}</h4>
+        <h4 data-testid="deletealertmessage-title">{deleteTitle}</h4>
 
         <div className="message">
           You are about to delete <strong>{deleteAmount}</strong>. This action
@@ -25,11 +24,19 @@ export default function DeleteAlertMessage({
         </div>
 
         <div className="buttons">
-          <button className="cancel" onClick={cancelPressed}>
-            Cancel
+          <button
+            className="cancel"
+            data-testid="deletealertmessage-cancel-btn"
+            onClick={cancelPressed}
+          >
+            cancel
           </button>
-          <button className="detele_btn" onClick={deletePressed}>
-            Delete
+          <button
+            className="detele_btn"
+            data-testid="deletealertmessage-delete-btn"
+            onClick={deletePressed}
+          >
+            delete
           </button>
         </div>
       </div>

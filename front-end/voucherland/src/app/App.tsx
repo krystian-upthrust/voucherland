@@ -46,7 +46,7 @@ import AccountPage from "../pages/Account/AccountPage";
 import AdminVouchers from "../pages/Admin/AdminVouchers";
 import AdminArticles from "../pages/Admin/AdminArticles";
 import AdminAdmins from "../pages/Admin/AdminAdmins";
-import NewVoucher from "../components/Admin/Vouchers/NewVoucher";
+import NewVoucher from "../components/Admin/Vouchers/NewVoucher/NewVoucher";
 import ContactPage from "../pages/Contact/ContactPage";
 import ArticleDetailPage from "../pages/Articles/ArticleDetailPage";
 import ArticlesPage from "../pages/Articles/ArticlesPage";
