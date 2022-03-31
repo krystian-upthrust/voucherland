@@ -1,7 +1,7 @@
 import React from "react";
 
 import Collapsable from "../Collapsable";
-import PublicVoucher from "./PublicVoucher";
+import PublicVoucher from "./VoucherOptions/PublicVoucher";
 
 const publicVouchers: JSX.Element[] = [
   <PublicVoucher key={1} />,

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { FaLockOpen, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+
 import AdminNav from "../../components/Admin/AdminNav";
 import DeleteAlertMessage from "../../components/Admin/DeleteAlertMessage";
 import PageHeader from "../../components/Admin/PageHeader";
 import Searchbar from "../../components/Admin/Searchbar";
-import ExpiredVoucher from "../../components/Admin/Vouchers/ExpiredVoucher";
+import ExpiredVoucher from "../../components/Admin/Vouchers/VoucherOptions/ExpiredVoucher";
 import ExpiredVouchers from "../../components/Admin/Vouchers/ExpiredVouchers";
-import PrivateVoucher from "../../components/Admin/Vouchers/PrivateVoucher";
+import PrivateVoucher from "../../components/Admin/Vouchers/VoucherOptions/PrivateVoucher";
 import PrivateVouchers from "../../components/Admin/Vouchers/PrivateVouchers";
-import PublicVoucher from "../../components/Admin/Vouchers/PublicVoucher";
+import PublicVoucher from "../../components/Admin/Vouchers/VoucherOptions/PublicVoucher";
 import PublicVouchers from "../../components/Admin/Vouchers/PublicVouchers";
 import { ROUTE_ADMIN_ADD_VOUCHER } from "../../utils/routes";
 import { IAdminSubNav } from "../../utils/types";

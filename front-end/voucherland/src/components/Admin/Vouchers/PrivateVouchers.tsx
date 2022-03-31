@@ -1,6 +1,6 @@
 import React from "react";
 import Collapsable from "../Collapsable";
-import PrivateVoucher from "./PrivateVoucher";
+import PrivateVoucher from "./VoucherOptions/PrivateVoucher";
 
 const privateVouchers: JSX.Element[] = [
   <PrivateVoucher />,

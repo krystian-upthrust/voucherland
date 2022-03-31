@@ -16,6 +16,7 @@ export default function Searchbar({ handleSearch, handleExit } : SearchbarProps)
         placeholder="Search..."
         id="searchbar"
         name="searchbar"
+        data-testid="searchbar-input"
         onFocus={handleSearch}
         onBlur={(event) => {
           if (event.target.value === "") handleExit();

@@ -15,16 +15,20 @@ export default function PageHeader({
   handleDeletePressed,
   disableDelete = true,
 }: PageHeaderProps) {
-  
   return (
     <section className="page_header" data-testid="pageheader">
-      <h2>{pageTitle}</h2>
+      <h2 data-testid="pageheader-title">{pageTitle}</h2>
       <div className="header_btns">
-        <button className="create_btn" onClick={handleCreatePressed}>
+        <button
+          className="create_btn"
+          data-testid="pageheader-create-btn"
+          onClick={handleCreatePressed}
+        >
           {createTitle}
         </button>
         <button
           className="delete_btn"
+          data-testid="pageheader-delete-btn"
           disabled={disableDelete}
           onClick={handleDeletePressed}
         >

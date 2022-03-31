@@ -1,6 +1,6 @@
 import React from "react";
 import Collapsable from "../Collapsable";
-import ExpiredVoucher from "./ExpiredVoucher";
+import ExpiredVoucher from "./VoucherOptions/ExpiredVoucher";
 
 const expiredVouchers: JSX.Element[] = [
   <ExpiredVoucher />,
