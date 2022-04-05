@@ -34,6 +34,7 @@ export default function NavOptionButtons() {
           <button
             className="nav_register"
             data-testid="nav-register-btn"
+            data-cy="nav-register-btn"
             onClick={() => navigate(ROUTE_REGISTER)}
           >
             Register
@@ -41,6 +42,7 @@ export default function NavOptionButtons() {
           <button
             className="nav_login"
             data-testid="nav-login-btn"
+            data-cy="nav-login-btn"
             onClick={() => navigate(ROUTE_LOGIN)}
           >
             Login
@@ -51,6 +53,7 @@ export default function NavOptionButtons() {
           <button
             className="account_btn"
             data-testid="nav-account-btn"
+            data-cy="nav-account-btn"
             onClick={() => navigate(ROUTE_ACCOUNT)}
           >
             <FaUserAlt /> My account
@@ -58,6 +61,7 @@ export default function NavOptionButtons() {
           <button
             className="logout_btn"
             data-testid="nav-logout-btn"
+            data-cy="nav-logout-btn"
             onClick={handleLogout}
           >
             Log out <FaSignOutAlt />

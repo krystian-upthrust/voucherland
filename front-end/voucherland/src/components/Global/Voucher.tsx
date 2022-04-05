@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiArrowRight, FiClock } from "react-icons/fi";
+import { UserContext } from "../../utils/context/UserContext";
 
 import { IVoucher } from "../../utils/types";
 
@@ -8,6 +9,8 @@ interface VoucherProps {
 }
 
 export default function Voucher({ voucher }: VoucherProps) {
+  const user = useContext(UserContext);
+
   return (
     <article className="product">
       <div className="product_discount">
@@ -38,7 +41,7 @@ export default function Voucher({ voucher }: VoucherProps) {
       </button>
 
       {/* when not logged in && mobile only  */}
-      {false && (
+      {!user?.loggedIn && (
         <div className="login_popup login_popup_mobile">
           <div className="login_popup_content">
             <p>To claim these vouchers, you must be logged in.</p>

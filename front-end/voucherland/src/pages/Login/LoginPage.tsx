@@ -54,6 +54,7 @@ export default function LoginPage() {
           value={emailValue}
           className="login_email"
           data-testid="login-email-input"
+          data-cy="login-email-input"
           onChange={(event) => setEmailValue(event.target.value)}
         />
         <input
@@ -62,6 +63,7 @@ export default function LoginPage() {
           value={passwordValue}
           className="login_password"
           data-testid="login-password-input"
+          data-cy="login-password-input"
           onChange={(event) => setPasswordValue(event.target.value)}
         />
         <div className="checkbox_container">
@@ -86,6 +88,7 @@ export default function LoginPage() {
           id="login_btn"
           className="login_btn"
           data-testid="login-login-btn"
+          data-cy="login-login-btn"
           disabled={disable}
         >
           login
