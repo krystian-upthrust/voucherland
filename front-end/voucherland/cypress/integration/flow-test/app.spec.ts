@@ -1,7 +1,7 @@
 // It tells vs code that this test is using cypress and it help with autocompletion
 /// <reference types="cypress" />
 
-describe.skip("[FlowTest] User Log in and out flow", () => {
+describe("[FlowTest] User Log in and out flow", () => {
   beforeEach(() => {
     cy.visit(Cypress.config().baseUrl);
   });
@@ -29,7 +29,7 @@ describe.skip("[FlowTest] User Log in and out flow", () => {
   });
 });
 
-describe.skip("[FlowTest] <TopDeals />", () => {
+describe("[FlowTest] <TopDeals />", () => {
   beforeEach(() => {
     cy.visit(Cypress.config().baseUrl);
   });
