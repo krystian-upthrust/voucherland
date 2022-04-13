@@ -17,7 +17,7 @@ class VouchersResource extends JsonResource
         return [
             env('VOUCHER_DB_COLUMN_ID') => $this->id,
             env('VOUCHER_DB_COLUMN_NAME') => $this->name,
-            'description'  => $this->description,
+            env('')  => $this->description,
             'store_image'  => $this->store_image,
             'discount'  => $this->discount,
             'discount_type'  => $this->discount_type,
