@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('name')->nullable(false);
-            $table->string('description')->nullable(false);
-            $table->string('store_image')->nullable(false);
-            $table->string('discount')->nullable(false);
-            $table->enum('discount_type', array('percentage', 'addition'))->nullable(false);
-            $table->string('tag')->nullable(false);
-            $table->integer('downloads')->nullable(true);
-            $table->string('expiry')->nullable(false);
-            $table->enum('status', array('public', 'private', 'expired'))->default('public');
-            $table->string('product_image')->nullable(false);
+            $table->string(env('VOUCHER_DB_NAME', 'name'))->nullable(false);
+            $table->string(env('VOUCHER_DB_DESCRIPTION', 'description'))->nullable(false);
+            $table->string(env('VOUCHER_DB_STORE_IMAGE', 'store_image'))->nullable(false);
+            $table->string(env('VOUCHER_DB_DISCOUNT', 'discount'))->nullable(false);
+            $table->enum(env('VOUCHER_DB_DISCOUNT_TYPE', 'discount_type'), array('percentage', 'addition'))->nullable(false);
+            $table->string(env('VOUCHER_DB_TAG', 'tag'))->nullable(false);
+            $table->integer(env('VOUCHER_DB_DOWNLOADS', 'downloads'))->nullable(true);
+            $table->string(env('VOUCHER_DB_EXPIRY', 'expiry'))->nullable(false);
+            $table->enum(env('VOUCHER_DB_STATUS', 'status'), array('public', 'private', 'expired'))->default('public');
+            $table->string(env('VOUCHER_DB_PRODUCT_IMAGE', 'product_image'))->nullable(false);
             
             $table->timestamps();
         });
