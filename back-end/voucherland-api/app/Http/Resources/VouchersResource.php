@@ -15,17 +15,17 @@ class VouchersResource extends JsonResource
     public function toArray($request)
     {
         return [
-            env('VOUCHER_DB_COLUMN_ID', 'id') => $this->id,
-            env('VOUCHER_DB_COLUMN_NAME', 'name') => $this->name,
-            env('VOUCHER_DB_DESCRIPTION', 'description')  => $this->description,
-            env('VOUCHER_DB_STORE_IMAGE', 'store_image')  => $this->store_image,
-            env('VOUCHER_DB_DISCOUNT', 'discount')  => $this->discount,
-            env('VOUCHER_DB_DISCOUNT_TYPE', 'discount_type')  => $this->discount_type,
-            env('VOUCHER_DB_TAG', 'tag')  => $this->tag,
-            env('VOUCHER_DB_DOWNLOADS', 'downloads')  => $this->downloads,
-            env('VOUCHER_DB_EXPIRY', 'expiry')  => $this->expiry,
-            env('VOUCHER_DB_STATUS', 'status')  => $this->status,
-            env('VOUCHER_DB_PRODUCT_IMAGE', 'product_image')  => $this->product_image
+            env('VOUCHER_ID') => $this->id,
+            env('VOUCHER_NAME') => $this->name,
+            env('VOUCHER_DESCRIPTION')  => $this->description,
+            env('VOUCHER_STORE_IMAGE')  => $this->store_image,
+            env('VOUCHER_DISCOUNT')  => $this->discount,
+            env('VOUCHER_DISCOUNT_TYPE')  => $this->discount_type,
+            env('VOUCHER_TAG')  => $this->tag,
+            env('VOUCHER_DOWNLOADS')  => $this->downloads,
+            env('VOUCHER_EXPIRY')  => $this->expiry,
+            env('VOUCHER_STATUS')  => $this->status,
+            env('VOUCHER_PRODUCT_IMAGE')  => $this->product_image
         ];
     }
 }

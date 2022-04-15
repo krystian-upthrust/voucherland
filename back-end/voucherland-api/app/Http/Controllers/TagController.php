@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\VouchersRequest;
-use App\Http\Resources\VouchersResource;
-use App\Models\Voucher;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 
-class VouchersController extends Controller
+class TagController extends Controller
 {
     /**
-     * Display a listing of the vouchers.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return VouchersResource::collection(Voucher::all());
+        //
     }
 
     /**
@@ -31,32 +30,32 @@ class VouchersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVoucherRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VouchersRequest $request)
+    public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Voucher  $voucher
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        return new VouchersResource(Voucher::find($id));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Voucher  $voucher
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -64,11 +63,11 @@ class VouchersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVoucherRequest  $request
-     * @param  \App\Models\Voucher  $voucher
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(VouchersRequest $request, $id)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -76,10 +75,10 @@ class VouchersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Voucher  $voucher
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
         //
     }
