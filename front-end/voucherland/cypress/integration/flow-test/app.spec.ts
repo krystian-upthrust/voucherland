@@ -47,7 +47,7 @@ describe("[FlowTest] <TopDeals />", () => {
   });
 });
 
-describe.skip("[FlowTest] Navigation Flow", () => {
+describe("[FlowTest] Navigation Flow", () => {
   describe("Navigation in <Header />", () => {
     context("When user logged out", () => {
       beforeEach(() => {
@@ -156,4 +156,3 @@ describe.skip("[FlowTest] Navigation Flow", () => {
     });
   });
 });
-

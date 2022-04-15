@@ -85,6 +85,7 @@ describe("[DevTest] Testing LoginPage", () => {
     expect(loginBtn.disabled).toEqual(false);
   });
 
+  // test niet nodig
   test("[DevTest] Inputs focus when clicked", () => {
     userEvent.click(emailInput);
     expect(emailInput).toHaveFocus();
