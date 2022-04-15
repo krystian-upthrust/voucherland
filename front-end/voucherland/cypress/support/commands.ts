@@ -37,4 +37,4 @@ Cypress.Commands.add("logout", () => {
 });
 
 Cypress.Commands.add("dataCy", (value) => cy.get(`[data-cy=${value}]`));
-Cypress.Commands.add("getByTestId", (value) => cy.get(`[data-testid=${value}]`));
+Cypress.Commands.add("getTestId", (value) => cy.get(`[data-testid=${value}]`));

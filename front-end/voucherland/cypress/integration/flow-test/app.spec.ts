@@ -35,15 +35,15 @@ describe("[FlowTest] <TopDeals />", () => {
   });
 
   it("When user logged out, pop up to log in will show", () => {
-    cy.getByTestId("home-topdeals").scrollIntoView().trigger("mouseover");
-    cy.getByTestId("topdeals-login-popup").should("exist");
+    cy.getTestId("home-topdeals").scrollIntoView().trigger("mouseover");
+    cy.getTestId("topdeals-login-popup").should("exist");
   });
 
   it("When user logged in, pop up to log in will not show", () => {
     cy.login();
 
-    cy.getByTestId("home-topdeals").scrollIntoView().trigger("mouseover");
-    cy.getByTestId("topdeals-login-popup").should("not.exist");
+    cy.getTestId("home-topdeals").scrollIntoView().trigger("mouseover");
+    cy.getTestId("topdeals-login-popup").should("not.exist");
   });
 });
 
@@ -96,29 +96,29 @@ describe.skip("[FlowTest] Navigation Flow", () => {
       });
 
       it("Home list-item navigates to HomePage", () => {
-        cy.getByTestId("list-item-home").click();
+        cy.getTestId("list-item-home").click();
         cy.url().should("contain", "/");
       });
 
       it("Vouchers list-item navigates to VouchersPage", () => {
-        cy.getByTestId("list-item-vouchers").click();
+        cy.getTestId("list-item-vouchers").click();
         cy.url().should("contain", "/vouchers");
       });
 
       it("Artiles list-item navigates to ArticlePage", () => {
-        cy.getByTestId("list-item-articles").click();
+        cy.getTestId("list-item-articles").click();
         cy.url().should("contain", "/articles");
       });
 
       it("Contact list-item navigates to ContactPage", () => {
-        cy.getByTestId("list-item-contact").click();
+        cy.getTestId("list-item-contact").click();
         cy.url().should("contain", "/contact");
       });
 
       it("Header title navigates to HomePage", () => {
         cy.visit("/vouchers");
 
-        cy.getByTestId("desktop-header").click();
+        cy.getTestId("desktop-header").click();
         cy.url().should("contain", "/");
       });
     });
@@ -130,12 +130,12 @@ describe.skip("[FlowTest] Navigation Flow", () => {
     });
 
     it("Login button navigates to LoginPage", () => {
-      cy.getByTestId("register-login-btn").click();
+      cy.getTestId("register-login-btn").click();
       cy.url().should("contain", "/login");
     });
 
     it("Go-back button navigates to Home", () => {
-      cy.getByTestId("register-goback-btn").click();
+      cy.getTestId("register-goback-btn").click();
       cy.url().should("contain", "/");
     });
   });
@@ -146,12 +146,12 @@ describe.skip("[FlowTest] Navigation Flow", () => {
     });
 
     it("Register button navigates to RegisterPage", () => {
-      cy.getByTestId("login-register-btn").click();
+      cy.getTestId("login-register-btn").click();
       cy.url().should("contain", "/register");
     });
 
     it("Go-back button navigates to Home", () => {
-      cy.getByTestId("login-goback-btn").click();
+      cy.getTestId("login-goback-btn").click();
       cy.url().should("contain", "/");
     });
   });

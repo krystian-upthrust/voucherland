@@ -61,11 +61,12 @@ export default function AddTagForm({
             {selectColor === null ? "select color" : selectColor}
           </div>
           <div className="options">
-            {tagsColors.map((color) => {
+            {tagsColors.map((color, index) => {
               return (
                 <p
                   className="option"
                   onClick={() => setSelectColor(color.color)}
+                  key={index}
                 >
                   <span className={`color_circle ${color.color}`} />
                   {color.color}
