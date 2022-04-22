@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ArticlesRequest extends FormRequest
 {
@@ -24,7 +25,14 @@ class ArticlesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            env('ARTICLE_TITLE') => ['required', 'string'],
+            env('ARTICLE_DESCRIPTION') => ['required', 'string'],
+            env('ARTICLE_CONTENT') => ['required', 'string'],
+            env('ARTICLE_SUBTITLE') => ['required', 'string'],
+            env('ARTICLE_SUBCONTENT') => ['required', 'string'],
+            env('ARTICLE_IMAGE') => ['required','string'],
+            env('ARTICLE_READTIME') => ['required', 'numeric'],
+            env('ARTICLE_STATUS') => ['required', Rule::in('public', 'private')]
         ];
     }
 }

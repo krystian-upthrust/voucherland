@@ -14,17 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->string(env('ARTICLE_TITLE'))->nullable(false);
-            $table->string(env('ARTICLE_DESCRIPTION'));
-            $table->string(env('ARTICLE_CONTENT'));
-            $table->string(env('ARTICLE_SUBTITLE'));
-            $table->string(env('ARTICLE_SUBCONTENT'));
-            $table->string(env('ARTICLE_IMAGE'));
-            $table->string(env('ARTICLE_TAG_TITLE'));
-            $table->string(env('ARTICLE_TAG_COLOR'));
-            $table->string(env('ARTICLE_READTIME'));
+            $table->longText(env('ARTICLE_DESCRIPTION'))->nullable(false);
+            $table->longText(env('ARTICLE_CONTENT'))->nullable(false);
+            $table->string(env('ARTICLE_SUBTITLE'))->nullable(false);
+            $table->longText(env('ARTICLE_SUBCONTENT'))->nullable(false);
+            $table->string(env('ARTICLE_IMAGE'))->nullable(false);
+            $table->integer(env('ARTICLE_READTIME'))->nullable(false);
+            $table->enum(env('VOUCHER_STATUS', 'status'), array('public', 'private', 'expired'))->default('public');
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

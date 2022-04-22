@@ -36,4 +36,9 @@ class Voucher extends Model
         'status' => 'string',
         'product_image' => 'string'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

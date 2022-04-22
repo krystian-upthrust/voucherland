@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string(env('ARTICLE_TAG_TITLE'));
-            $table->string(env('ARTICLE_TAG_COLOR'));
+            
+            $table->string(env('ARTICLE_TAG_TITLE'))->nullable(false);
+            $table->string(env('ARTICLE_TAG_COLOR'))->nullable(false);
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable(true);
         });
     }
 

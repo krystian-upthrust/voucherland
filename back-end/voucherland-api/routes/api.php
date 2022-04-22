@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\VouchersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Voucher Routes
 Route::prefix('v1')->group(function(){
-    //route -> /api/v1/vouchers
     Route::get(env('ROUTE_GET_ALL_VOUCHERS'), [VouchersController::class, 'index']);
     Route::get(env('ROUTE_GET_SINGLE_VOUCHER'), [VouchersController::class, 'show']);
+    Route::get("/tags", [TagController::class, 'index']);
+    Route::get(env('ROUTE_GET_ALL_ARTICLES'), [ArticlesController::class, 'index']);
     // Route::post('/vouchers', [VouchersController::class, 'store']);
 });
 

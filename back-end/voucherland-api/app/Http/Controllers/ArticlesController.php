@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticlesRequest;
+use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return ArticlesResource::collection(Article::all());
     }
 
     /**
@@ -33,7 +35,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
         //
     }
@@ -67,7 +69,7 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticlesRequest $request, Article $article)
     {
         //
     }
