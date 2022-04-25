@@ -15,15 +15,15 @@ class ArticlesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            env('ARTICLE_ID') => $this->id,
-            env('ARTICLE_TITLE') => $this->title,
-            env('ARTICLE_DESCRIPTION') => $this->description,
-            env('ARTICLE_CONTENT') => $this->content,
-            env('ARTICLE_SUBTITLE') => $this->sub_title,
-            env('ARTICLE_SUBCONTENT') => $this->sub_content,
-            env('ARTICLE_IMAGE') => $this->article_image,
-            env('ARTICLE_READTIME') => $this->read_time,
-            env('ARTICLE_STATUS') => $this->status,
+            config('utils.ARTICLE.ID') => $this->id,
+            config('utils.ARTICLE.TITLE') => $this->title,
+            config('utils.ARTICLE.DESCRIPTION') => $this->description,
+            config('utils.ARTICLE.CONTENT') => $this->content,
+            config('utils.ARTICLE.SUB_TITLE') => $this->sub_title,
+            config('utils.ARTICLE.SUB_CONTENT') => $this->sub_content,
+            config('utils.ARTICLE.IMAGE') => $this->article_image,
+            config('utils.ARTICLE.READ_TIME') => $this->read_time,
+            config('utils.ARTICLE.STATUS') => $this->status,
             'tags' => $this->tags
         ];
     }

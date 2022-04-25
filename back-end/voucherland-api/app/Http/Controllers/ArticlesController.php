@@ -48,7 +48,7 @@ class ArticlesController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return new ArticlesResource(Article::find($article));
     }
 
     /**

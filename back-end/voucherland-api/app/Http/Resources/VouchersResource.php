@@ -15,17 +15,17 @@ class VouchersResource extends JsonResource
     public function toArray($request)
     {
         return [
-            env('VOUCHER_ID') => $this->id,
-            env('VOUCHER_NAME') => $this->name,
-            env('VOUCHER_DESCRIPTION')  => $this->description,
-            env('VOUCHER_STORE_IMAGE')  => $this->store_image,
-            env('VOUCHER_DISCOUNT')  => $this->discount,
-            env('VOUCHER_DISCOUNT_TYPE')  => $this->discount_type,
-            env('VOUCHER_TAG')  => $this->tag,
-            env('VOUCHER_DOWNLOADS')  => $this->downloads,
-            env('VOUCHER_EXPIRY')  => $this->expiry,
-            env('VOUCHER_STATUS')  => $this->status,
-            env('VOUCHER_PRODUCT_IMAGE')  => $this->product_image
+            config('utils.VOUCHER.ID') => $this->id,
+            config('utils.VOUCHER.NAME') => $this->name,
+            config('utils.VOUCHER.DESCRIPTION') => $this->description,
+            config('utils.VOUCHER.STORE_IMAGE') => $this->store_image,
+            config('utils.VOUCHER.DISCOUNT') => $this->discount,
+            config('utils.VOUCHER.DISCOUNT_IMAGE') => $this->discount_type,
+            config('utils.VOUCHER.TAG') => $this->tag,
+            config('utils.VOUCHER.DOWNLOADS') => $this->downloads,
+            config('utils.VOUCHER.EXPIRY') => $this->expiry,
+            config('utils.VOUCHER.STATUS') => $this->status,
+            config('utils.VOUCHER.PRODUCT_IMAGE') => $this->product_image
         ];
     }
 }

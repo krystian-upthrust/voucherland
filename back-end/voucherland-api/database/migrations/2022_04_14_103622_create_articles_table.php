@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements(config('utils.ARTICLE.ID'));
 
-            $table->string(env('ARTICLE_TITLE'))->nullable(false);
-            $table->longText(env('ARTICLE_DESCRIPTION'))->nullable(false);
-            $table->longText(env('ARTICLE_CONTENT'))->nullable(false);
-            $table->string(env('ARTICLE_SUBTITLE'))->nullable(false);
-            $table->longText(env('ARTICLE_SUBCONTENT'))->nullable(false);
-            $table->string(env('ARTICLE_IMAGE'))->nullable(false);
-            $table->integer(env('ARTICLE_READTIME'))->nullable(false);
-            $table->enum(env('VOUCHER_STATUS', 'status'), array('public', 'private', 'expired'))->default('public');
+            $table->string(config('utils.ARTICLE.TITLE'))->nullable(false);
+            $table->longText(config('utils.ARTICLE.DESCRIPTION'))->nullable(false);
+            $table->longText(config('utils.ARTICLE.CONTENT'))->nullable(false);
+            $table->string(config('utils.ARTICLE.SUB_TITLE'))->nullable(false);
+            $table->longText(config('utils.ARTICLE.SUB_CONTENT'))->nullable(false);
+            $table->string(config('utils.ARTICLE.IMAGE'))->nullable(false);
+            $table->integer(config('utils.ARTICLE.READ_TIME'))->nullable(false);
+            $table->enum(config('utils.ARTICLE.STATUS'), array('public', 'private', 'expired'))->default('public');
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

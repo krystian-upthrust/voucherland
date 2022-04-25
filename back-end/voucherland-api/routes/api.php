@@ -23,18 +23,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Voucher Routes
 Route::prefix('v1')->group(function(){
-    Route::get(env('ROUTE_GET_ALL_VOUCHERS'), [VouchersController::class, 'index']);
-    Route::get(env('ROUTE_GET_SINGLE_VOUCHER'), [VouchersController::class, 'show']);
-    Route::get("/tags", [TagController::class, 'index']);
-    Route::get(env('ROUTE_GET_ALL_ARTICLES'), [ArticlesController::class, 'index']);
+    Route::get(config('utils.ROUTES.VOUCHERS'), [VouchersController::class, 'index']);
+    Route::get(config('utils.ROUTES.SINGLE_VOUCHER'), [VouchersController::class, 'show']);
+    
     // Route::post('/vouchers', [VouchersController::class, 'store']);
 });
 
 // Article Routes
 Route::prefix('v1')->group(function() {
-    Route::get(env('ROUTE_GET_ALL_ARTICLES'), [ArticlesController::class, 'index']);
+    Route::get(config('utils.ROUTES.ARTICLES'), [ArticlesController::class, 'index']);
+    Route::get(config('utils.ROUTES.SINGLE_ARTICLE'), [ArticlesController::class, 'show']);
 });
 
+// Tag Routes
+Route::prefix('v1')->group(function() {
+    Route::get(config('utils.ROUTES.TAGS'), [TagController::class, 'index']);
+});
+
+// Test Route
 Route::get('/test', function(){
     return 'api works';
 });

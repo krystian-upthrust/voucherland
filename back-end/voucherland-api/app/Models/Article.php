@@ -11,6 +11,11 @@ class Article extends Model
 
     protected $table = 'articles';
 
+    /**
+     * The attributes that are assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'title',
         'description',
@@ -21,6 +26,11 @@ class Article extends Model
         'status'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts =[
         'title' => "string",
         'description' => "string",
@@ -31,6 +41,11 @@ class Article extends Model
         'status' => "string"
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
     protected $hidden = [
         'created_at',
         'updated_at',

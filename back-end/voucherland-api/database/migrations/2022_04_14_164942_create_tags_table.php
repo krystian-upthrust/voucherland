@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements(config('utils.TAG.ID'));
             
-            $table->string(env('ARTICLE_TAG_TITLE'))->nullable(false);
-            $table->string(env('ARTICLE_TAG_COLOR'))->nullable(false);
+            $table->string(config('utils.TAG.TITLE'))->nullable(false);
+            $table->string(config('utils.TAG.COLOR'))->nullable(false);
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable(true);

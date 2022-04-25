@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vouchers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements(config('utils.VOUCHER.ID'));
 
-            $table->string(env('VOUCHER_NAME', 'name'))->nullable(false);
-            $table->string(env('VOUCHER_DESCRIPTION', 'description'))->nullable(false);
-            $table->string(env('VOUCHER_STORE_IMAGE', 'store_image'))->nullable(false);
-            $table->string(env('VOUCHER_DISCOUNT', 'discount'))->nullable(false);
-            $table->enum(env('VOUCHER_DISCOUNT_TYPE', 'discount_type'), array('percentage', 'addition'))->nullable(false);
-            $table->string(env('VOUCHER_TAG', 'tag'))->nullable(false);
-            $table->integer(env('VOUCHER_DOWNLOADS', 'downloads'))->nullable(true);
-            $table->string(env('VOUCHER_EXPIRY', 'expiry'))->nullable(false);
-            $table->enum(env('VOUCHER_STATUS', 'status'), array('public', 'private', 'expired'))->default('public');
-            $table->string(env('VOUCHER_PRODUCT_IMAGE', 'product_image'))->nullable(false);
+            $table->string(config('utils.VOUCHER.NAME'))->nullable(false);
+            $table->text(config('utils.VOUCHER.DESCRIPTION'))->nullable(false);
+            $table->string(config('utils.VOUCHER.STORE_IMAGE'))->nullable(false);
+            $table->string(config('utils.VOUCHER.DISCOUNT'))->nullable(false);
+            $table->enum(config('utils.VOUCHER.DISCOUNT_TYPE'), array('percentage', 'addition'))->nullable(false);
+            $table->string(config('utils.VOUCHER.TAG'))->nullable(false);
+            $table->integer(config('utils.VOUCHER.DOWNLOADS'))->nullable(true);
+            $table->string(config('utils.VOUCHER.EXPIRY'))->nullable(false);
+            $table->enum(config('utils.VOUCHER.STATUS'), array('public', 'private', 'expired'))->default('public');
+            $table->string(config('utils.VOUCHER.PRODUCT_IMAGE'))->nullable(false);
             
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();

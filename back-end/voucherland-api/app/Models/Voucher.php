@@ -11,6 +11,11 @@ class Voucher extends Model
 
     protected $table = 'vouchers';
 
+    /**
+     * The attributes that are assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'description',
@@ -24,6 +29,11 @@ class Voucher extends Model
         'product_image'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'name' => 'string',
         'description' => 'string',

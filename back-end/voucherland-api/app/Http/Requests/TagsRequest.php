@@ -13,7 +13,7 @@ class TagsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,11 +21,24 @@ class TagsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules() 
     {
         return [
             env('ARTICLE_TAG_TITLE') => ['string', 'required', 'max:255'],
             env('ARTICLE_TAG_COLOR') => ['string', 'required', 'max:255']
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+    */
+    public function messages()
+    {
+        return [
+            'title.required' => "Title is a required field.",
+            'color.required' => "Color is a required field."
         ];
     }
 }
