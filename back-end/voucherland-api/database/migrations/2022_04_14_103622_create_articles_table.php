@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create(config('database.TABLE.ARTICLES'), function (Blueprint $table) {
             $table->bigIncrements(config('utils.ARTICLE.ID'));
 
             $table->string(config('utils.ARTICLE.TITLE'))->nullable(false);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText(config('utils.ARTICLE.SUB_CONTENT'))->nullable(false);
             $table->string(config('utils.ARTICLE.IMAGE'))->nullable(false);
             $table->integer(config('utils.ARTICLE.READ_TIME'))->nullable(false);
-            $table->enum(config('utils.ARTICLE.STATUS'), array('public', 'private', 'expired'))->default('public');
+            $table->enum(config('utils.ARTICLE.STATUS'), array('public', 'private'))->default('public');
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists(config('database.TABLE.ARTICLES'));
     }
 };

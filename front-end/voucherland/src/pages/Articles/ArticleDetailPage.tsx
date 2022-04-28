@@ -6,9 +6,14 @@ import Header from "../../components/Header/Header";
 
 import { FiArrowLeft } from "react-icons/fi";
 import { ROUTE_ARTICLES } from "../../utils/routes";
+import { IArticle } from "../../utils/types";
+
+interface ParamTypes {
+  id : string;
+}
 
 export default function ArticleDetailPage() {
-  const { id } = useParams();
+  const id = useParams();
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -16,9 +21,9 @@ export default function ArticleDetailPage() {
     setLoading(false);
 
     axios.get("/data.json").then((response) => {
-    //   setDetails(
-    //     response.data.articles.find((article) => article.id === Number(id))
-    //   );
+      setDetails(
+        response.data.articles.find((article : IArticle) => article.id === Number(id))
+      );
     });
 
     setLoading(true);

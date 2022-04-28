@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create(config('database.TABLE.TAGS'), function (Blueprint $table) {
             $table->bigIncrements(config('utils.TAG.ID'));
             
             $table->string(config('utils.TAG.TITLE'))->nullable(false);
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists(config('database.TABLE.TAGS'));
     }
 };

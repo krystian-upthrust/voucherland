@@ -20,7 +20,7 @@ class VouchersResource extends JsonResource
             config('utils.VOUCHER.DESCRIPTION') => $this->description,
             config('utils.VOUCHER.STORE_IMAGE') => $this->store_image,
             config('utils.VOUCHER.DISCOUNT') => $this->discount,
-            config('utils.VOUCHER.DISCOUNT_IMAGE') => $this->discount_type,
+            config('utils.VOUCHER.DISCOUNT_TYPE') => $this->discount_type,
             config('utils.VOUCHER.TAG') => $this->tag,
             config('utils.VOUCHER.DOWNLOADS') => $this->downloads,
             config('utils.VOUCHER.EXPIRY') => $this->expiry,

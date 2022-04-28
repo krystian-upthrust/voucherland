@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TagsResource;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class UsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the vouchers.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return TagsResource::collection(Tag::all());
+        //
     }
 
     /**
@@ -31,32 +29,32 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreVoucherRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show($id)
     {
-        return new TagsResource(Tag::find($tag));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Http\Requests\UpdateVoucherRequest  $request
+     * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
         //
     }

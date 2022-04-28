@@ -73,7 +73,52 @@
             'ID' => 'id',
             'TITLE' => 'title',
             'COLOR' => 'color'
-        ]
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | User values
+        |--------------------------------------------------------------------------
+        |
+        |   User values used as column names in database.
+        |
+        */
+        'USER' => [
+            'ID' => 'id',
+            'FIRST_NAME' => 'firstname',
+            'LAST_NAME' => 'lastname',
+            'EMAIL' => 'email',
+            'PASSWORD' => 'password',
+            'IS_ADMIN' => 'is_admin',
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Relation between Article and Tag tables
+        |--------------------------------------------------------------------------
+        |
+        |   Column names for the table article_tag
+        |
+        */
+        'ARTICLE_TAG' => [
+            'ID' => 'id',
+            'ARTICLE_ID' => 'article_id',
+            'TAG_ID' => 'tag_id'
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Relation between User and Voucher tables
+        |--------------------------------------------------------------------------
+        |
+        |   Column names for the table user_voucher
+        |
+        */
+        'USER_VOUCHER' => [
+            'ID' => 'id',
+            'USER_ID' => 'user_id',
+            'VOUCHER_ID' => 'voucher_id'
+        ],
     ];
     
 ?>

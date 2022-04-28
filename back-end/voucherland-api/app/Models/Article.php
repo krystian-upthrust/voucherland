@@ -37,7 +37,7 @@ class Article extends Model
         'content' => "string",
         'sub_title' => "string",
         'sub_content' => "string",
-        'read_time' => "interger",
+        'read_time' => "string",
         'status' => "string"
     ];
 

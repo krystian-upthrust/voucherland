@@ -13,20 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('article_tag', function (Blueprint $table) {
-            $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('article_id');
-            $table->unsignedBigInteger('tag_id');
+        Schema::create(config('database.TABLE.ARTICLE_TAG'), function (Blueprint $table) {
+            $table->bigIncrements(config('utils.ARTICLE_TAG.ID'));
 
-            $table->foreign('article_id')
-                ->references('id')
-                ->on('articles')
+            $table->unsignedBigInteger(config('utils.ARTICLE_TAG.ARTICLE_ID'));
+            $table->unsignedBigInteger(config('utils.ARTICLE_TAG.TAG_ID'));
+
+            $table->foreign(config('utils.ARTICLE_TAG.ARTICLE_ID'))
+                ->references(config('utils.ARTICLE.ID'))
+                ->on(config('database.TABLE.ARTICLES'))
                 ->cascadeOnDelete();
 
-            $table->foreign('tag_id')
-                ->references('id')
-                ->on('tags')
+            $table->foreign(config('utils.ARTICLE_TAG.TAG_ID'))
+                ->references(config('utils.TAG.ID'))
+                ->on(config('database.TABLE.TAGS'))
                 ->cascadeOnDelete();
             // 1.35              
         });
@@ -39,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_tag');
+        Schema::dropIfExists(config('database.TABLE.ARTICLE_TAG'));
     }
 };

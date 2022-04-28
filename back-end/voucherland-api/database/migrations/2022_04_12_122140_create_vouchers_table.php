@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create(config('database.TABLE.VOUCHERS'), function (Blueprint $table) {
             $table->bigIncrements(config('utils.VOUCHER.ID'));
 
             $table->string(config('utils.VOUCHER.NAME'))->nullable(false);
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists(config('database.TABLE.VOUCHERS'));
     }
 };

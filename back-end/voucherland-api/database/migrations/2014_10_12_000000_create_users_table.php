@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create(config('database.TABLE.USERS'), function (Blueprint $table) {
+            $table->bigIncrements(config('utils.USER.ID'));
             
-            $table->string('firstname')->nullable(false);
-            $table->string('lastname')->nullable(false);
-            $table->string('email')->unique()->nullable(false);
-            $table->string('password')->nullable(false);
-            $table->boolean('is_admin')->default(false);
+            $table->string(config('utils.USER.FIRST_NAME'))->nullable(false);
+            $table->string(config('utils.USER.LAST_NAME'))->nullable(false);
+            $table->string(config('utils.USER.EMAIL'))->unique()->nullable(false);
+            $table->string(config('utils.USER.PASSWORD'))->nullable(false);
+            $table->boolean(config('utils.USER.IS_ADMIN'))->default(false);
 
             $table->rememberToken();
            
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists(config('database.TABLE.USERS'));
     }
 };

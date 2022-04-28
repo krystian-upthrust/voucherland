@@ -148,4 +148,21 @@ return [
 
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Table names
+    |--------------------------------------------------------------------------
+    |
+    |   Table names that are used in the database.
+    | 
+    */
+    'TABLE' => [
+        'VOUCHERS' => 'vouchers',
+        'ARTICLES' => 'articles',
+        'TAGS' => 'tags',
+        'USERS' => 'users',
+        'ARTICLE_TAG' => 'article_tag',
+        'USER_VOUCHER' => 'user_voucher',
+    ],
 ];

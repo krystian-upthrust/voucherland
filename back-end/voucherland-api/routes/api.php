@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\VouchersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,11 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Voucher Routes
-Route::prefix('v1')->group(function(){
-    Route::get(config('utils.ROUTES.VOUCHERS'), [VouchersController::class, 'index']);
-    Route::get(config('utils.ROUTES.SINGLE_VOUCHER'), [VouchersController::class, 'show']);
-    
-    // Route::post('/vouchers', [VouchersController::class, 'store']);
+Route::controller(VouchersController::class)->prefix('v1')->group(function() {
+    Route::get(config('utils.ROUTES.VOUCHERS'), 'index');
+    Route::get(config('utils.ROUTES.SINGLE_VOUCHER'), 'show');
 });
 
 // Article Routes
@@ -37,7 +35,7 @@ Route::prefix('v1')->group(function() {
 
 // Tag Routes
 Route::prefix('v1')->group(function() {
-    Route::get(config('utils.ROUTES.TAGS'), [TagController::class, 'index']);
+    Route::get(config('utils.ROUTES.TAGS'), [TagsController::class, 'index']);
 });
 
 // Test Route
