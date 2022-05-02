@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UsersResource;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the vouchers.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -32,9 +36,18 @@ class UsersController extends Controller
      * @param  \App\Http\Requests\StoreVoucherRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        // 
+        $user = User::create([
+            config('utils.USER.FIRST_NAME') => $request->firstname,
+            config('utils.USER.LAST_NAME') => $request->lastname,
+            config('utils.USER.EMAIL') => $request->email,
+            config('utils.USER.PASSWORD') => Hash::make($request->password),
+            config('utils.USER.IS_ADMIN') => $request->is_admin,
+            'updated_at' => null,
+        ]);
+
+        return response()->json(["user" => new UsersResource($user)], 201);
     }
 
     /**
@@ -45,7 +58,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -66,7 +79,7 @@ class UsersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
     }
@@ -80,5 +93,10 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getMe () 
+    {
+        return response()->json(['user' => new UsersResource(JWTAuth::user())], 200);
     }
 }

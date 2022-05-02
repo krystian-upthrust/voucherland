@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
-use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -16,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return ArticlesResource::collection(Article::all());
+        return response()->json(["articles" => ArticlesResource::collection(Article::all())], 200);
     }
 
     /**
@@ -37,7 +36,19 @@ class ArticlesController extends Controller
      */
     public function store(ArticlesRequest $request)
     {
-        //
+        $article = Article::create([
+            config('utils.ARTICLE.TITLE') => $request->title,
+            config('utils.ARTICLE.DESCRIPTION') => $request->description,
+            config('utils.ARTICLE.CONTENT') => $request->content,
+            config('utils.ARTICLE.SUB_TITLE') => $request->sub_title,
+            config('utils.ARTICLE.SUB_CONTENT') => $request->sub_content,
+            config('utils.ARTICLE.IMAGE') => $request->article_image,
+            config('utils.ARTICLE.READ_TIME') => $request->read_time,
+            config('utils.ARTICLE.STATUS') => $request->status,
+            'updated_at' => NULL
+        ]);
+
+        return response()->json(["article" => new ArticlesResource($article)], 201);
     }
 
     /**
@@ -46,9 +57,13 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Article $id)
     {
-        return new ArticlesResource(Article::find($article));
+        $article = Article::find($id);
+
+        if($article) return response()->json(["article" => new ArticlesResource($article)], 200);
+
+        return abort(404, "Article was not found.");
     }
 
     /**
@@ -57,7 +72,7 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Article $id)
     {
         //
     }
@@ -80,8 +95,15 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+
+        if($article){
+            $article->delete();
+            return response('Article was deleted', 200);
+        }
+
+        return abort(404, "Article was not found.");
     }
 }

@@ -12,10 +12,14 @@
         */
         'ROUTES' => [
             'VOUCHERS' => '/vouchers',
-            'SINGLE_VOUCHER' => '/vouchers/{voucherID}',
+            'VOUCHER' => '/vouchers/{voucherID}',
             'ARTICLES' => '/articles',
-            'SINGLE_ARTICLE' => '/articles/{articleID}',
-            'TAGS' => '/tags'
+            'ARTICLE' => '/articles/{articleID}',
+            'TAGS' => '/tags',
+            'TAG' => '/tags/{tag_title}',
+            'AUTH_LOGIN' => '/login',
+            'AUTH_ME' => '/me',
+            'AUTH_LOGOUT' => '/logout',
         ],
 
         /*

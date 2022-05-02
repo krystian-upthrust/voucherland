@@ -22,6 +22,7 @@ class Article extends Model
         'content',
         'sub_title',
         'sub_content',
+        'article_image',
         'read_time',
         'status'
     ];
@@ -36,6 +37,7 @@ class Article extends Model
         'description' => "string",
         'content' => "string",
         'sub_title' => "string",
+        'article_image' => "string",
         'sub_content' => "string",
         'read_time' => "string",
         'status' => "string"

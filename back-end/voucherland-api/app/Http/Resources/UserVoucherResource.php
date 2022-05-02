@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TagsResource extends JsonResource
+class UserVoucherResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class TagsResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            config('utils.TAG.ID') => $this->id,
-            config('utils.TAG.TITLE') => $this->title,
-            config('utils.TAG.COLOR') => $this->color,
-        ];
+        return parent::toArray($request);
     }
 }

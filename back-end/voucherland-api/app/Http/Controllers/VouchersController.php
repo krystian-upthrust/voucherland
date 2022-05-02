@@ -15,7 +15,7 @@ class VouchersController extends Controller
      */
     public function index()
     {
-        return VouchersResource::collection(Voucher::all());
+        return response()->json(["vouchers" =>  VouchersResource::collection(Voucher::all())], 200);
     }
 
     /**
@@ -36,7 +36,21 @@ class VouchersController extends Controller
      */
     public function store(VouchersRequest $request)
     {
-        // 
+        $voucher = Voucher::create([
+            config('utils.VOUCHER.NAME') => $request->name,
+            config('utils.VOUCHER.DESCRIPTION') => $request->description,
+            config('utils.VOUCHER.STORE_IMAGE') => $request->store_image,
+            config('utils.VOUCHER.DISCOUNT') => $request->discount,
+            config('utils.VOUCHER.DISCOUNT_TYPE') => $request->discount_type,
+            config('utils.VOUCHER.TAG') => $request->tag,
+            config('utils.VOUCHER.DOWNLOADS') => $request->downloads === null ? 0 : $request->downloads ,
+            config('utils.VOUCHER.EXPIRY') => $request->expiry,
+            config('utils.VOUCHER.STATUS') => $request->status,
+            config('utils.VOUCHER.PRODUCT_IMAGE') => $request->product_image,
+            'updated_at' => null,
+        ]);
+
+        return response()->json(['voucher' => new VouchersResource($voucher)], 201);
     }
 
     /**
@@ -47,7 +61,11 @@ class VouchersController extends Controller
      */
     public function show($id)
     {
-        return new VouchersResource(Voucher::find($id));
+        $voucher = Voucher::find($id);
+
+        if($voucher) return response()->json(["voucher" => new VouchersResource($voucher)], 200);
+
+        return abort(404, "Voucher was not found.");
     }
 
     /**
@@ -63,7 +81,7 @@ class VouchersController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * 
      * @param  \App\Http\Requests\UpdateVoucherRequest  $request
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
@@ -81,6 +99,13 @@ class VouchersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $voucher = Voucher::find($id);
+
+        if($voucher) {
+            $voucher->delete();
+            return response("Voucher was successfully deleted", 200);
+        }
+
+        return abort(404, "Voucher was not found");
     }
 }

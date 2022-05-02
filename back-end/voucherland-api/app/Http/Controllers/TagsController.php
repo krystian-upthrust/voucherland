@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagsRequest;
 use App\Http\Resources\TagsResource;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
@@ -15,7 +15,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return TagsResource::collection(Tag::all());
+        return response()->json(['tags' => TagsResource::collection(Tag::all())], 200);
     }
 
     /**
@@ -34,9 +34,14 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagsRequest $request)
     {
-        //
+        $tag = Tag::create([
+            config('utils.TAG.TITLE') => $request->title,
+            config('utils.TAG.COLOR') => $request->color,
+        ]);
+
+        return response()->json(['tag' => new TagsResource($tag)], 201);
     }
 
     /**
@@ -45,9 +50,13 @@ class TagsController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show($tag_title)
     {
-        return new TagsResource(Tag::find($tag));
+        $result = Tag::query()->where(config('utils.TAG.TITLE'), "=", $tag_title)->first();
+
+        if ($result) return response()->json(['tag' => new TagsResource($result)], 200);
+
+        return abort(404, "Tag was not found"); // 404: Not Found
     }
 
     /**
@@ -68,9 +77,9 @@ class TagsController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(TagsRequest $request, Tag $tag)
     {
-        //
+        return $request;
     }
 
     /**
@@ -79,8 +88,15 @@ class TagsController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($tag_title)
     {
-        //
+        $result = Tag::query()->where(config('utils.TAG.TITLE'), "=", $tag_title)->first();
+
+        if ($result) {
+            $result->delete();
+            return response("Tag has been deleted.", 204); // 204: No Content
+        }
+
+        return abort(404, "Tag was not found.");
     }
 }

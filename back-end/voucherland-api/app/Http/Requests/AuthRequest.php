@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class AuthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            config('utils.USER.FIRST_NAME') => ['required'],
-            config('utils.USER.LSAT_NAME') => ['required'],
-            config('utils.USER.EMAIL') => ['required', 'email', 'unique:users'],
-            config('utils.USER.PASSWORD') => ['required'],
-            config('utils.USER.IS_ADMIN') => ['required', 'boolean']
+            config('utils.USER.EMAIL') => ['required'],
+            config('utils.USER.PASSWORD') => ['required']
         ];
     }
 
@@ -40,13 +37,8 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'firstname.required' => "Firstname is required.",
-            'lastname.required' => "Lastname is required.",
             'email.required' => "Email is required.",
-            'email.unique' => "Email must be unique.",
             'password.required' => "Password is required.",
-            'is_admin.required' => 'Is admin is required',
-            'is_admin.boolean' => 'Is Admin must be a boolean.',
         ];
     }
 }
