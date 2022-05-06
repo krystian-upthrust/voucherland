@@ -11,21 +11,11 @@ class ArticlesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         return response()->json(["articles" => ArticlesResource::collection(Article::all())], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -57,24 +47,13 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $id)
+    public function show($article_id)
     {
-        $article = Article::find($id);
+        $article = Article::find($article_id);
 
         if($article) return response()->json(["article" => new ArticlesResource($article)], 200);
 
         return abort(404, "Article was not found.");
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Article $id)
-    {
-        //
     }
 
     /**
@@ -84,9 +63,19 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticlesRequest $request, Article $article)
+    public function update(ArticlesRequest $request, $article_id)
     {
-        //
+        $article = Article::find($article_id);
+
+        if($article){
+            $article->update($request->all());
+
+            return response()->json([
+                "article" => new ArticlesResource(Article::find($article_id))
+            ], 200);
+        }
+
+        return abort(404, "Article was not found");
     }
 
     /**
@@ -95,9 +84,9 @@ class ArticlesController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($article_id)
     {
-        $article = Article::find($id);
+        $article = Article::find($article_id);
 
         if($article){
             $article->delete();

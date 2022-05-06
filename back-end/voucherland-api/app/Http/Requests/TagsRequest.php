@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class TagsRequest extends FormRequest
@@ -27,7 +29,7 @@ class TagsRequest extends FormRequest
     public function rules() 
     {
         return [
-            config('utils.TAG.TITLE') => ['string', 'required', 'max:255', 'unique:tags'],
+            config('utils.TAG.TITLE') => ['string', 'required', 'max:255'],
             config('utils.TAG.COLOR') => ['string', 'required', 'max:255']
         ];
     }
@@ -41,7 +43,6 @@ class TagsRequest extends FormRequest
     {
         return [
             'title.required' => "Title is a required field.",
-            'title.unique' => "Title must have a unique title.",
             'color.required' => "Color is a required field."
         ];
     }

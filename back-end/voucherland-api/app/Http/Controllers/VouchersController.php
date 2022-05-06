@@ -19,16 +19,6 @@ class VouchersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreVoucherRequest  $request
@@ -59,24 +49,13 @@ class VouchersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($voucher_id)
     {
-        $voucher = Voucher::find($id);
+        $voucher = Voucher::find($voucher_id);
 
         if($voucher) return response()->json(["voucher" => new VouchersResource($voucher)], 200);
 
         return abort(404, "Voucher was not found.");
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -86,9 +65,20 @@ class VouchersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(VouchersRequest $request, $id)
+    public function update(VouchersRequest $request, $voucher_id)
     {
-        //
+        // return Voucher::find($voucher_id);
+        $voucher = Voucher::find($voucher_id);
+
+        if($voucher) {
+            $voucher->update($request->all());
+
+            return response()->json([
+                "voucher" => new VouchersResource(Voucher::find($voucher_id))
+            ], 200);
+        }
+
+        return abort(404, "Voucher was not found");
     }
 
     /**
@@ -97,9 +87,9 @@ class VouchersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($voucher_id)
     {
-        $voucher = Voucher::find($id);
+        $voucher = Voucher::find($voucher_id);
 
         if($voucher) {
             $voucher->delete();

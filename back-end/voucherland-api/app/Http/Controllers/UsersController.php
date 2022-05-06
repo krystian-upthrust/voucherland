@@ -58,7 +58,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -93,10 +93,5 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getMe () 
-    {
-        return response()->json(['user' => new UsersResource(JWTAuth::user())], 200);
     }
 }

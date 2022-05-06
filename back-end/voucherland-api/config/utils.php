@@ -12,11 +12,11 @@
         */
         'ROUTES' => [
             'VOUCHERS' => '/vouchers',
-            'VOUCHER' => '/vouchers/{voucherID}',
+            'VOUCHER' => '/vouchers/{voucher_id}',
             'ARTICLES' => '/articles',
-            'ARTICLE' => '/articles/{articleID}',
+            'ARTICLE' => '/articles/{article_id}',
             'TAGS' => '/tags',
-            'TAG' => '/tags/{tag_title}',
+            'TAG' => '/tags/{tag_id}',
             'AUTH_LOGIN' => '/login',
             'AUTH_ME' => '/me',
             'AUTH_LOGOUT' => '/logout',

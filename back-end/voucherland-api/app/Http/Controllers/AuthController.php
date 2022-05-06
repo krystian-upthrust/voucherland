@@ -26,7 +26,7 @@ class AuthController extends Controller
         // verifying credentials 
         $token = JWTAuth::attempt($credentials);
 
-        if($token) return response()->json(['access_token' => $token], 200);
+        if($token) return $this->respondWithToken($token);
         
         // 401 Unauthorized is the status code to return when the client provides no credentials or invalid credentials.
         return abort(401, "Invalid credentials.");
@@ -39,13 +39,25 @@ class AuthController extends Controller
      */
     public function me()
     {
-        $user = auth()->user();
+        $user = JWTAuth::user();
 
         if($user) return response()->json(["user" => new UsersResource($user)], 200);
 
-        return abort(401);
+        return abort(401, "Unautherized");
     }
 
+
+    /**
+     * Log the user out (Invalidates the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        JWTAuth::logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
 
     /**
      * Get the token array structure.
@@ -59,7 +71,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in (H)' => JWTAuth::factory()->getTTL()/60
         ]);
     }
 }

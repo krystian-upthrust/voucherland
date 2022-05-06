@@ -15,9 +15,15 @@ return [
     |
     */
 
-    'paths' => ['api/test'],
+    'paths' => ['api/*'],
 
-    'allowed_methods' => ['POST'],
+    'allowed_methods' => [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'OPTIONS'
+    ],
 
     'allowed_origins' => ['*'],
 
@@ -25,8 +31,8 @@ return [
 
     'allowed_headers' => [
         'Accept',
-        // 'Content-Type', 
-        // 'Authorization',
+        'Content-Type', 
+        'Authorization',
     ],
 
     'exposed_headers' => [],
