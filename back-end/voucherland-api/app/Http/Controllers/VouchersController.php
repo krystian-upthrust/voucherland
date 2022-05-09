@@ -5,38 +5,44 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VouchersRequest;
 use App\Http\Resources\VouchersResource;
 use App\Models\Voucher;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class VouchersController extends Controller
 {
     /**
      * Display a listing of the vouchers.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index() : JsonResponse
     {
-        return response()->json(["vouchers" =>  VouchersResource::collection(Voucher::all())], 200);
+        return response()->json(["vouchers" => VouchersResource::collection(Voucher::all())]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVoucherRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  VouchersRequest $request
+     * @return JsonResponse
      */
-    public function store(VouchersRequest $request)
+    public function store(VouchersRequest $request) : JsonResponse
     {
+        $this->authorize('create', Voucher::class);
+
+        $downloads = $request->validated('downloads') === null ? 0 : $request->validated('downloads');
+
         $voucher = Voucher::create([
-            config('utils.VOUCHER.NAME') => $request->name,
-            config('utils.VOUCHER.DESCRIPTION') => $request->description,
-            config('utils.VOUCHER.STORE_IMAGE') => $request->store_image,
-            config('utils.VOUCHER.DISCOUNT') => $request->discount,
-            config('utils.VOUCHER.DISCOUNT_TYPE') => $request->discount_type,
-            config('utils.VOUCHER.TAG') => $request->tag,
-            config('utils.VOUCHER.DOWNLOADS') => $request->downloads === null ? 0 : $request->downloads ,
-            config('utils.VOUCHER.EXPIRY') => $request->expiry,
-            config('utils.VOUCHER.STATUS') => $request->status,
-            config('utils.VOUCHER.PRODUCT_IMAGE') => $request->product_image,
+            config('utils.VOUCHER.NAME') => $request->validated('name'),
+            config('utils.VOUCHER.DESCRIPTION') => $request->validated('description'),
+            config('utils.VOUCHER.STORE_IMAGE') => $request->validated('store_image'),
+            config('utils.VOUCHER.DISCOUNT') => $request->validated('discount'),
+            config('utils.VOUCHER.DISCOUNT_TYPE') => $request->validated('discount_type'),
+            config('utils.VOUCHER.TAG') => $request->validated('tag'),
+            config('utils.VOUCHER.DOWNLOADS') => $downloads ,
+            config('utils.VOUCHER.EXPIRY') => $request->validated('expiry'),
+            config('utils.VOUCHER.STATUS') => $request->validated('status'),
+            config('utils.VOUCHER.PRODUCT_IMAGE') => $request->validated('product_image'),
             'updated_at' => null,
         ]);
 
@@ -46,56 +52,45 @@ class VouchersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
+     * @param  Voucher $voucher
+     * @return JsonResponse
      */
-    public function show($voucher_id)
+    public function show(Voucher $voucher) : JsonResponse
     {
-        $voucher = Voucher::find($voucher_id);
-
-        if($voucher) return response()->json(["voucher" => new VouchersResource($voucher)], 200);
-
-        return abort(404, "Voucher was not found.");
+        return response()->json(["voucher" => new VouchersResource($voucher)]);
     }
 
     /**
      * Update the specified resource in storage.
-     * 
-     * @param  \App\Http\Requests\UpdateVoucherRequest  $request
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
+     *
+     * @param  VouchersRequest $request
+     * @param  Voucher $voucher
+     * @return JsonResponse
      */
-    public function update(VouchersRequest $request, $voucher_id)
+    public function update(VouchersRequest $request, Voucher $voucher) : JsonResponse
     {
-        // return Voucher::find($voucher_id);
-        $voucher = Voucher::find($voucher_id);
+        $this->authorize('update', $voucher);
 
-        if($voucher) {
-            $voucher->update($request->all());
+        $voucher->update($request->validated());
 
-            return response()->json([
-                "voucher" => new VouchersResource(Voucher::find($voucher_id))
-            ], 200);
-        }
-
-        return abort(404, "Voucher was not found");
+        return response()->json(["voucher" => new VouchersResource($voucher)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
+     * @param Voucher $voucher
+     * @return Response
      */
-    public function destroy($voucher_id)
+    public function destroy(Voucher $voucher) : Response
     {
-        $voucher = Voucher::find($voucher_id);
+        $this->authorize('delete', $voucher);
 
-        if($voucher) {
-            $voucher->delete();
-            return response("Voucher was successfully deleted", 200);
-        }
+        $voucher->delete();
 
-        return abort(404, "Voucher was not found");
+        return response("Voucher was successfully deleted", 200);
     }
 }
+
+
+

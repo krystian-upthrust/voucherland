@@ -1,34 +1,13 @@
-<?php 
+<?php
 
     return [
-
-        /*
-        |--------------------------------------------------------------------------
-        | Routes
-        |--------------------------------------------------------------------------
-        |
-        |   
-        |
-        */
-        'ROUTES' => [
-            'VOUCHERS' => '/vouchers',
-            'VOUCHER' => '/vouchers/{voucher_id}',
-            'ARTICLES' => '/articles',
-            'ARTICLE' => '/articles/{article_id}',
-            'TAGS' => '/tags',
-            'TAG' => '/tags/{tag_id}',
-            'AUTH_LOGIN' => '/login',
-            'AUTH_ME' => '/me',
-            'AUTH_LOGOUT' => '/logout',
-        ],
-
         /*
         |--------------------------------------------------------------------------
         | Voucher values
         |--------------------------------------------------------------------------
         |
         |   Voucher values used as column names in database.
-        | 
+        |
         */
         'VOUCHER' => [
             'ID' => 'id',
@@ -44,7 +23,7 @@
             'PRODUCT_IMAGE' => 'product_image',
         ],
 
-        
+
         /*
         |--------------------------------------------------------------------------
         | Article values
@@ -124,5 +103,5 @@
             'VOUCHER_ID' => 'voucher_id'
         ],
     ];
-    
+
 ?>

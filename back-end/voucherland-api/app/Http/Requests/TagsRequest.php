@@ -16,9 +16,7 @@ class TagsRequest extends FormRequest
      */
     public function authorize()
     {
-        // return $this->route()->parameter('access') == 'new';
-
-        return JWTAuth::user()->is_admin;
+        return true ;
     }
 
     /**
@@ -26,7 +24,7 @@ class TagsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() 
+    public function rules()
     {
         return [
             config('utils.TAG.TITLE') => ['string', 'required', 'max:255'],

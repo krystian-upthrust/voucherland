@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ArticlePolicy
 {
@@ -36,36 +37,42 @@ class ArticlePolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User $user
+     * @return Response
      */
-    public function create(User $user)
+    public function create(User $user) : Response
     {
-        //
+        return $user->getAttribute('is_admin')
+            ? Response::allow()
+            : Response::deny("You are not authorized to create resources!");
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User $user
+     * @param  Article $article
+     * @return Response
      */
-    public function update(User $user, Article $article)
+    public function update(User $user, Article $article) : Response
     {
-        //
+        return $user->getAttribute('is_admin')
+            ? Response::allow()
+            : Response::deny("You are not authorized to update resources!");
     }
 
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User $user
+     * @param  Article $article
+     * @return Response
      */
-    public function delete(User $user, Article $article)
+    public function delete(User $user, Article $article) : Response
     {
-        //
+        return $user->getAttribute('is_admin')
+            ? Response::allow()
+            : Response::deny("You are not authorized to delete resources!");
     }
 
     /**

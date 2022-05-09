@@ -18,52 +18,53 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// middleware cors?
 // ::middleware([Cors::class])->
 Route::controller(AuthController::class)->prefix('auth')->group(function () {
-    Route::post(config('utils.ROUTES.AUTH_LOGIN'), 'login');
+    Route::post('/login', 'login');
 
-    Route::get(config('utils.ROUTES.AUTH_ME'), 'me');
+    Route::get('/me', 'me');
 
-    Route::get(config('utils.ROUTES.AUTH_LOGOUT'), 'logout');
+    Route::get('/logout', 'logout');
 });
 
 Route::middleware(['auth'])->prefix('v1')->group(function(){
 
-    // Voucher Routes 
     Route::controller(VouchersController::class)->group(function(){
-        Route::get(config('utils.ROUTES.VOUCHERS'), 'index');
-        Route::get(config('utils.ROUTES.VOUCHER'), 'show');
+        Route::get('/vouchers', 'index');
+        Route::get('/vouchers/{voucher:id}', 'show');
 
-        Route::post(config('utils.ROUTES.VOUCHERS'), 'store');
+        Route::post('/vouchers', 'store');
 
-        Route::put(config('utils.ROUTES.VOUCHER'), 'update');
+        Route::put('/vouchers/{voucher}', 'update');
 
-        Route::delete(config('utils.ROUTES.VOUCHER'), 'destroy');
+        Route::delete('/vouchers/{voucher}', 'destroy');
     });
 
-    // Articles Routes
     Route::controller(ArticlesController::class)->group(function() {
-        Route::get(config('utils.ROUTES.ARTICLES'), 'index');
-        Route::get(config('utils.ROUTES.ARTICLE'), 'show');
-    
-        Route::post(config('utils.ROUTES.ARTICLES'), 'store');
+        Route::get('/articles', 'index');
+        Route::get('/articles/{article:id}', 'show');
 
-        Route::put(config('utils.ROUTES.ARTICLE'), 'update');
-    
-        Route::delete(config('utils.ROUTES.ARTICLE'), 'destroy');
+        Route::post('/articles', 'store');
+
+        Route::put('/articles/{article}', 'update');
+
+        Route::delete('/articles/{article}', 'destroy');
     });
 
-    // Tags Routes
     Route::controller(TagsController::class)->group(function(){
-        Route::get(config('utils.ROUTES.TAGS'), 'index');
-        Route::get(config('utils.ROUTES.TAG'), 'show');
-    
-        Route::post(config('utils.ROUTES.TAGS'), 'store');
+        Route::get('/tags', 'index');
+        Route::get('/tags/{tag:id}', 'show');
 
-        Route::put(config('utils.ROUTES.TAGS'), 'update');
-    
-        // Route::delete(config('utils.ROUTES.TAG'), 'destroy');
+        Route::post('/tags', 'store');
+
+        Route::put('/tags/{tag}', 'update');
+
+        // Route::delete('/tags/{tag}', 'destroy');
+    });
+
+    // User Routes
+    Route::controller(UsersController::class)->group(function(){
+        Route::post('/users', 'store');
     });
 
 });

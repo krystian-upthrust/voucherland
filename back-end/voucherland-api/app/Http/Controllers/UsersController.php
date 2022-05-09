@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UsersResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+
+use function PHPSTORM_META\map;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the vouchers.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -21,29 +24,20 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVoucherRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  UserRequest $request
+     * @return JsonResponse
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $request) : JsonResponse
     {
         $user = User::create([
-            config('utils.USER.FIRST_NAME') => $request->firstname,
-            config('utils.USER.LAST_NAME') => $request->lastname,
-            config('utils.USER.EMAIL') => $request->email,
-            config('utils.USER.PASSWORD') => Hash::make($request->password),
-            config('utils.USER.IS_ADMIN') => $request->is_admin,
+            config('utils.USER.FIRST_NAME') => $request->validated('firstname'),
+            config('utils.USER.LAST_NAME') => $request->validated('lastname'),
+            config('utils.USER.EMAIL') => $request->validated('email'),
+            config('utils.USER.PASSWORD') => Hash::make($request->validated('password')),
+            config('utils.USER.IS_ADMIN') => $request->validated('is_admin'),
+            'remember_token' => null,
             'updated_at' => null,
         ]);
 
@@ -56,18 +50,7 @@ class UsersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function show($user_id)
     {
         //
     }
@@ -75,13 +58,13 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVoucherRequest  $request
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Http\Response
+     * @param  UserRequest $request
+     * @param  User $user
+     * @return JsonResponse
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user) : JsonResponse
     {
-        //
+        return response()->json();
     }
 
     /**
@@ -90,7 +73,7 @@ class UsersController extends Controller
      * @param  \App\Models\Voucher  $voucher
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
         //
     }

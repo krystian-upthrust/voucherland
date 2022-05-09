@@ -5,30 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TagsRequest;
 use App\Http\Resources\TagsResource;
 use App\Models\Tag;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
-     * @return \Illuminate\Http\Response
+     *
+     * @return JsonResponse
      */
-    public function index()
+    public function index() : JsonResponse
     {
-        return response()->json(['tags' => TagsResource::collection(Tag::all())], 200);
+        return response()->json(['tags' => TagsResource::collection(Tag::all())]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  TagsRequest  $request
+     * @return JsonResponse
      */
-    public function store(TagsRequest $request)
+    public function store(TagsRequest $request) : JsonResponse
     {
+        $this->authorize('create', Tag::class);
+
         $tag = Tag::create([
-            config('utils.TAG.TITLE') => $request->title,
-            config('utils.TAG.COLOR') => $request->color,
+            config('utils.TAG.TITLE') => $request->validated('title'),
+            config('utils.TAG.COLOR') => $request->validated('color'),
         ]);
 
         return response()->json(['tag' => new TagsResource($tag)], 201);
@@ -37,46 +41,42 @@ class TagsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @param  Tag  $tag
+     * @return JsonResponse
      */
-    public function show($tag_id)
+    public function show(Tag $tag) : JsonResponse
     {
-        $result = Tag::find($tag_id);
-
-        if ($result) return response()->json(["tag" => new TagsResource($result)], 200);
-
-        return abort(404, "Tag was not found"); // 404: Not Found
+        return response()->json(["tag" => new TagsResource($tag)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @param  TagsRequest  $request
+     * @param  Tag $tag
+     * @return JsonResponse
      */
-    public function update(TagsRequest $request)
+    public function update(TagsRequest $request, Tag $tag) : JsonResponse
     {
-        $result = Tag::query()->where(config('utils.TAG.TITLE'), "=", $request->title)->first();
+        $this->authorize('update', Tag::class);
 
-        if ($result) {
-            $result->update($request->all());
+        $tag->update($request->validated());
 
-            return response()->json(["status" => "success" ], 200);
-        }
-
-        return abort(404, "Tag was not found");
+        return response()->json(["tag" => new TagsResource($tag)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @param  Tag $tag
+     * @return Response
      */
-    public function destroy($tag_id)
+    public function destroy(Tag $tag)
     {
-        //
+        $this->authorize('delete', $tag);
+
+        $tag->delete();
+
+        return response("Tag was successfully deleted", 200);
     }
 }

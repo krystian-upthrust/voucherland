@@ -5,36 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(["articles" => ArticlesResource::collection(Article::all())], 200);
+        return response()->json(["articles" => ArticlesResource::collection(Article::all())]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  ArticlesRequest $request
+     * @return JsonResponse
      */
-    public function store(ArticlesRequest $request)
+    public function store(ArticlesRequest $request): JsonResponse
     {
+        $this->authorize('create', Article::class);
+
         $article = Article::create([
-            config('utils.ARTICLE.TITLE') => $request->title,
-            config('utils.ARTICLE.DESCRIPTION') => $request->description,
-            config('utils.ARTICLE.CONTENT') => $request->content,
-            config('utils.ARTICLE.SUB_TITLE') => $request->sub_title,
-            config('utils.ARTICLE.SUB_CONTENT') => $request->sub_content,
-            config('utils.ARTICLE.IMAGE') => $request->article_image,
-            config('utils.ARTICLE.READ_TIME') => $request->read_time,
-            config('utils.ARTICLE.STATUS') => $request->status,
+            config('utils.ARTICLE.TITLE') => $request->validated('title'),
+            config('utils.ARTICLE.DESCRIPTION') => $request->validated('description'),
+            config('utils.ARTICLE.CONTENT') => $request->validated('content'),
+            config('utils.ARTICLE.SUB_TITLE') => $request->validated('sub_title'),
+            config('utils.ARTICLE.SUB_CONTENT') => $request->validated('sub_content'),
+            config('utils.ARTICLE.IMAGE') => $request->validated('article_image'),
+            config('utils.ARTICLE.READ_TIME') => $request->validated('read_time'),
+            config('utils.ARTICLE.STATUS') => $request->validated('status'),
             'updated_at' => NULL
         ]);
 
@@ -44,55 +48,42 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  Article $article
+     * @return JsonResponse
      */
-    public function show($article_id)
+    public function show(Article $article): JsonResponse
     {
-        $article = Article::find($article_id);
-
-        if($article) return response()->json(["article" => new ArticlesResource($article)], 200);
-
-        return abort(404, "Article was not found.");
+        return response()->json(["article" => new ArticlesResource($article)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  ArticlesRequest $request
+     * @param  Article $article
+     * @return JsonResponse
      */
-    public function update(ArticlesRequest $request, $article_id)
+    public function update(ArticlesRequest $request, Article $article) : JsonResponse
     {
-        $article = Article::find($article_id);
+        $this->authorize('update', $article);
 
-        if($article){
-            $article->update($request->all());
+        $article->update($request->validated());
 
-            return response()->json([
-                "article" => new ArticlesResource(Article::find($article_id))
-            ], 200);
-        }
-
-        return abort(404, "Article was not found");
+        return response()->json(["article" => new ArticlesResource($article)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  Article $article
+     * @return Response
      */
-    public function destroy($article_id)
+    public function destroy(Article $article) : Response
     {
-        $article = Article::find($article_id);
+        $this->authorize('delete', $article);
 
-        if($article){
-            $article->delete();
-            return response('Article was deleted', 200);
-        }
+        $article->delete();
 
-        return abort(404, "Article was not found.");
+        return response('Article was successfully deleted', 200);
     }
 }

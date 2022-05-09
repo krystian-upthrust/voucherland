@@ -15,7 +15,7 @@ class ArticlesRequest extends FormRequest
      */
     public function authorize()
     {
-        return JWTAuth::user()->is_admin;
+        return true;
     }
 
     /**

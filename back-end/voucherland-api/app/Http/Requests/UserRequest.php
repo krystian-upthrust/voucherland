@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             config('utils.USER.FIRST_NAME') => ['required'],
-            config('utils.USER.LSAT_NAME') => ['required'],
+            config('utils.USER.LAST_NAME') => ['required'],
             config('utils.USER.EMAIL') => ['required', 'email', 'unique:users'],
             config('utils.USER.PASSWORD') => ['required'],
             config('utils.USER.IS_ADMIN') => ['required', 'boolean']

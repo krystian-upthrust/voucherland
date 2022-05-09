@@ -20,14 +20,14 @@ class AuthController extends Controller
             'password' => $request->password
         ];
 
-        // setting the time-to-life of the JWT 
-        JWTAuth::factory()->setTTL(120);
+        // setting the time-to-life of the JWT (12h=720m)
+        JWTAuth::factory()->setTTL(720);
 
-        // verifying credentials 
+        // verifying credentials
         $token = JWTAuth::attempt($credentials);
 
         if($token) return $this->respondWithToken($token);
-        
+
         // 401 Unauthorized is the status code to return when the client provides no credentials or invalid credentials.
         return abort(401, "Invalid credentials.");
     }
