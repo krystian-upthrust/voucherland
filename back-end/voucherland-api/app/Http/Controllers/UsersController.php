@@ -64,7 +64,14 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user) : JsonResponse
     {
-        return response()->json();
+        $this->authorize('update', $user);
+
+        $user->updateOrFail([
+            config('utils.USER.FIRST_NAME') => $request->validated('firstname'),
+            config('utils.USER.PASSWORD') => Hash::make($request->validated('password')),
+        ]);
+
+        return response()->json(["user" => new UsersResource($user)]);
     }
 
     /**

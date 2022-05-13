@@ -4,27 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
 use App\Http\Resources\UsersResource;
+use Illuminate\Http\JsonResponse;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTFactory;
+use PHPOpenSourceSaver\JWTAuth\JWTGuard;
 
 class AuthController extends Controller
 {
     /**
      * Return a JWT when given credentials are verified.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function login(AuthRequest $request)
+    public function login(AuthRequest $request) : JsonResponse
     {
         $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
+            'email' => $request->validated('email'),
+            'password' => $request->validated('password')
         ];
 
-        // setting the time-to-life of the JWT (12h=720m)
-        JWTAuth::factory()->setTTL(720);
+        //setting the time-to-life of the JWT (12h=720m)
+        auth()->setTTL(720);
 
         // verifying credentials
-        $token = JWTAuth::attempt($credentials);
+        $token = auth()->attempt($credentials);
 
         if($token) return $this->respondWithToken($token);
 
@@ -35,26 +38,35 @@ class AuthController extends Controller
     /**
      * Get the authenticated User.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function me()
+    public function me() : JsonResponse
     {
-        $user = JWTAuth::user();
+        $user = auth()->user();
 
-        if($user) return response()->json(["user" => new UsersResource($user)], 200);
+        if($user) return response()->json(["user" => new UsersResource($user)]);
 
         return abort(401, "Unautherized");
     }
 
+    /**
+     * Refresh a token.
+     *
+     * @return JsonResponse
+     */
+    public function refresh() : JsonResponse
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
 
     /**
      * Log the user out (Invalidates the token).
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function logout()
+    public function logout() : JsonResponse
     {
-        JWTAuth::logout();
+        auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -64,13 +76,14 @@ class AuthController extends Controller
      *
      * @param  string $token
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken(string $token) : JsonResponse
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
+            'refresh_token' => auth()->refresh(),
             'expires_in (H)' => JWTAuth::factory()->getTTL()/60
         ]);
     }

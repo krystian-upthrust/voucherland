@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -46,13 +47,15 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @param  User  $model
+     * @return Response
      */
-    public function update(User $user, User $model)
+    public function update(User $user, User $model) : Response
     {
-        // 
+        return $user->getAttribute('id') === $model->getAttribute('id')
+            ? Response::allow()
+            : Response::deny("You are not authorized to update this user");
     }
 
     /**

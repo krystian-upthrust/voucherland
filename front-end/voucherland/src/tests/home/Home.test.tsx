@@ -35,11 +35,11 @@ describe("[DevTest] <TopDeals />", () => {
 
   function ContextProvider(loginStatus: boolean): JSX.Element {
     let testUser: IUser = {
-      firstName: "jane",
-      lastName: "doe",
+      firstname: "jane",
+      lastname: "doe",
       email: "jane@gmail.com",
       password: "jane123",
-      admin: true,
+      is_admin: true,
     };
 
     let userContext: IUserContext = {

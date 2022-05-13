@@ -18,13 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// ::middleware([Cors::class])->
 Route::controller(AuthController::class)->prefix('auth')->group(function () {
     Route::post('/login', 'login');
 
     Route::get('/me', 'me');
+    Route::post('/refresh', 'refresh');
 
     Route::get('/logout', 'logout');
+});
+
+// User Routes
+Route::controller(UsersController::class)->group(function(){
+    Route::post('/users', 'store');
+});
+
+Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->group(function (){
+    Route::get('/me', 'me');
 });
 
 Route::middleware(['auth'])->prefix('v1')->group(function(){
@@ -64,7 +73,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 
     // User Routes
     Route::controller(UsersController::class)->group(function(){
-        Route::post('/users', 'store');
+        Route::put('/users/{user:id}', 'update');
     });
 
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 
 import Newletter from "../../components/Account/Newletter/Newletter";
 import Settings from "../../components/Account/Settings/Settings";
@@ -6,33 +6,38 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
 import { ISubNav } from "../../utils/types";
-
+import {UserContext} from "../../utils/context/UserContext";
 
 export default function AccountPage() {
-  const [subNav, setSubNav] = useState<ISubNav>({
+    const userContext = useContext(UserContext);
+
+    const [subNav, setSubNav] = useState<ISubNav>({
     vouchers: true,
-    newletter: false,
+    newsletter: false,
     settings: false,
   });
 
   const SetSubNavigation = (
     vouchers: boolean,
-    newletter: boolean,
+    newsletter: boolean,
     settings: boolean
   ) => {
     setSubNav({
       vouchers: vouchers,
-      newletter: newletter,
+      newsletter: newsletter,
       settings: settings,
     });
   };
+
+  // TODO
+    // Adjuct the input for email in newletter
 
   return (
     <section className="account">
       <Header />
 
       <h2 className="account_banner">
-        Hi Jane, <span>how are you?</span>
+        Hi {userContext?.user?.firstname}, <span>how are you?</span>
       </h2>
 
       <div className="account_options">
@@ -43,7 +48,7 @@ export default function AccountPage() {
           vouchers
         </button>
         <button
-          className={`option ${subNav.newletter && " active"}`}
+          className={`option ${subNav.newsletter && " active"}`}
           onClick={() => SetSubNavigation(false, true, false)}
         >
           newletter
@@ -64,7 +69,7 @@ export default function AccountPage() {
           </>
         )}
 
-        {subNav.newletter && <Newletter />}
+        {subNav.newsletter && <Newletter />}
 
         {subNav.settings && <Settings />}
       </div>

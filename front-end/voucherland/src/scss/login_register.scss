@@ -69,16 +69,8 @@
 
             .input_checkbox {
                 cursor: pointer;
-
-                & input:checked ~ .costum_input_checkbox {
-                    background-color: $main_color;
-                }
             }
 
-            .login_remember_me:hover ~.costum_input_checkbox, 
-            .input_checkbox:hover .costum_input_checkbox{
-                background-color: rgba($color: $main_color, $alpha: 0.5);
-            }
 
             .costum_input_checkbox {
                 position: absolute;
@@ -96,7 +88,7 @@
                 }
             }
 
-            .login_remember_me:checked ~ .costum_input_checkbox {
+            .checked_remember {
                 background-color: $main_color;
             }
         }
@@ -116,11 +108,17 @@
         width: 0;
     }
 
-    & input[type="text"],
-    & input[type="email"],
-    & input[type="password"] {
+    .global_input_style {
         @include main_input_style();
         width: calc(100% - 40px);
+    }
+
+    .transparent_border {
+        border: 1px solid transparent;
+    }
+
+    .input_error {
+        border: 1px solid $admin_red;
     }
 
     .option {

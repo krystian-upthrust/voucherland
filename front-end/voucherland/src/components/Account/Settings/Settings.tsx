@@ -17,7 +17,7 @@ export default function Settings() {
 
       <div className="password">
         <label htmlFor="password"> password </label>
-        <input type="password" id="password" placeholder="confirm password" />
+        <input type="password" id="confirm-password" placeholder="confirm password" />
       </div>
 
       <button className="settings_save_btn">Save changes</button>
