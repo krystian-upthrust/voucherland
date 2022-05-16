@@ -24,7 +24,7 @@ class AuthController extends Controller
         ];
 
         //setting the time-to-life of the JWT (12h=720m)
-        auth()->setTTL(720);
+        auth()->setTTL(10080);
 
         // verifying credentials
         $token = auth()->attempt($credentials);
@@ -42,11 +42,11 @@ class AuthController extends Controller
      */
     public function me() : JsonResponse
     {
-        $user = auth()->user();
+//        $user = auth()->user();
 
-        if($user) return response()->json(["user" => new UsersResource($user)]);
+        return response()->json(["user" => new UsersResource(auth()->user())]);
 
-        return abort(401, "Unautherized");
+//        return abort(401, "Unauthorized");
     }
 
     /**
@@ -56,7 +56,7 @@ class AuthController extends Controller
      */
     public function refresh() : JsonResponse
     {
-        return $this->respondWithToken(auth()->refresh());
+        return response()->json(["refresh_token" => auth()->refresh() ]);
     }
 
     /**
@@ -81,9 +81,8 @@ class AuthController extends Controller
     protected function respondWithToken(string $token) : JsonResponse
     {
         return response()->json([
-            'access_token' => $token,
             'token_type' => 'bearer',
-            'refresh_token' => auth()->refresh(),
+            'access_token' => $token,
             'expires_in (H)' => JWTAuth::factory()->getTTL()/60
         ]);
     }

@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 import {
-  BrowserRouter as Router,
-  Navigate,
-  Outlet,
-  useRoutes,
+    BrowserRouter as Router,
+    Navigate,
+    Outlet,
+    useRoutes,
 } from "react-router-dom";
 
 import "../scss/app.scss";
@@ -22,23 +22,26 @@ import "../scss/voucherpage.scss";
 import "../scss/vouchers.scss";
 
 import {
-  ROUTE_ACCOUNT,
-  ROUTE_ADMIN,
-  ROUTE_ADMIN_ADD_ARTICLE,
-  ROUTE_ADMIN_ADD_VOUCHER,
-  ROUTE_ADMIN_ADMINS,
-  ROUTE_ADMIN_ARTICLES,
-  ROUTE_ADMIN_VOUCHERS,
-  ROUTE_ARTICLES,
-  ROUTE_ARTICLES_DETAIL,
-  ROUTE_CONTACT,
-  ROUTE_HOME,
-  ROUTE_LOGIN,
-  ROUTE_REGISTER,
-  ROUTE_VOUCHERS,
+    ROUTE_ACCOUNT,
+    ROUTE_ADMIN,
+    ROUTE_ADMIN_ADD_ARTICLE,
+    ROUTE_ADMIN_ADD_VOUCHER,
+    ROUTE_ADMIN_ADMINS,
+    ROUTE_ADMIN_ARTICLES,
+    ROUTE_ADMIN_VOUCHERS,
+    ROUTE_ARTICLES,
+    ROUTE_ARTICLES_DETAIL,
+    ROUTE_CONTACT,
+    ROUTE_HOME,
+    ROUTE_LOGIN,
+    ROUTE_REGISTER,
+    ROUTE_VOUCHERS,
 } from "../utils/routes";
-import { UserContext } from "../utils/context/UserContext";
-import { IUser } from "../utils/types";
+import {UserContext} from "../utils/context/UserContext";
+import {ECookiesOptions, IUser} from "../utils/types";
+import {LocalStorageService} from "../utils/LocalStorageService";
+import {AuthApi} from "../utils/axios/Axios";
+import {RequestRoutes} from "../utils/axios/RequestRoutes";
 
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
@@ -56,139 +59,152 @@ import NewArticle from "../components/Admin/Articles/NewArticle";
 import Cookies from "../components/Cookies/Cookies";
 
 const routes = [
-  {
-    path: ROUTE_HOME,
-    element: <Outlet />,
-    // element: !user ? <Navigate to={ROUTE_AUTH_LOGIN} /> : <Layout />,
-    children: [
-      {
+    {
         path: ROUTE_HOME,
-        element: <Home />,
-      },
-      {
-        path: ROUTE_VOUCHERS,
-        element: <VouchersPage />,
+        element: <Outlet/>,
+        // element: !user ? <Navigate to={ROUTE_AUTH_LOGIN} /> : <Layout />,
         children: [
-          // {
-          //   path: ROUTE_VOUCHERS_DETAIL,
-          //   element: ,
-          // },
+            {
+                path: ROUTE_HOME,
+                element: <Home/>,
+            },
+            {
+                path: ROUTE_VOUCHERS,
+                element: <VouchersPage/>,
+                children: [
+                    // {
+                    //   path: ROUTE_VOUCHERS_DETAIL,
+                    //   element: ,
+                    // },
+                ],
+            },
+            {
+                path: ROUTE_ARTICLES,
+                element: <Outlet/>,
+                children: [
+                    {
+                        path: ROUTE_ARTICLES,
+                        element: <ArticlesPage/>,
+                    },
+                    {
+                        path: ROUTE_ARTICLES_DETAIL,
+                        element: <ArticleDetailPage/>,
+                    },
+                ],
+            },
+            {
+                path: ROUTE_CONTACT,
+                element: <ContactPage/>,
+            },
+            {
+                path: ROUTE_LOGIN,
+                element: <LoginPage/>,
+            },
+            {
+                path: ROUTE_REGISTER,
+                element: <RegisterPage/>,
+            },
+            {
+                path: ROUTE_ACCOUNT,
+                element: <AccountPage/>,
+            },
+            {
+                path: ROUTE_ADMIN,
+                element: <Outlet/>,
+                children: [
+                    {
+                        path: ROUTE_ADMIN,
+                        element: <Navigate to={ROUTE_ADMIN_VOUCHERS}/>,
+                    },
+                    {
+                        path: ROUTE_ADMIN_VOUCHERS,
+                        element: <AdminVouchers/>,
+                    },
+                    {
+                        path: ROUTE_ADMIN_ARTICLES,
+                        element: <AdminArticles/>,
+                    },
+                    {
+                        path: ROUTE_ADMIN_ADMINS,
+                        element: <AdminAdmins/>,
+                    },
+                    {
+                        path: ROUTE_ADMIN_ADD_VOUCHER,
+                        element: <NewVoucher/>,
+                    },
+                    {
+                        path: ROUTE_ADMIN_ADD_ARTICLE,
+                        element: <NewArticle/>,
+                    },
+                ],
+            },
         ],
-      },
-      {
-        path: ROUTE_ARTICLES,
-        element: <Outlet />,
-        children: [
-          {
-            path: ROUTE_ARTICLES,
-            element: <ArticlesPage />,
-          },
-          {
-            path: ROUTE_ARTICLES_DETAIL,
-            element: <ArticleDetailPage />,
-          },
-        ],
-      },
-      {
-        path: ROUTE_CONTACT,
-        element: <ContactPage />,
-      },
-      {
-        path: ROUTE_LOGIN,
-        element: <LoginPage />,
-      },
-      {
-        path: ROUTE_REGISTER,
-        element: <RegisterPage />,
-      },
-      {
-        path: ROUTE_ACCOUNT,
-        element: <AccountPage />,
-      },
-      {
-        path: ROUTE_ADMIN,
-        element: <Outlet />,
-        children: [
-          {
-            path: ROUTE_ADMIN,
-            element: <Navigate to={ROUTE_ADMIN_VOUCHERS} />,
-          },
-          {
-            path: ROUTE_ADMIN_VOUCHERS,
-            element: <AdminVouchers />,
-          },
-          {
-            path: ROUTE_ADMIN_ARTICLES,
-            element: <AdminArticles />,
-          },
-          {
-            path: ROUTE_ADMIN_ADMINS,
-            element: <AdminAdmins />,
-          },
-          {
-            path: ROUTE_ADMIN_ADD_VOUCHER,
-            element: <NewVoucher />,
-          },
-          {
-            path: ROUTE_ADMIN_ADD_ARTICLE,
-            element: <NewArticle />,
-          },
-        ],
-      },
-    ],
-  },
+    },
 ];
 
 const Routes: FC = () => {
-  return useRoutes(routes);
+    return useRoutes(routes);
 };
 
 function App() {
-  const [cookies, setCookies] = useState<boolean>(false);
-  const [user, setUser] = useState<IUser | null>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+    const [cookies, setCookies] = useState<boolean>(false);
+    const [user, setUser] = useState<IUser | null>(null);
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-  useEffect(() => {
-    const loginState = localStorage.getItem("logstate");
-    const user = localStorage.getItem("user");
+    /**
+     * Checks if there is an access token available in the localstorage (User was logged in at some point)
+     * If yes, sends a get request to get the user info (if access token is still active)
+    **/
+    useEffect(() => {
+        // check if a user is already logged in
+        if (!user && LocalStorageService.getAccessToken()) {
+            AuthApi
+                .get(RequestRoutes.ME)
+                .then(response => {
+                    if (response.status === 200) {
+                        setUser(response.data.user);
+                        setLoggedIn(true) ;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, []);
 
-    if (loginState !== null) {
-      if(loginState === "true") setLoggedIn(true);
-      if(loginState === "false") setLoggedIn(false);
-    } else setLoggedIn(false);
+    /**
+     * Checks if the users agreed to the cookies policy
+     */
+    useEffect(() => {
+        LocalStorageService.checkCookiesSaved();
+        setCookies(LocalStorageService.getCookiesSaved());
+    }, [cookies]);
 
-    if (user !== null) {
-      setUser(JSON.parse(user));
-      console.log(JSON.parse(user));
+    /**
+     * Updates the cookie state if a cookie is accepted
+     */
+    function SetCookie(cookie: boolean) {
+        setCookies(cookie);
     }
-  }, []);
 
-  useEffect(() => {
-    const cookie = localStorage.getItem("cookies");
+    return (
+        <section className="app">
+            {!cookies && <Cookies setCookie={SetCookie}/>}
 
-    cookie == null || cookie === undefined
-      ? setCookies(true)
-      : setCookies(false);
-  }, []);
-
-  return (
-    <section className="app">
-      {cookies && <Cookies />}
-
-      <UserContext.Provider
-        value={{
-          loggedIn: loggedIn,
-          setLoggedIn: setLoggedIn,
-          user: user,
-          setUser: setUser,
-        }}
-      >
-        <Router>
-          <Routes />
-        </Router>
-      </UserContext.Provider>
-    </section>
-  );
+            <UserContext.Provider
+                value={{
+                    loggedIn: loggedIn,
+                    setLoggedIn: setLoggedIn,
+                    user: user,
+                    setUser: setUser,
+                }}
+            >
+                <Router>
+                    <Routes/>
+                </Router>
+            </UserContext.Provider>
+        </section>
+    );
 }
 
 export default App;

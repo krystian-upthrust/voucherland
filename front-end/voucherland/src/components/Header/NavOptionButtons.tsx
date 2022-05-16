@@ -9,6 +9,10 @@ import {
   ROUTE_REGISTER,
 } from "../../utils/routes";
 import { UserContext } from "../../utils/context/UserContext";
+import {LocalStorageService} from "../../utils/LocalStorageService";
+import {AuthApi} from "../../utils/axios/Axios";
+import {RequestRoutes} from "../../utils/axios/RequestRoutes";
+import {log} from "util";
 
 export default function NavOptionButtons() {
   const navigate = useNavigate();
@@ -18,12 +22,19 @@ export default function NavOptionButtons() {
   const handleLogout: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
 
-    user?.setLoggedIn(false);
-    user?.setUser(null);
+    if (LocalStorageService.getAccessToken()) {
+        AuthApi
+            .get(RequestRoutes.LOGOUT)
+            .then( () => {
+                // clear local storage of all saved tokens
+                LocalStorageService.clearToken();
 
-    localStorage.setItem("logstate", "false");
-    localStorage.setItem("user", "null");
-
+                // set user as logged out in context
+                user!.setLoggedIn(false);
+                user!.setUser(null);
+            })
+            .catch( error => { console.log(error); });
+    }
     navigate(ROUTE_HOME);
   };
 

@@ -1,8 +1,9 @@
 export interface IUser {
+    id?: number;
     firstname: string;
     lastname: string;
     email: string;
-    password: string;
+    password?: string;
     is_admin: boolean;
 }
 
@@ -67,4 +68,19 @@ export interface IAdminSubNav {
 export interface IToken {
     access_token: string;
     refresh_token: string;
+}
+
+export interface IUserLocalStorage {
+    email : string;
+    password : string;
+}
+
+export enum ECookiesOptions {
+    AGREE = "agree",
+    REJECT = "reject"
+}
+
+export enum ERememberMe {
+    REMEMBER = "remember",
+    FORGET = "forget"
 }

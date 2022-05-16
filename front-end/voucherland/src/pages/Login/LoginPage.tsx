@@ -1,16 +1,14 @@
 import React, {ChangeEvent, useContext, useEffect, useState, MouseEvent} from "react";
 import {useNavigate} from "react-router-dom";
 import {FiArrowLeft} from "react-icons/fi";
-
+import CryptoJS from "crypto-js";
 
 import {ROUTE_HOME, ROUTE_REGISTER} from "../../utils/routes";
-import {IUser} from "../../utils/types";
+import {ERememberMe} from "../../utils/types";
 import {UserContext} from "../../utils/context/UserContext";
 import axios from "axios";
 import {Input} from "../../components/Global/Input";
 import {CheckBox} from "../../components/Global/CheckBox";
-import {isBooleanObject} from "util/types";
-import {isBoolean} from "util";
 import {LocalStorageService} from "../../utils/LocalStorageService";
 import {AuthUser} from "../../utils/axios/Axios";
 import {RequestRoutes} from "../../utils/axios/RequestRoutes";
@@ -20,15 +18,17 @@ export default function LoginPage() {
 
     const userContext = useContext(UserContext);
 
-    const [emailValue, setEmailValue] = useState<string>("regular.user@voucherland.com");
-    const [passwordValue, setPasswordValue] = useState<string>("iamuser");
-
+    const [emailValue, setEmailValue] = useState<string>("");
+    const [passwordValue, setPasswordValue] = useState<string>("");
     const [remember, setRemember] = useState<boolean>(false);
-
     const [disable, setDisable] = useState<boolean>(true);
 
-    const [status, setStatus] = useState<number>(404);
 
+    useEffect(() => {
+        const userLogin = LocalStorageService.getUserLogin();
+        setEmailValue(userLogin.email);
+        setPasswordValue(CryptoJS.AES.decrypt(userLogin.password, "12EA5GT89").toString(CryptoJS.enc.Utf8));
+    }, []);
 
     useEffect(() => {
         if (emailValue === "" || passwordValue === "") {
@@ -39,64 +39,61 @@ export default function LoginPage() {
     const handleLogin: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
 
-        let credentials = {
-            email: emailValue,
-            password: passwordValue,
-        };
-
         AuthUser
-            .post(RequestRoutes.LOGIN, credentials)
+            .post(RequestRoutes.LOGIN, {
+                email: emailValue,
+                password: passwordValue,
+            })
             .then(response => {
                 LocalStorageService.setToken({
                     "access_token": response.data.access_token,
                     "refresh_token": response.data.refresh_token
                 });
 
-                if (response.status === 200) {
-                    userContext?.setLoggedIn(true);
-                    // getUser();
-                    navigate(ROUTE_HOME);
-                }
+                userContext!.setLoggedIn(true);
+                getUser();
+
+                // saves user-login after credentials are accepted
+                if(remember) saveUserLogin();
+
+                navigate(ROUTE_HOME);
             });
-
-
-        // userContext?.setLoggedIn(true);
-        // userContext?.setUser(user);
-
-        // localStorage.setItem("logstate", "true");
-        // localStorage.setItem("user", JSON.stringify(user));
-
-
     };
 
     const getUser = () => {
-        const type = localStorage.getItem('token_type');
         const token = localStorage.getItem('access_token');
-        axios.get('http://127.0.0.1:8000/api/auth/me', {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": `${type} ${token}`
-            }
-        }).then(repsonse => {
-            console.log(repsonse);
-        })
+        if(token) {
+            axios.get('http://127.0.0.1:8000/api/auth/me', {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then( response => {
+                userContext!.setUser(response.data.user);
+            });
+        }
     };
 
+    /**
+     * Saves the users choose of being remembered in local storage
+     *
+     * @param event
+     */
     function handleRemember(event: MouseEvent<HTMLDivElement>) {
         event.preventDefault();
-
-        localStorage.setItem('remember', (!remember ? "0" : "1"));
-        LocalStorageService.setRememberMe()
-
-        // de- & encrypting password
-        // import CryptoJS from "crypto-js";
-        // const code = CryptoJS.AES.encrypt("hi", "123");
-        // console.log(code.toString());
-        // const decode = CryptoJS.AES.decrypt(code, "123").toString(CryptoJS.enc.Utf8);
-        // console.log(decode);
-
+        LocalStorageService.setRememberMe(ERememberMe.REMEMBER);
         setRemember(!remember);
+    }
+
+    /**
+     * Saved user entered email and encrypted password in local storage
+     */
+    function saveUserLogin() {
+        const email =  emailValue;
+        const password = CryptoJS.AES.encrypt(passwordValue, "12EA5GT89").toString();
+
+        LocalStorageService.setUserLogin({email, password});
     }
 
     return (
@@ -166,5 +163,4 @@ export default function LoginPage() {
             </button>
         </section>
     )
-        ;
 }

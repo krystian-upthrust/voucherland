@@ -21,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->prefix('auth')->group(function () {
     Route::post('/login', 'login');
 
-    Route::get('/me', 'me');
     Route::post('/refresh', 'refresh');
 
-    Route::get('/logout', 'logout');
 });
 
 // User Routes
@@ -34,6 +32,7 @@ Route::controller(UsersController::class)->group(function(){
 
 Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->group(function (){
     Route::get('/me', 'me');
+    Route::get('/logout', 'logout');
 });
 
 Route::middleware(['auth'])->prefix('v1')->group(function(){
