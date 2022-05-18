@@ -27,7 +27,7 @@ Route::controller(AuthController::class)->prefix('auth')->group(function () {
 
 // User Routes
 Route::controller(UsersController::class)->group(function(){
-    Route::post('/users', 'store');
+    Route::post('/register', 'store');
 });
 
 Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->group(function (){
@@ -40,6 +40,9 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
     Route::controller(VouchersController::class)->group(function(){
         Route::get('/vouchers', 'index');
         Route::get('/vouchers/{voucher:id}', 'show');
+
+        // note: make 3 different endpoint to call the needed vouchers with correct status
+        // url: "/vouchers/{voucher:status}"
 
         Route::post('/vouchers', 'store');
 
@@ -77,8 +80,12 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 
 });
 
-//todo
-// * add middleware to each route
-// - make special routes acces only to admin
-// - authorize method in exp. tagrequest check user is_admin
-// - check if middleware IsAdmin works with jwtauth
+Route::middleware(VouchersController::class)->group(function (){
+
+    Route::get("/vouchers", 'index' );
+
+    Route::get("/vouchers/{voucher:status}", 'getPublicVouchers' );
+
+
+
+});

@@ -1,7 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
 import { LocalStorageService } from "../LocalStorageService";
 
-export const AuthUser: AxiosInstance = axios.create({
+export const BasicUrl: AxiosInstance = axios.create({
     baseURL: "http://127.0.0.1:8000/api",
     headers: {
         "Content-Type" : "application/json",

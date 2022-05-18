@@ -25,4 +25,10 @@ export const RequestRoutes = {
     LOGIN : "/auth/login",
     ME : "/auth/me",
     LOGOUT: "/auth/logout",
+
+    // register user
+    REGISTER : "/register",
+
+    //update user info
+    updateUser : '/v1/users/:id'
 }

@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_CONTACT, ROUTE_REGISTER } from "../../utils/routes";
+import {UserContext} from "../../utils/context/UserContext";
 
 export default function Banner() {
   const navigate = useNavigate();
+
+  const userContext = useContext(UserContext);
 
   return (
     <section className="banner" data-testid="home-banner">
@@ -17,12 +20,15 @@ export default function Banner() {
           available, but the majority.
         </p>
         <div className="banner_buttons">
-          <button
-            className="banner_register_btn"
-            onClick={() => navigate(ROUTE_REGISTER)}
-          >
-            Register now
-          </button>
+          {
+            !userContext?.loggedIn &&
+              <button
+                  className="banner_register_btn"
+                  onClick={() => navigate(ROUTE_REGISTER)}
+              >
+                Register now
+              </button>
+          }
           <button
             className="banner_collaboration_btn"
             onClick={() => navigate(ROUTE_CONTACT)}

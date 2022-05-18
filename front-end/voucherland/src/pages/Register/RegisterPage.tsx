@@ -1,11 +1,14 @@
-import React, {ChangeEvent, FormEvent, useCallback, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {ROUTE_HOME, ROUTE_LOGIN} from "../../utils/routes";
 import {FiArrowLeft} from "react-icons/fi";
-import {IUser} from "../../utils/types";
-import axios from "axios";
+import { IName } from "../../utils/types";
 import {Input} from "../../components/Global/Input";
+
+import { ValidatePassword } from "../../utils/InputValidations/PasswordValidation";
+import {RequestRoutes} from "../../utils/axios/RequestRoutes";
+import {BasicUrl} from "../../utils/axios/Axios";
 
 export default function RegisterPage() {
     const navigate = useNavigate();
@@ -15,50 +18,87 @@ export default function RegisterPage() {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [disable, setDisable] = useState<boolean>(true);
+    const [correctPassword, setCorrectPassword] = useState<boolean>(false);
+    const [validPassword, setValidPassword] = useState<boolean>(false);
 
+    /**
+     * Disables the submit button if at least one of the inputs is empty.
+     */
     useEffect(() => {
         if (name == "" || email == "" || password == "" || confirmPassword == "") {
             setDisable(true);
         } else setDisable(false);
     }, [name, email, password, confirmPassword]);
 
-    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // TODO
-        // write front end validations
-        // split name into firstname and lastname
-        // validate password with confirm password
-        // when error occurs at one of the inputs ... red border
-        // make input a costum styled component
 
-        const index = name.indexOf(' ');
-        const firstname = name.slice(0, index).trim();
-        const lastname = name.slice(index + 1, name.length).trim();
+    /**
+     * When the password input is updated,
+     * function checks if the password is valid.
+     */
+    useEffect(() => {
+        if (password === "" ) return setValidPassword(false);
+        setValidPassword(!ValidatePassword(password));
+    }, [password]);
 
-        const user: IUser = {
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-            is_admin: false
+
+    /**
+     * Checks if the confirmed password equals to the entered password.
+     * If yes, it will set the correctPassword state to false.
+     */
+    useEffect(() => {
+        if (password === "" || confirmPassword === "") return setCorrectPassword(false);
+        setCorrectPassword(password !== confirmPassword);
+    }, [password, confirmPassword]);
+
+
+    /**
+     * Slices the entered name into firstname and lastname
+     *
+     * @return IName
+     */
+    function SplitName(): IName {
+        let slicedName : IName = {
+            firstname: "",
+            lastname: ""
         };
 
-        axios.post('http://127.0.0.1:8000/api/users', user, {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        }).then(response => {
-            if (response.status === 201) {
-                navigate(ROUTE_LOGIN);
-            }
-        });
+        const index = name.indexOf(' ');
+        slicedName.firstname = name.slice(0, index).trim();
+        slicedName.lastname = name.slice(index + 1, name.length).trim();
+
+        return slicedName;
+    }
+
+
+    /**
+     * Sends a post request to register a user.
+     *
+     * @param event
+     */
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        BasicUrl
+            .post(
+            RequestRoutes.REGISTER,
+            {
+                firstname: SplitName().firstname,
+                lastname: SplitName().lastname,
+                email: email,
+                password: password,
+                is_admin: false
+            })
+            .then(response => {
+                if (response.status === 201) {
+                    navigate(ROUTE_LOGIN);
+                }
+            });
     };
 
     return (
         <section className="register">
-            <div className="login_register_image"/>
-            <div className="login_register_shadow"/>
+            <div className="login_register_image" />
+            <div className="login_register_shadow" />
 
             <form onSubmit={handleSubmit}>
                 <h2>Register</h2>
@@ -81,14 +121,14 @@ export default function RegisterPage() {
                     type={"password"}
                     placeholder={"password"}
                     test_id={"register-password-input"}
-                    error={false}
+                    error={validPassword}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
                 />
                 <Input
                     type={"password"}
                     placeholder={"confirm password"}
                     test_id={"register-confirmpassword-input"}
-                    error={false}
+                    error={correctPassword}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setConfirmPassword(event.target.value)}
                 />
 

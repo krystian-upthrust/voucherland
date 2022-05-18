@@ -21,6 +21,27 @@ class VouchersController extends Controller
     }
 
     /**
+     * Returns a listing of all the vouchers with a public status
+     *
+     * @param Voucher $voucher
+     * @return JsonResponse
+     */
+    public function getPublicVouchers (Voucher $voucher) : JsonResponse
+    {
+        return response()->json(["public_vouchers" => "hi"]);
+    }
+
+//    public function getPrivateVouchers (Voucher $voucher)
+//    {
+//
+//    }
+//
+//    public function getExpiredVouchers (Voucher $voucher)
+//    {
+//
+//    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  VouchersRequest $request

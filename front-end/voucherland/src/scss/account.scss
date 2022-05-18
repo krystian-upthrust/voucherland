@@ -105,7 +105,7 @@
     }
 }
 
-.newletter {
+.newsletter {
     background-color: $text_color;
 
     &_content {
@@ -165,6 +165,7 @@
 
                 & input {
                     @include main_input_style();
+                    width: unset;
                 }
             }
 
@@ -190,7 +191,7 @@
                 }
             }
 
-            .newletter_btn {
+            .newsletter_btn {
                 @include main_btn_style($main_color, none, $dark_color);
                 margin-top: 20px;
             }

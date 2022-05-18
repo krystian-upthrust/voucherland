@@ -6,11 +6,10 @@ import CryptoJS from "crypto-js";
 import {ROUTE_HOME, ROUTE_REGISTER} from "../../utils/routes";
 import {ERememberMe} from "../../utils/types";
 import {UserContext} from "../../utils/context/UserContext";
-import axios from "axios";
 import {Input} from "../../components/Global/Input";
 import {CheckBox} from "../../components/Global/CheckBox";
 import {LocalStorageService} from "../../utils/LocalStorageService";
-import {AuthUser} from "../../utils/axios/Axios";
+import {AuthApi, BasicUrl} from "../../utils/axios/Axios";
 import {RequestRoutes} from "../../utils/axios/RequestRoutes";
 
 export default function LoginPage() {
@@ -24,22 +23,38 @@ export default function LoginPage() {
     const [disable, setDisable] = useState<boolean>(true);
 
 
+    /**
+     * Checks the local storage if user login is available
+     * If available, set the state for both email and decrypted password
+     */
     useEffect(() => {
         const userLogin = LocalStorageService.getUserLogin();
         setEmailValue(userLogin.email);
         setPasswordValue(CryptoJS.AES.decrypt(userLogin.password, "12EA5GT89").toString(CryptoJS.enc.Utf8));
     }, []);
 
+
+    /**
+     * Disables the submit button if at least one of the inputs is empty
+     */
     useEffect(() => {
         if (emailValue === "" || passwordValue === "") {
             setDisable(true);
         } else setDisable(false);
     }, [emailValue, passwordValue]);
 
+
+    /**
+     * Sends a post request to verify a user with credentials (email and password)
+     * If the user is verified, it will return the access token and save it in local storage.
+     * If the user is not verified, a 401 error will be returned (unauthorized)
+     *
+     * @param event
+     */
     const handleLogin: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
 
-        AuthUser
+        BasicUrl
             .post(RequestRoutes.LOGIN, {
                 email: emailValue,
                 password: passwordValue,
@@ -60,18 +75,17 @@ export default function LoginPage() {
             });
     };
 
+    /**
+     * Sends a get request with the access token,
+     * which returns the user's info that is then saved in the context
+     */
     const getUser = () => {
-        const token = localStorage.getItem('access_token');
-        if(token) {
-            axios.get('http://127.0.0.1:8000/api/auth/me', {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then( response => {
-                userContext!.setUser(response.data.user);
-            });
+        if(localStorage.getItem('access_token')) {
+            AuthApi
+                .get(RequestRoutes.ME)
+                .then( response => {
+                    userContext!.setUser(response.data.user);
+                });
         }
     };
 

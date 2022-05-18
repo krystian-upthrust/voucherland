@@ -42,11 +42,7 @@ class AuthController extends Controller
      */
     public function me() : JsonResponse
     {
-//        $user = auth()->user();
-
         return response()->json(["user" => new UsersResource(auth()->user())]);
-
-//        return abort(401, "Unauthorized");
     }
 
     /**

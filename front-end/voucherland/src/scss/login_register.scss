@@ -108,19 +108,6 @@
         width: 0;
     }
 
-    .global_input_style {
-        @include main_input_style();
-        width: calc(100% - 40px);
-    }
-
-    .transparent_border {
-        border: 1px solid transparent;
-    }
-
-    .input_error {
-        border: 1px solid $admin_red;
-    }
-
     .option {
         width: 285px;
         margin-top: 30px;

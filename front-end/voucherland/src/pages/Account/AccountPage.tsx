@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 
-import Newletter from "../../components/Account/Newletter/Newletter";
+import Newsletter from "../../components/Account/Newletter/Newsletter";
 import Settings from "../../components/Account/Settings/Settings";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
@@ -28,9 +28,6 @@ export default function AccountPage() {
       settings: settings,
     });
   };
-
-  // TODO
-    // Adjuct the input for email in newletter
 
   return (
     <section className="account">
@@ -69,7 +66,7 @@ export default function AccountPage() {
           </>
         )}
 
-        {subNav.newsletter && <Newletter />}
+        {subNav.newsletter && <Newsletter />}
 
         {subNav.settings && <Settings />}
       </div>

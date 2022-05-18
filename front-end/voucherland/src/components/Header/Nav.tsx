@@ -9,7 +9,7 @@ import {
 } from "../../utils/routes";
 import NavOptionButtons from "./NavOptionButtons";
 
-export default function Nav() {
+export default function Nav() : JSX.Element {
   const navigate = useNavigate();
 
   return (

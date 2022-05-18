@@ -65,6 +65,11 @@ export interface IAdminSubNav {
     expired?: boolean;
 }
 
+export interface IName {
+    firstname: string;
+    lastname: string;
+}
+
 export interface IToken {
     access_token: string;
     refresh_token: string;

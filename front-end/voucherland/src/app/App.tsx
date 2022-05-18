@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState, useContext, useLayoutEffect} from "react";
 import {
     BrowserRouter as Router,
     Navigate,
@@ -20,6 +20,7 @@ import "../scss/media_queries.scss";
 import "../scss/variables.scss";
 import "../scss/voucherpage.scss";
 import "../scss/vouchers.scss";
+import "../scss/global.scss";
 
 import {
     ROUTE_ACCOUNT,
@@ -38,7 +39,7 @@ import {
     ROUTE_VOUCHERS,
 } from "../utils/routes";
 import {UserContext} from "../utils/context/UserContext";
-import {ECookiesOptions, IUser} from "../utils/types";
+import {IUser, IUserContext} from "../utils/types";
 import {LocalStorageService} from "../utils/LocalStorageService";
 import {AuthApi} from "../utils/axios/Axios";
 import {RequestRoutes} from "../utils/axios/RequestRoutes";
@@ -58,7 +59,7 @@ import Home from "../pages/Home/Home";
 import NewArticle from "../components/Admin/Articles/NewArticle";
 import Cookies from "../components/Cookies/Cookies";
 
-const routes = [
+const routes = ( user: IUserContext | null ) => [
     {
         path: ROUTE_HOME,
         element: <Outlet/>,
@@ -106,7 +107,7 @@ const routes = [
             },
             {
                 path: ROUTE_ACCOUNT,
-                element: <AccountPage/>,
+                element: !user!.loggedIn ? <Navigate to={ROUTE_LOGIN}/> : <AccountPage/>,
             },
             {
                 path: ROUTE_ADMIN,
@@ -143,7 +144,9 @@ const routes = [
 ];
 
 const Routes: FC = () => {
-    return useRoutes(routes);
+    const userContext = useContext(UserContext);
+
+    return useRoutes(routes(userContext!));
 };
 
 function App() {
@@ -151,11 +154,12 @@ function App() {
     const [user, setUser] = useState<IUser | null>(null);
     const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
+
     /**
      * Checks if there is an access token available in the localstorage (User was logged in at some point)
      * If yes, sends a get request to get the user info (if access token is still active)
     **/
-    useEffect(() => {
+    useLayoutEffect(() => {
         // check if a user is already logged in
         if (!user && LocalStorageService.getAccessToken()) {
             AuthApi
@@ -171,6 +175,7 @@ function App() {
                 });
         }
     }, []);
+
 
     /**
      * Checks if the users agreed to the cookies policy

@@ -29,4 +29,6 @@ export function ToggleMenu() {
       nav.classList.add("close_nav");
     } else nav.classList.remove("close_nav");
   });
+
+  return true;
 }
