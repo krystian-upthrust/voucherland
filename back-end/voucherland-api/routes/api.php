@@ -38,7 +38,7 @@ Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->
 Route::middleware(['auth'])->prefix('v1')->group(function(){
 
     Route::controller(VouchersController::class)->group(function(){
-        Route::get('/vouchers', 'index');
+//        Route::get('/vouchers', 'index');
         Route::get('/vouchers/{voucher:id}', 'show');
 
         // note: make 3 different endpoint to call the needed vouchers with correct status
@@ -73,19 +73,25 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
         // Route::delete('/tags/{tag}', 'destroy');
     });
 
-    // User Routes
     Route::controller(UsersController::class)->group(function(){
         Route::put('/users/{user:id}', 'update');
     });
 
 });
 
-Route::middleware(VouchersController::class)->group(function (){
+// Public routes
+Route::middleware()->prefix('public')->group(function (){
+    Route::controller(VouchersController::class)->group(function (){
+        Route::get('/vouchers', 'index');
+    });
+});
 
-    Route::get("/vouchers", 'index' );
+Route::controller(VouchersController::class)->group(function (){
 
-    Route::get("/vouchers/{voucher:status}", 'getPublicVouchers' );
+//    Route::get("/test", 'index' );
 
-
+    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
 
 });
+
+

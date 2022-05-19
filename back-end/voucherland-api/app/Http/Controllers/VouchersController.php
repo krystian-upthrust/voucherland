@@ -7,6 +7,7 @@ use App\Http\Resources\VouchersResource;
 use App\Models\Voucher;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class VouchersController extends Controller
 {
@@ -21,25 +22,18 @@ class VouchersController extends Controller
     }
 
     /**
-     * Returns a listing of all the vouchers with a public status
+     * Displays a listing of the vouchers with the correct status
      *
-     * @param Voucher $voucher
+     * @param $voucher_status
      * @return JsonResponse
      */
-    public function getPublicVouchers (Voucher $voucher) : JsonResponse
+    public function GetAllVouchersByStatus($voucher_status) : JsonResponse
     {
-        return response()->json(["public_vouchers" => "hi"]);
-    }
+        $vouchers = Voucher::all()
+            ->where(config('utils.VOUCHER.STATUS'), "=", $voucher_status);
 
-//    public function getPrivateVouchers (Voucher $voucher)
-//    {
-//
-//    }
-//
-//    public function getExpiredVouchers (Voucher $voucher)
-//    {
-//
-//    }
+        return response()->json(["public_vouchers" => VouchersResource::collection($vouchers)]);
+    }
 
     /**
      * Store a newly created resource in storage.
