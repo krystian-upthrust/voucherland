@@ -90,8 +90,10 @@ Route::controller(VouchersController::class)->group(function (){
 
 //    Route::get("/test", 'index' );
 
-    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
+//    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
 
 });
+
+Route::get("/admins", [UsersController::class, 'GetAdmins']);
 
 

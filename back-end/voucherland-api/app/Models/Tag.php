@@ -41,4 +41,5 @@ class Tag extends Model
         'updated_at',
         'laravel_through_key'
     ];
+
 }

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UsersResource;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
@@ -14,13 +17,20 @@ use function PHPSTORM_META\map;
 class UsersController extends Controller
 {
     /**
-     * Display a listing of the vouchers.
+     * Display a listing of all admins.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
-    public function index()
+    public function GetAdmins() : JsonResponse
     {
-        //
+        $this->authorize('GetAdmins', User::class);
+
+        $admins = DB::table(config('database.TABLE.USERS'))
+            ->where(config('utils.USER.IS_ADMIN'), "=", 1)
+            ->get();
+
+        return response()->json(["admins" => UsersResource::collection($admins)]);
     }
 
     /**

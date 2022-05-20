@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VouchersRequest;
 use App\Http\Resources\VouchersResource;
 use App\Models\Voucher;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -38,8 +39,9 @@ class VouchersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  VouchersRequest $request
+     * @param VouchersRequest $request
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function store(VouchersRequest $request) : JsonResponse
     {
