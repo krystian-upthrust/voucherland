@@ -38,11 +38,7 @@ Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->
 Route::middleware(['auth'])->prefix('v1')->group(function(){
 
     Route::controller(VouchersController::class)->group(function(){
-//        Route::get('/vouchers', 'index');
         Route::get('/vouchers/{voucher:id}', 'show');
-
-        // note: make 3 different endpoint to call the needed vouchers with correct status
-        // url: "/vouchers/{voucher:status}"
 
         Route::post('/vouchers', 'store');
 
@@ -52,7 +48,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
     });
 
     Route::controller(ArticlesController::class)->group(function() {
-        Route::get('/articles', 'index');
+
         Route::get('/articles/{article:id}', 'show');
 
         Route::post('/articles', 'store');
@@ -80,9 +76,13 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 });
 
 // Public routes
-Route::middleware()->prefix('public')->group(function (){
+Route::middleware('cors')->prefix('public')->group(function (){
     Route::controller(VouchersController::class)->group(function (){
         Route::get('/vouchers', 'index');
+    });
+
+    Route::controller(ArticlesController::class)->group(function (){
+        Route::get('/articles', 'index');
     });
 });
 
