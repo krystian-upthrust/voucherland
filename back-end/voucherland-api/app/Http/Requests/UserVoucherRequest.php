@@ -11,9 +11,9 @@ class UserVoucherRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,26 @@ class UserVoucherRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            config('utils.USER_VOUCHER.USER_ID') => ['required', 'numeric'],
+            config('utils.USER_VOUCHER.VOUCHER_ID') => ['required', 'numeric']
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            "user_id.required" => "Article id is required.",
+            "user_id.numeric" => "Article id must have a numeric value.",
+            "voucher_id.required" => "Tag id is required.",
+            "voucher_id.numeric" => "Tag id must have a numeric value."
         ];
     }
 }

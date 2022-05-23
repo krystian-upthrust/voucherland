@@ -77,23 +77,30 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 
 // Public routes
 Route::middleware('cors')->prefix('public')->group(function (){
-    Route::controller(VouchersController::class)->group(function (){
-        Route::get('/vouchers', 'index');
-    });
+    // all vouchers
+    Route::get('/vouchers', [VouchersController::class, 'index']);
 
-    Route::controller(ArticlesController::class)->group(function (){
-        Route::get('/articles', 'index');
-    });
+    // all articles
+    Route::get('/articles', [ArticlesController::class, 'index']);
 });
 
 Route::controller(VouchersController::class)->group(function (){
 
 //    Route::get("/test", 'index' );
 
-//    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
+    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
 
 });
 
+//Route::get("/test/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
+
 Route::get("/admins", [UsersController::class, 'GetAdmins']);
 
+//Route::post("/article-tag", [\App\Http\Controllers\ArticleTagController::class, "store"]);
+
+Route::get("/test", [\App\Http\Controllers\UserVoucherController::class, "store"]);
+
+Route::middleware('auth')->group(function () {
+    Route::post('/test', [\App\Http\Controllers\UserVoucherController::class, "store"]);
+});
 
