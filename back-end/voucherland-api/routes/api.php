@@ -79,6 +79,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 Route::middleware('cors')->prefix('public')->group(function (){
     // all vouchers
     Route::get('/vouchers', [VouchersController::class, 'index']);
+    Route::get("/vouchers/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
 
     // all articles
     Route::get('/articles', [ArticlesController::class, 'index']);

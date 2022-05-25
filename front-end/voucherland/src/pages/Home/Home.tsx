@@ -11,25 +11,36 @@ import TopDeals from "../../components/Home/TopDeals";
 import DealAdvantages from "../../components/Home/DealAdvantages/DealAdvantages";
 import axios from "axios";
 import { IArticle, IVoucher } from "../../utils/types";
+import {BasicUrl} from "../../utils/axios/Axios";
+import {RequestRoutes} from "../../utils/axios/RequestRoutes";
 
 export default function Home() {
   const [vouchersData, setVouchersData] = useState<IVoucher[]>([]);
   const [articlesData, setArticleData] = useState<IArticle[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // It will get the vouchers from the data.json found in public folder
-  // after it will sort the data and search for the public vouchers
-  // and place only 3 vouchers in the state
   useEffect(() => {
-    axios.get("/data.json").then((response) => {
-      let result: IVoucher[] = [];
-      response.data.vouchers.forEach((voucher: IVoucher) => {
-        if (voucher.status === "public") {
-          result.push(voucher);
-        }
-      });
-      setVouchersData([result[0], result[1], result[2]]);
-    });
+    BasicUrl
+        .get(RequestRoutes.GetVouchersByPublicStatus)
+        .then( response => {
+          setVouchersData([
+              response.data.public_vouchers[0],
+              response.data.public_vouchers[1],
+              response.data.public_vouchers[3]
+          ]);
+        });
+  }, []);
 
+  // useEffect(() => {
+  //   BasicUrl
+  //       .get(RequestRoutes.GetAllArticles)
+  //       .then( response => {
+  //         setVouchersData(response.data.public_vouchers);
+  //       });
+  // }, []);
+
+
+  useEffect(() => {
     axios.get("/data.json").then((response) => {
       let result: IArticle[] = [];
       response.data.articles.forEach((article: IArticle) => {

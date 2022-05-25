@@ -1,25 +1,30 @@
 
 export const RequestRoutes = {
+    // public api's
+    GetVouchersByPublicStatus : "/public/vouchers/public",
+    GetAllArticles : "/public/articles",
+
     // voucher routes
-    getAllVouchers : "/v1/vouchers",
-    getSingleVouchers : "/v1/vouchers/:id",
-    postNewVoucher : "/v1/vouchers",
-    updateSingleVoucher : "/v1/vouchers/:id",
-    deleteSingleVoucher : "/v1/vouchers/:id",
+    // getAllVouchers : "/v1/vouchers",
+    GetVouchersByPrivateStatus : "/v1/vouchers/private",
+    GetVouchersByExpiredStatus : "/v1/vouchers/expired",
+    GetSingleVouchers : "/v1/vouchers/:id",
+    PostNewVoucher : "/v1/vouchers",
+    UpdateSingleVoucher : "/v1/vouchers/:id",
+    DeleteSingleVoucher : "/v1/vouchers/:id",
 
     // article routes
-    getAllArticles : "/v1/articles",
-    getSingleArticle : "/v1/articles/:id",
-    postNewArticle : "/v1/articles",
-    updateSingleArticle : "/v1/articles/:id",
-    deleteSingleArticle : "/v1/articles/:id",
+    GetSingleArticle : "/v1/articles/:id",
+    PostNewArticle : "/v1/articles",
+    UpdateSingleArticle : "/v1/articles/:id",
+    DeleteSingleArticle : "/v1/articles/:id",
 
     //tag routes
-    getAllTags : "/v1/tags",
-    getSingleTag : "/v1/tags/:id",
-    postNewTag : "/v1/tags",
-    updateSingleTag : "/v1/tags/:id",
-    deleteSingleTag : "/v1/tags/:id",
+    GetAllTags : "/v1/tags",
+    GetSingleTag : "/v1/tags/:id",
+    PostNewTag : "/v1/tags",
+    UpdateSingleTag : "/v1/tags/:id",
+    DeleteSingleTag : "/v1/tags/:id",
 
     // auth routes
     LOGIN : "/auth/login",

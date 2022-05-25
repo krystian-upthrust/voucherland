@@ -19,13 +19,13 @@ export default function Voucher({ voucher }: VoucherProps) {
 
       <div className="product_header">
         <div className="logo">
-          <img src={voucher.store} alt="logo" />
+          <img src={`/resources/images/store/${voucher.store_image}`} alt="logo" />
         </div>
         <p className="product_header_title">{voucher.name}</p>
       </div>
 
       <div className="product_image">
-        <img src={voucher.image_URL} alt="product-pic" />
+        <img src={`/resources/images/products/${voucher.product_image}`} alt="product-pic" />
       </div>
 
       <p className="product_description">{voucher.description}</p>
@@ -37,7 +37,7 @@ export default function Voucher({ voucher }: VoucherProps) {
       </div>
 
       <button className="product_voucher">
-        Claim voucher <FiArrowRight className="product_voucher_arrow" />{" "}
+        Claim voucher <FiArrowRight className="product_voucher_arrow" />
       </button>
 
       {/* when not logged in && mobile only  */}

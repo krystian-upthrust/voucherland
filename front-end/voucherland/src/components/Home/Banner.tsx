@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_CONTACT, ROUTE_REGISTER } from "../../utils/routes";
 import {UserContext} from "../../utils/context/UserContext";
@@ -8,8 +8,17 @@ export default function Banner() {
 
   const userContext = useContext(UserContext);
 
+  function handleScroll () {
+      if (document.getElementById("myRef")) {
+          document.getElementById("myRef")!.scrollIntoView({
+              behavior: "smooth"
+          });
+      }
+  }
+
+
   return (
-    <section className="banner" data-testid="home-banner">
+    <section className="banner" data-testid="home-banner" >
       <div className="banner_content">
         <h2 className="banner_quote">
           Get your voucher now and <span> be ahead of the crowd.</span>
@@ -53,7 +62,7 @@ export default function Banner() {
         />
       </div>
 
-      <div className="scroller">
+      <div className="scroller" onClick={handleScroll}>
         <div className="scroller_ball" />
       </div>
     </section>

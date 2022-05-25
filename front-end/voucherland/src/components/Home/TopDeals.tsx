@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
@@ -13,10 +13,11 @@ interface TopDealsProps {
 
 export default function TopDeals({ vouchers }: TopDealsProps) {
   const navigate = useNavigate();
-  const user = useContext(UserContext);
+    const scrollToView = useRef(null);
+    const user = useContext(UserContext);
 
   return (
-    <section className="top_deals" data-testid="home-topdeals">
+    <section className="top_deals" data-testid="home-topdeals" id="myRef">
       <div className="top_deals_header">
         <p className="header_title">Top deals this week</p>
         <button

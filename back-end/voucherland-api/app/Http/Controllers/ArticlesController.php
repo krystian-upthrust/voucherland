@@ -23,8 +23,10 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ArticlesRequest $request
+     * @param ArticlesRequest $request
      * @return JsonResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(ArticlesRequest $request): JsonResponse
     {

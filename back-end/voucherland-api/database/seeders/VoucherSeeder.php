@@ -20,9 +20,9 @@ class VoucherSeeder extends Seeder
         $percentage = "percentage";
         $addition = "addition";
         $cucumber = "cucumber.png";
-        $tomato = 'tomato.png';
-        $carrots = "carrot.png";
-        $paprika = "paprika.png";
+        $tomato = 'tomato.jpeg';
+        $carrots = "carrot.jpeg";
+        $paprika = "paprika.jpeg";
 
         $vouchers = [
             [
