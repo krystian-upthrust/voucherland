@@ -23,7 +23,7 @@ class VouchersController extends Controller
     }
 
     /**
-     * Displays a listing of the vouchers with the correct status
+     * Displays a listing of the vouchers with the given status
      *
      * @param $voucher_status
      * @return JsonResponse

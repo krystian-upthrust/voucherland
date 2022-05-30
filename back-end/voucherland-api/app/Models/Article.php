@@ -49,7 +49,6 @@ class Article extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'created_at',
         'updated_at',
     ];
 
@@ -63,5 +62,5 @@ class Article extends Model
             'article_id'
         );
     }
-    
+
 }

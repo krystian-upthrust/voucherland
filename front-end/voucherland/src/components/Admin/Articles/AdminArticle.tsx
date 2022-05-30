@@ -36,7 +36,7 @@ export default function AdminArticle({ article } : AdminArticleProps) {
       </div>
 
       <div className="admin_article_image">
-        <img src={article.image_URL} alt="article-pic" />
+        <img src={article.article_image} alt="article-pic" />
       </div>
 
       <div

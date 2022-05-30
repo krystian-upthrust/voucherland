@@ -18,8 +18,9 @@ import "../scss/home.scss";
 import "../scss/login_register.scss";
 import "../scss/media_queries.scss";
 import "../scss/variables.scss";
-import "../scss/voucherpage.scss";
+import "../scss/voucher_detail_page.scss";
 import "../scss/vouchers.scss";
+import "../scss/voucher_item.scss"
 import "../scss/global.scss";
 
 import {
@@ -36,7 +37,7 @@ import {
     ROUTE_HOME,
     ROUTE_LOGIN,
     ROUTE_REGISTER,
-    ROUTE_VOUCHERS,
+    ROUTE_VOUCHERS, ROUTE_VOUCHERS_DETAIL,
 } from "../utils/routes";
 import {UserContext} from "../utils/context/UserContext";
 import {IUser, IUserContext} from "../utils/types";
@@ -58,6 +59,7 @@ import VouchersPage from "../pages/Vouchers/VouchersPage";
 import Home from "../pages/Home/Home";
 import NewArticle from "../components/Admin/Articles/NewArticle";
 import Cookies from "../components/Cookies/Cookies";
+import VoucherDetailPage from "../pages/Vouchers/VoucherDetailPage";
 
 const routes = ( user: IUserContext | null ) => [
     {
@@ -71,12 +73,16 @@ const routes = ( user: IUserContext | null ) => [
             },
             {
                 path: ROUTE_VOUCHERS,
-                element: <VouchersPage/>,
+                element: <Outlet/>,
                 children: [
-                    // {
-                    //   path: ROUTE_VOUCHERS_DETAIL,
-                    //   element: ,
-                    // },
+                    {
+                        path: ROUTE_VOUCHERS,
+                        element: <VouchersPage/>,
+                    },
+                    {
+                        path: ROUTE_VOUCHERS_DETAIL,
+                        element: <VoucherDetailPage/>,
+                    },
                 ],
             },
             {

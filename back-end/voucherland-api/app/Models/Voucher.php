@@ -47,7 +47,7 @@ class Voucher extends Model
         'product_image' => 'string'
     ];
 
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -57,4 +57,5 @@ class Voucher extends Model
         'created_at',
         'updated_at'
     ];
+
 }

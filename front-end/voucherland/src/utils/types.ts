@@ -35,7 +35,7 @@ export interface IArticle {
     content: string;
     sub_title: string;
     sub_content: string;
-    image_URL: string;
+    article_image: string;
     tags: ITag[];
     read_time: string;
     status: string;
@@ -44,6 +44,10 @@ export interface IArticle {
 export interface ITag {
     title: string;
     color: string;
+}
+
+export enum IArticleStatus {
+
 }
 
 export interface IAdmin {

@@ -17,4 +17,3 @@ export const AuthApi: AxiosInstance = axios.create({
         "Authorization" : "Bearer " + LocalStorageService.getAccessToken()
     }
 });
-

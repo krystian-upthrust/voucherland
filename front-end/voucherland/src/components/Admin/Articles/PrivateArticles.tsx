@@ -9,7 +9,7 @@ const articles_date: IArticle[] = [
     title: "New collaboration with the cola group",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    image_URL: "/resources/images/cola.png",
+    article_image: "/resources/images/cola.png",
     content: "",
     sub_title: "",
     sub_content: "",
@@ -35,7 +35,7 @@ const articles_date: IArticle[] = [
     title: "New collaboration with the cola group",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    image_URL: "/resources/images/cola.png",
+    article_image: "/resources/images/cola.png",
     content: "",
     sub_title: "",
     sub_content: "",
@@ -57,7 +57,7 @@ const articles_date: IArticle[] = [
     title: "New collaboration with the cola group",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    image_URL: "/resources/images/cola.png",
+    article_image: "/resources/images/cola.png",
     content: "",
     sub_title: "",
     sub_content: "",
@@ -79,7 +79,7 @@ const articles_date: IArticle[] = [
     title: "New collaboration with the cola group",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    image_URL: "/resources/images/cola.png",
+    article_image: "/resources/images/cola.png",
     content: "",
     sub_title: "",
     sub_content: "",

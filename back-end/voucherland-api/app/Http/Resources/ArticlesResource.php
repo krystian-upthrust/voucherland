@@ -24,6 +24,7 @@ class ArticlesResource extends JsonResource
             config('utils.ARTICLE.IMAGE') => $this->article_image,
             config('utils.ARTICLE.READ_TIME') => $this->read_time,
             config('utils.ARTICLE.STATUS') => $this->status,
+            'created_at' => $this->created_at,
             'tags' => $this->tags
         ];
     }

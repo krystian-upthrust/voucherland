@@ -1,91 +1,78 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 
 import Header from "../../components/Header/Header";
 
-import { FiArrowLeft } from "react-icons/fi";
-import { ROUTE_ARTICLES } from "../../utils/routes";
-import { IArticle } from "../../utils/types";
+import {FiArrowLeft} from "react-icons/fi";
+import {ROUTE_ARTICLES} from "../../utils/routes";
+import {IArticle} from "../../utils/types";
+import {BasicUrl} from "../../utils/axios/Axios";
+import {RequestRoutes} from "../../utils/axios/RequestRoutes";
+import Footer from "../../components/Footer/Footer";
 
-interface ParamTypes {
-  id : string;
+interface ParamsTypes extends Record<string, string> {
+    id: string;
 }
 
 export default function ArticleDetailPage() {
-  const id = useParams();
-  const [details, setDetails] = useState({});
-  const [loading, setLoading] = useState(false);
+    const {id} = useParams<ParamsTypes>();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(false);
+    const [article, setArticle] = useState<IArticle>();
+    const [loading, setLoading] = useState(true);
 
-    axios.get("/data.json").then((response) => {
-      setDetails(
-        response.data.articles.find((article : IArticle) => article.id === Number(id))
-      );
-    });
+    useEffect(() => {
+        setLoading(true);
 
-    setLoading(true);
-  }, [id]);
+        if (id) {
+            BasicUrl
+                .get(RequestRoutes.GetSingleArticle.replace(":id", id))
+                .then(response => {
+                    console.log(response.data)
+                    setArticle(response.data.article);
+                });
+        }
 
-  return (
-    <section className="article_details">
-      <Header />
+        setLoading(false);
+    }, []);
 
-      {loading && (
-        <article className="article_details_content">
-          {/* <h2>{details.title}</h2>
-          <div className="article_banner">
-            <img src="/resources/images/article-pic.png" alt="article-pic" />
-          </div>
+    return (
+        <section className="article_details">
+            <Header/>
 
-          <div className="article_text_content">
-            <p className="article_main_text">{details.content}</p>
-            <p className="article_main_text">{details.content}</p>
+            {!loading && (
+                <article className="article_details_content">
 
-            <h3 className="article_intertitle">{details.sub_title}</h3>
+                    <h2>{article!.title}</h2>
+                    <div className="article_banner">
+                        <img src={`/resources/images/${article!.article_image}`} alt="article-pic"/>
+                    </div>
 
-            <p className="article_additional_text">{details.sub_content}</p>
-            <p className="article_additional_text">{details.sub_content}</p>
-          </div>
+                    <div className="article_text_content">
+                        <p className="article_main_text">{article!.content}</p>
+                        <p className="article_main_text">{article!.content}</p>
 
-          <button className="back_btn" onClick={() => <Link to={ROUTE_ARTICLES}/>}>
-            <FiArrowLeft className="back_btn_arrow" /> Go back
-          </button> */}
-        </article>
-      )}
+                        <h3 className="article_intertitle">{article!.sub_title}</h3>
 
-      {/* components with props */}
-      <article className="related_articles">
-        <h2>Related articles</h2>
-        <div className="related_articles_content">
-          {/* <Article
-            article_tag={"Collaboration"}
-            article_title={"New collaboration with the cola group"}
-            article_image={"./resources/images/bottle-capsule.png"}
-            article_read_time={"7 min"}
-          />
-          <Article
-            article_tag={"Collaboration"}
-            article_title={"New collaboration with the cola group"}
-            article_image={"./resources/images/bottle-capsule.png"}
-            article_read_time={"7 min"}
-          />
-          <Article
-            article_tag={"Collaboration"}
-            article_title={"New collaboration with the cola group"}
-            article_image={"./resources/images/bottle-capsule.png"}
-            article_read_time={"7 min"}
-          />
-          <Article
-            article_tag={"Collaboration"}
-            article_title={"New collaboration with the cola group"}
-            article_image={"./resources/images/bottle-capsule.png"}
-            article_read_time={"7 min"}
-          /> */}
-        </div>
-      </article>
-    </section>
-  );
+                        <p className="article_additional_text">{article!.sub_content}</p>
+                        <p className="article_additional_text">{article!.sub_content}</p>
+                    </div>
+
+                    <button className="back_btn" onClick={() => navigate(ROUTE_ARTICLES)}>
+                        <FiArrowLeft className="back_btn_arrow"/> Go back
+                    </button>
+
+                </article>
+            )}
+
+            {/* components with props */}
+            <article className="related_articles">
+                <h2>Related articles</h2>
+                <div className="related_articles_content">
+
+                </div>
+            </article>
+            <Footer/>
+        </section>
+    );
 }

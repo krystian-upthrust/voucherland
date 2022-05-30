@@ -12,6 +12,10 @@ export default function ArticlesPage() {
   const [collaborationArticles, setCollaborationArticles] = useState<IArticle[]>([]);
 
   useEffect(() => {
+
+    // sorting my parameter in obj
+    // arr.sort((a, b) => a.name > b.name ? 1 : -1);
+
     // get recent articles
     axios.get("/data.json").then((response) => {
       let result: IArticle[] = [];

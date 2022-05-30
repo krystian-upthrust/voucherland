@@ -1,16 +1,34 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import { ROUTE_ARTICLES } from "../../utils/routes";
 import { IArticle } from "../../utils/types";
 import Article from "../Global/Article";
+import {BasicUrl} from "../../utils/axios/Axios";
+import {RequestRoutes} from "../../utils/axios/RequestRoutes";
 
 interface RecentArticlesProps {
   articles: IArticle[];
 }
 
-export default function RecentArticles({ articles }: RecentArticlesProps) {
+export default function RecentArticles() {
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [articles, setArticles] = useState<IArticle[]>([]);
+
+    useEffect(() => {
+        setLoading(true);
+        BasicUrl
+            .get(RequestRoutes.GetAllPublicArticles)
+            .then( response => {
+                setArticles(response.data.articles);
+            });
+
+        setLoading(false);
+    }, []);
+
+
   return (
     <section className="articles" data-testid="articles">
       <div className="articles_header">
@@ -26,11 +44,14 @@ export default function RecentArticles({ articles }: RecentArticlesProps) {
         </button>
       </div>
 
-      <div className="articles_items">
-        {articles.map((article) => (
-          <Article article={article} key={article.id} />
-        ))}
-      </div>
+        {
+            !loading &&
+            <div className="articles_items">
+                {articles.map((article: IArticle) => (
+                    <Article article={article} key={article.id} />
+                ))}
+            </div>
+        }
 
       <button
         className="articles_header_view_btn mobile"

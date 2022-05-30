@@ -9,7 +9,7 @@ import {IVoucher} from "../../utils/types";
 import {BasicUrl} from "../../utils/axios/Axios";
 import {RequestRoutes} from "../../utils/axios/RequestRoutes";
 import {filter} from "cypress/types/minimatch";
-import Voucher from "../../components/Global/Voucher";
+import Voucher from "../../components/Global/Voucher/Voucher";
 
 export default function VouchersPage() {
     const [state, setState] = useState<IVoucher[][]>([]);

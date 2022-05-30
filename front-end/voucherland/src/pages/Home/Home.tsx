@@ -60,7 +60,8 @@ export default function Home() {
       <DealAdvantages />
       <Statistics />
       <Collaboration />
-      {articlesData.length !== 0 && <RecentArticles articles={articlesData} />}
+      {/*{articlesData.length !== 0 && <RecentArticles articles={articlesData} />}*/}
+        <RecentArticles />
       <Footer />
     </section>
   );

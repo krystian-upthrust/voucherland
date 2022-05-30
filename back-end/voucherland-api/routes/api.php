@@ -49,7 +49,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 
     Route::controller(ArticlesController::class)->group(function() {
 
-        Route::get('/articles/{article:id}', 'show');
+//        Route::get('/articles/{article:id}', 'show');
 
         Route::post('/articles', 'store');
 
@@ -59,7 +59,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
     });
 
     Route::controller(TagsController::class)->group(function(){
-        Route::get('/tags', 'index');
+//        Route::get('/tags', 'index');
         Route::get('/tags/{tag:id}', 'show');
 
         Route::post('/tags', 'store');
@@ -70,6 +70,9 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
     });
 
     Route::controller(UsersController::class)->group(function(){
+
+        Route::get("/admins", "GetAdmins");
+
         Route::put('/users/{user:id}', 'update');
     });
 
@@ -77,31 +80,15 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 
 // Public routes
 Route::middleware('cors')->prefix('public')->group(function (){
-    // all vouchers
-    Route::get('/vouchers', [VouchersController::class, 'index']);
+
     Route::get("/vouchers/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
 
-    // all articles
-    Route::get('/articles', [ArticlesController::class, 'index']);
-});
+    Route::controller(ArticlesController::class)->group(function () {
+        Route::get('/articles/{article_status}', "GetArticlesByStatus");
+        Route::get('/article/{article:id}', "show");
+    });
 
-Route::controller(VouchersController::class)->group(function (){
+    Route::get('/tags', [TagsController::class, "index"]);
 
-//    Route::get("/test", 'index' );
-
-    Route::get("/test/{voucher_status}", 'GetAllVouchersByStatus');
-
-});
-
-//Route::get("/test/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
-
-Route::get("/admins", [UsersController::class, 'GetAdmins']);
-
-//Route::post("/article-tag", [\App\Http\Controllers\ArticleTagController::class, "store"]);
-
-Route::get("/test", [\App\Http\Controllers\UserVoucherController::class, "store"]);
-
-Route::middleware('auth')->group(function () {
-    Route::post('/test', [\App\Http\Controllers\UserVoucherController::class, "store"]);
 });
 

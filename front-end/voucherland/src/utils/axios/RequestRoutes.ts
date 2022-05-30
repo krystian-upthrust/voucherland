@@ -2,19 +2,19 @@
 export const RequestRoutes = {
     // public api's
     GetVouchersByPublicStatus : "/public/vouchers/public",
-    GetAllArticles : "/public/articles",
+    GetAllPublicArticles : "/public/articles/public",
+    GetSingleArticle : "/public/article/:id",
 
     // voucher routes
     // getAllVouchers : "/v1/vouchers",
     GetVouchersByPrivateStatus : "/v1/vouchers/private",
     GetVouchersByExpiredStatus : "/v1/vouchers/expired",
-    GetSingleVouchers : "/v1/vouchers/:id",
+    GetSingleVoucher : "/v1/vouchers/:id",
     PostNewVoucher : "/v1/vouchers",
     UpdateSingleVoucher : "/v1/vouchers/:id",
     DeleteSingleVoucher : "/v1/vouchers/:id",
 
     // article routes
-    GetSingleArticle : "/v1/articles/:id",
     PostNewArticle : "/v1/articles",
     UpdateSingleArticle : "/v1/articles/:id",
     DeleteSingleArticle : "/v1/articles/:id",
@@ -35,5 +35,8 @@ export const RequestRoutes = {
     REGISTER : "/register",
 
     //update user info
-    updateUser : '/v1/users/:id'
+    updateUser : '/v1/users/:id',
+
+    //get all admins
+    ADMINS : "/v1/admins"
 }

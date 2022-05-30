@@ -17,12 +17,14 @@ export default function Article({ article }: ArticleProps) {
     <article className="article_item">
       <img
         className="article_item_image"
-        src={article.image_URL}
+        src={`/resources/images/${article.article_image}`}
         alt="article-pic"
       />
 
       <div className="article_item_content">
-        <Tag tag={article.tags[0]} />
+          {
+              article.tags.length !== 0 && <Tag tag={article.tags[0]} />
+          }
         <h4 className="title">{article.title}</h4>
         <div className="read_article_container">
           <button

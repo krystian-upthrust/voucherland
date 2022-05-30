@@ -4,7 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 import { ROUTE_LOGIN, ROUTE_VOUCHERS } from "../../utils/routes";
 import { IVoucher } from "../../utils/types";
-import Voucher from "../Global/Voucher";
+import Voucher from "../Global/Voucher/Voucher";
 import { UserContext } from "../../utils/context/UserContext";
 
 interface TopDealsProps {

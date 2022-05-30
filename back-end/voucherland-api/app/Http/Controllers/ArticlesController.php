@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -20,13 +22,28 @@ class ArticlesController extends Controller
         return response()->json(["articles" => ArticlesResource::collection(Article::all())]);
     }
 
+
+    /**
+     * Displays a listing of the articles with the given status
+     *
+     * @param $article_status
+     * @return JsonResponse
+     */
+    public function GetArticlesByStatus($article_status): JsonResponse
+    {
+        $articles = Article::all()
+            ->where(config('utils.ARTICLE.STATUS'), "=", $article_status);
+
+        return response()->json(["articles" => ArticlesResource::collection($articles)]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param ArticlesRequest $request
      * @return JsonResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function store(ArticlesRequest $request): JsonResponse
     {

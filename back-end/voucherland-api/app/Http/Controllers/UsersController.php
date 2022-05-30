@@ -20,6 +20,7 @@ class UsersController extends Controller
      * Display a listing of all admins.
      *
      * @return JsonResponse
+     *
      * @throws AuthorizationException
      */
     public function GetAdmins() : JsonResponse

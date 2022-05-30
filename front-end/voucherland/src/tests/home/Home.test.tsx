@@ -75,7 +75,7 @@ describe("[DevTest] <RecentArticles /> ", () => {
   let articlesBtn: HTMLButtonElement;
 
   beforeEach(() => {
-    render(<RecentArticles articles={articles} />);
+    render(<RecentArticles  />);
 
     articlesBtn = screen.getByTestId("recentarticles-articele-btn");
   });

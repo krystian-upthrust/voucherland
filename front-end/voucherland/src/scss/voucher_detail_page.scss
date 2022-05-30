@@ -18,7 +18,7 @@
         color: $dark_color;
     }
 
-    & #vouchers {
+    /*& #vouchers {
         position: relative;
 
         &::after {
@@ -33,8 +33,9 @@
             // animation in header
         }
     }
+*/
 
-    .voucher_details {
+    &  .voucher_details {
         display: flex;
 
         .voucher_content {
@@ -57,28 +58,13 @@
 
                 .product_name {
                     color: $dark_color;
-                    line-height: 29px;
-                    font-size: 24px;
+                    line-height: 30px;
+                    font-size: 30px;
                 }
 
-                .product_discount {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    width: 20px;
-                    height: 20px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 20px;
-                    border-radius: 60%;
-                    background-color: $main_color;
-
-                    & p {
-                        color: $dark_color;
-                        font-weight: 600;
-                        transform: rotate(30deg);
-                    }
+                .percentage_discount {
+                    top: 0 !important;
+                    right: 0 !important;
                 }
             }
 
