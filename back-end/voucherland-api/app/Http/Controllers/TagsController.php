@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TagsRequest;
+use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\TagsResource;
 use App\Models\Tag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class TagsController extends Controller
 {
@@ -19,6 +21,18 @@ class TagsController extends Controller
     {
         return response()->json(['tags' => TagsResource::collection(Tag::all())]);
     }
+
+    /**
+     * Gets all the related article of the given tag
+     *
+     * @param Tag $tag
+     * @return JsonResponse
+     */
+    public function GetRelatedArticlesByTag (Tag $tag) : JsonResponse {
+
+        return response()->json(["related_articles" => ArticlesResource::collection($tag->related_articles) ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.

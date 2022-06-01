@@ -68,6 +68,14 @@
         color: $dark_color;
     }
 
+    .recent_articles,
+    .collaborations,
+    .media {
+        > h3 {
+            text-transform: capitalize;
+        }
+    }
+
     .recent_articles {
         background-color: $dark_color;
 
@@ -209,14 +217,16 @@
     .related_articles {
         background-color: $voucher_backgroundColor;
 
-        & h2 {
+        &_title {
             text-align: left;
-            margin-bottom: 30px;
+            padding-bottom: 50px;
         }
 
         &_content {
-            display: flex;
-            gap: 30px;
+            //display: flex;
+            //gap: 30px;
+            display: grid;
+            gap: 20px;
         }
     }
 }

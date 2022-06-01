@@ -415,7 +415,7 @@ $ultra_wide: 1920px;
       padding: 50px $main_padding_small;
 
       &_content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
     }
   }
@@ -777,6 +777,8 @@ $ultra_wide: 1920px;
       padding: 50px $main_padding_small;
 
       &_content {
+        grid-template-columns: repeat(3, 1fr);
+
         & .article_item {
           flex: 0 0 40%;
         }
@@ -1077,6 +1079,7 @@ $ultra_wide: 1920px;
       position: relative;
       padding: $main_padding_large;
 
+
       .article_banner {
         width: 60%;
         margin: auto;
@@ -1339,6 +1342,7 @@ $ultra_wide: 1920px;
       }
     }
   }
+
   .home {
     .header {
       position: absolute;
@@ -1426,6 +1430,11 @@ $ultra_wide: 1920px;
 
   .article_details {
     .related_articles {
+
+      &_content {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
       & .article_item {
         flex: 0 0 20%;
       }
@@ -1508,6 +1517,14 @@ $ultra_wide: 1920px;
     width: 30%;
   }
 
+  .article_details {
+    .related_articles {
+      &_content {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
+
   .footer {
     &_first {
       gap: 80px;
@@ -1526,6 +1543,14 @@ $ultra_wide: 1920px;
         &_menu {
           gap: 80px;
         }
+      }
+    }
+  }
+
+  .article_details {
+    .related_articles {
+      &_content {
+        grid-template-columns: repeat( 6, 1fr);
       }
     }
   }

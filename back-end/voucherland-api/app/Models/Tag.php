@@ -42,4 +42,10 @@ class Tag extends Model
         'laravel_through_key'
     ];
 
+    public function related_articles () {
+
+        return $this->belongsToMany(Article::class);
+
+    }
+
 }

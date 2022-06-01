@@ -83,6 +83,58 @@ class ArticleTagSeeder extends Seeder
             [
                 config('utils.ARTICLE_TAG.ARTICLE_ID') => 8,
                 config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 9,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 10,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 11,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 12,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 12,
+                config('utils.ARTICLE_TAG.TAG_ID') => 3
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 13,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 13,
+                config('utils.ARTICLE_TAG.TAG_ID') => 1
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 14,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 15,
+                config('utils.ARTICLE_TAG.TAG_ID') => 3
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 15,
+                config('utils.ARTICLE_TAG.TAG_ID') => 1
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 16,
+                config('utils.ARTICLE_TAG.TAG_ID') => 3
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 17,
+                config('utils.ARTICLE_TAG.TAG_ID') => 3
+            ],
+            [
+                config('utils.ARTICLE_TAG.ARTICLE_ID') => 17,
+                config('utils.ARTICLE_TAG.TAG_ID') => 2
             ]
         ];
 

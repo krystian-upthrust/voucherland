@@ -4,6 +4,7 @@ export const RequestRoutes = {
     GetVouchersByPublicStatus : "/public/vouchers/public",
     GetAllPublicArticles : "/public/articles/public",
     GetSingleArticle : "/public/article/:id",
+    GetRelatedArticles : "/public/articles/related/:tag",
 
     // voucher routes
     // getAllVouchers : "/v1/vouchers",

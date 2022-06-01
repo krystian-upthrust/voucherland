@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Article extends Model
 {
@@ -52,15 +54,14 @@ class Article extends Model
         'updated_at',
     ];
 
-    public function tags() {
-        return $this->hasManyThrough(
-            Tag::class,
-            ArticleTag::class,
-            'tag_id',
-            'id',
-            'id',
-            'article_id'
-        );
+
+    /**
+     * Gets all the attached tags of the wanted article
+     *
+     * @return BelongsToMany
+     */
+    public function tags(): BelongsToMany {
+        return $this->belongsToMany(Tag::class)->orderByPivot('id');
     }
 
 }

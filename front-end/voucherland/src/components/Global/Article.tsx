@@ -33,7 +33,7 @@ export default function Article({ article }: ArticleProps) {
           >
             Read article <FiArrowRight className="read_article_btn_arrow" />
           </button>
-          <p className="read_time">{article.read_time}</p>
+          <p className="read_time">{article.read_time} min</p>
         </div>
       </div>
     </article>

@@ -84,11 +84,12 @@ Route::middleware('cors')->prefix('public')->group(function (){
     Route::get("/vouchers/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
 
     Route::controller(ArticlesController::class)->group(function () {
-        Route::get('/articles/{article_status}', "GetArticlesByStatus");
         Route::get('/article/{article:id}', "show");
+        Route::get('/articles/{article_status}', "GetArticlesByStatus");
     });
+
+    Route::get('/articles/related/{tag:id}', [TagsController::class, "GetRelatedArticlesByTag"]);
 
     Route::get('/tags', [TagsController::class, "index"]);
 
 });
-

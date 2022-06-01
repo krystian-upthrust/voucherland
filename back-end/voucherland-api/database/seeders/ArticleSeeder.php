@@ -25,7 +25,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'public',
                 'updated_at' => NULL
             ],
@@ -36,7 +36,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'public',
                 'updated_at' => NULL
             ],
@@ -47,7 +47,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'public',
                 'updated_at' => NULL
             ],
@@ -58,7 +58,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'public',
                 'updated_at' => NULL
             ],
@@ -69,7 +69,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'private',
                 'updated_at' => NULL
             ],
@@ -80,7 +80,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'private',
                 'updated_at' => NULL
             ],
@@ -91,7 +91,7 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'private',
                 'updated_at' => NULL
             ],
@@ -102,8 +102,107 @@ class ArticleSeeder extends Seeder
                 config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
                 config('utils.ARTICLE.SUB_CONTENT') => $description,
                 config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
-                config('utils.ARTICLE.READ_TIME') => 7, 
+                config('utils.ARTICLE.READ_TIME') => 7,
                 config('utils.ARTICLE.STATUS') => 'private',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 10,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 7,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 7,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 7,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 7,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 10,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 10,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 10,
+                config('utils.ARTICLE.STATUS') => 'public',
+                'updated_at' => NULL
+            ],
+            [
+                config('utils.ARTICLE.TITLE') => 'New collaboration with the cola group',
+                config('utils.ARTICLE.DESCRIPTION') => $description,
+                config('utils.ARTICLE.CONTENT') => $description,
+                config('utils.ARTICLE.SUB_TITLE') => 'Just another title to fill the page',
+                config('utils.ARTICLE.SUB_CONTENT') => $description,
+                config('utils.ARTICLE.IMAGE') => 'article_banner_image.png',
+                config('utils.ARTICLE.READ_TIME') => 10,
+                config('utils.ARTICLE.STATUS') => 'public',
                 'updated_at' => NULL
             ],
         ];
