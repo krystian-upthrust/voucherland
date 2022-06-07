@@ -14,6 +14,7 @@ export const RequestRoutes = {
     DeleteSingleVoucher : "/v1/vouchers/:id",
 
     // article routes
+    GetPrivateArticles: "/v1/articles/private",
     PostNewArticle : "/v1/articles",
     UpdateSingleArticle : "/v1/articles/:id",
     DeleteSingleArticle : "/v1/articles/:id",

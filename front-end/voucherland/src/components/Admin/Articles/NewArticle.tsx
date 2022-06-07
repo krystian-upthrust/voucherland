@@ -35,12 +35,6 @@ export default function NewArticle() {
   let title =
     "New collaboration with the group  and some  other chars you can put in a title.";
 
-  // function Truncate(string, number) {
-  //   return string.length > number
-  //     ? string.substr(0, number - 1) + " ..."
-  //     : string;
-  // }
-
   const UnfoldSelect = () => {
     let selectBox: HTMLElement = document.getElementById("selcet_box")!;
 
@@ -50,6 +44,10 @@ export default function NewArticle() {
       selectBox.classList.remove("unfolded");
     }
   };
+
+  function handleCancel(value: boolean) {
+    setToggleAddTag(value);
+  }
 
   return (
     <section className="admin admin_articles_nav">
@@ -188,8 +186,7 @@ export default function NewArticle() {
 
         {toggleAddTag && (
           <AddTag
-            handleCancelPressed={() => setToggleAddTag(false)}
-            handleAddPressed={() => {}}
+            handleCancelPressed={handleCancel}
           />
         )}
       </div>

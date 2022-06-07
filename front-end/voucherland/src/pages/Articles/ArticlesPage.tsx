@@ -24,30 +24,19 @@ export default function ArticlesPage() {
                     collab : IArticle[] = [],
                     media : IArticle[] = [] ;
 
-                response.data.articles.forEach((article: IArticle) => {
-                    console.log(article)
+                response.data.public_articles.forEach((article: IArticle) => {
                     if (article.tags.length === 0) return;
 
                     if (article.tags[0].title === "recent articles") {
                         recent.push(article);
-                        // return;
                     }
                     if (article.tags[0].title === "collaboration") {
                         collab.push(article);
-                        // return;
                     }
                     if (article.tags[0].title === "media") {
                         media.push(article);
-                        // return;
                     }
-
                 });
-
-                console.log([
-                    recent,
-                    collab,
-                    media
-                ])
 
                 setRecentArticles(recent);
                 setCollaborationArticles(collab);

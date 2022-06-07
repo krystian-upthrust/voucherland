@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useLayoutEffect, useState} from "react";
 import {FaLockOpen, FaLock} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 
@@ -16,7 +16,7 @@ import {UserContext} from "../../utils/context/UserContext";
 
 export default function AdminVouchers(): JSX.Element {
     const navigate = useNavigate();
-    const user = useContext(UserContext);
+    const userContext = useContext(UserContext);
 
     const [voucherMenu, setVoucherMenu] = useState<IAdminSubNav>({
         public: true,
@@ -25,13 +25,6 @@ export default function AdminVouchers(): JSX.Element {
     });
     const [searched, setSearched] = useState<boolean>(false);
     const [deleteAlert, setDeleteAlert] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (user?.user?.is_admin) {
-            navigate(ROUTE_HOME);
-        }
-    }, []);
-
 
     const TogglePublicTab = () => {
         setVoucherMenu({
@@ -69,7 +62,7 @@ export default function AdminVouchers(): JSX.Element {
                             handleDeletePressed={() => setDeleteAlert(true)}
                         />
 
-                        <AdminVouchersStatistics/>
+                        <AdminVouchersStatistics />
 
                         <Searchbar
                             handleSearch={() => setSearched(true)}

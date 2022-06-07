@@ -22,6 +22,19 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can access all the admins.
+     *
+     * @param User $user
+     * @return Response
+     */
+    function GetAdmins (User $user): Response
+    {
+        return $user->getAttribute("is_admin")
+            ? Response::allow()
+            : Response::deny();
+    }
+
+    /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user

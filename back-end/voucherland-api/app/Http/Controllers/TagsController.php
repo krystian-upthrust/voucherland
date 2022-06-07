@@ -6,6 +6,7 @@ use App\Http\Requests\TagsRequest;
 use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\TagsResource;
 use App\Models\Tag;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -28,17 +29,19 @@ class TagsController extends Controller
      * @param Tag $tag
      * @return JsonResponse
      */
-    public function GetRelatedArticlesByTag (Tag $tag) : JsonResponse {
-
-        return response()->json(["related_articles" => ArticlesResource::collection($tag->related_articles) ]);
+    public function GetRelatedArticlesByTag (Tag $tag) : JsonResponse
+    {
+        return response()->json(["related_articles" => ArticlesResource::collection($tag->related_articles()) ]);
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TagsRequest  $request
+     * @param TagsRequest $request
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(TagsRequest $request) : JsonResponse
     {
@@ -66,9 +69,11 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TagsRequest  $request
-     * @param  Tag $tag
+     * @param TagsRequest $request
+     * @param Tag $tag
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(TagsRequest $request, Tag $tag) : JsonResponse
     {
@@ -82,10 +87,12 @@ class TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Tag $tag
+     * @param Tag $tag
      * @return Response
+     *
+     * @throws AuthorizationException
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag): Response
     {
         $this->authorize('delete', $tag);
 

@@ -24,7 +24,7 @@ class ArticlesController extends Controller
 
 
     /**
-     * Displays a listing of the articles with the given status
+     * Displays a listing of the articles with a public status
      *
      * @return JsonResponse
      */
@@ -33,7 +33,20 @@ class ArticlesController extends Controller
         $articles = Article::all()
             ->where(config('utils.ARTICLE.STATUS'), "=", "public");
 
-        return response()->json(["articles" => ArticlesResource::collection($articles)]);
+        return response()->json(["public_articles" => ArticlesResource::collection($articles)]);
+    }
+
+    /**
+     * Displays a listing of the articles with a private status
+     *
+     * @return JsonResponse
+     */
+    public function GetPrivateArticles() : JsonResponse
+    {
+        $articles = Article::all()
+            ->where(config('utils.ARTICLE.STATUS'), "=", "private");
+
+        return response()->json([ "private_articles" => ArticlesResource::collection($articles) ]);
     }
 
     /**

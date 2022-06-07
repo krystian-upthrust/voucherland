@@ -24,10 +24,10 @@ export default function RecentArticles(): JSX.Element {
             .get(RequestRoutes.GetAllPublicArticles)
             .then( response => {
                 setArticles([
-                    response.data.articles[0],
-                    response.data.articles[1],
-                    response.data.articles[2],
-                    response.data.articles[3]
+                    response.data.public_articles[0],
+                    response.data.public_articles[1],
+                    response.data.public_articles[2],
+                    response.data.public_articles[3]
                 ]);
             });
 

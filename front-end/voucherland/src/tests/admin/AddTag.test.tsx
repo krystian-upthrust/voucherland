@@ -15,7 +15,7 @@ jest.mock("react-router-dom", () => ({
 describe("[DevTest] <AddTag />", () => {
   test("Elements render correctly", () => {
     render(
-      <AddTag handleAddPressed={jest.fn()} handleCancelPressed={jest.fn()} />
+      <AddTag handleCancelPressed={jest.fn()} />
     );
 
     let parent = screen.getByTestId("addtag");
@@ -34,7 +34,6 @@ describe("[DevTest] <AddTagFrom />", () => {
   beforeEach(() => {
     render(
       <AddTagForm
-        handleAddPressed={jest.fn()}
         handleCancelPressed={jest.fn()}
       />
     );

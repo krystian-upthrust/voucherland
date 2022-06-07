@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaLockOpen, FaLock } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import AdminNav from "../../components/Admin/AdminNav";
 import AdminArticle from "../../components/Admin/Articles/AdminArticle";
@@ -115,7 +115,7 @@ export default function AdminArticles() {
 
   return (
     <section className="admin admin_articles_nav" data-testid="adminarticles" >
-      <AdminNav />
+      <AdminNav  />
 
       <div className="admin_content">
         <section className="admin_articles">

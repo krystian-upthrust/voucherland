@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
@@ -42,9 +44,15 @@ class Tag extends Model
         'laravel_through_key'
     ];
 
-    public function related_articles () {
 
-        return $this->belongsToMany(Article::class);
+    /**
+     *
+     *
+     * @return Collection
+     */
+    public function related_articles(): Collection
+    {
+        return $this->belongsToMany(Article::class)->get();
 
     }
 

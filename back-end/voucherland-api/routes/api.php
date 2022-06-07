@@ -52,6 +52,9 @@ Route::middleware(["auth", "cors"])->prefix('v1')->group(function(){
 
     Route::controller(ArticlesController::class)->group(function() {
 
+        Route::get("/articles/private", "GetPrivateArticles");
+
+
 //        Route::get('/articles/{article:id}', 'show');
 
         Route::post('/articles', 'store');
