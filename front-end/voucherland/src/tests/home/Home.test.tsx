@@ -51,13 +51,13 @@ describe("[DevTest] <TopDeals />", () => {
 
     return (
       <UserContext.Provider value={userContext}>
-        <TopDeals vouchers={vouchers} />
+        <TopDeals />
       </UserContext.Provider>
     );
   }
 
   test("Buttons render with correct names", () => {
-    render(<TopDeals vouchers={vouchers} />);
+    render(<TopDeals />);
     let vouchersBtn = screen.getByTestId("topdeals-vouchers-btn");
     expect(vouchersBtn).toHaveTextContent("View all vouchers");
   });

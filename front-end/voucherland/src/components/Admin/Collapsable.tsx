@@ -11,7 +11,6 @@ export default function Collapsable({ id = 1, title, content, layout } : Collaps
   const [selected, setSelected] = useState<number | null>(1);
 
   const toggle = (item : number) => {
-    console.log("collapse clicked")
     if (selected === item) return setSelected(null);
     setSelected(item);
   };

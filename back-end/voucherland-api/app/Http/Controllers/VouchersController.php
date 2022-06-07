@@ -23,17 +23,50 @@ class VouchersController extends Controller
     }
 
     /**
-     * Displays a listing of the vouchers with the given status
+     * Displays a listing of the vouchers with a public status
      *
-     * @param $voucher_status
      * @return JsonResponse
      */
-    public function GetAllVouchersByStatus($voucher_status) : JsonResponse
+    public function GetPublicVouchers() : JsonResponse
     {
         $vouchers = Voucher::all()
-            ->where(config('utils.VOUCHER.STATUS'), "=", $voucher_status);
+            ->where(config('utils.VOUCHER.STATUS'), "=", "public");
 
         return response()->json(["public_vouchers" => VouchersResource::collection($vouchers)]);
+    }
+
+    /**
+     * Displays a listing of the voucher with a private status
+     *
+     * @return JsonResponse
+     *
+     * @throws AuthorizationException
+     */
+    public function GetPrivateVouchers(): JsonResponse
+    {
+        $this->authorize("viewAny", Voucher::class);
+
+        $vouchers = Voucher::all()
+            ->where(config('utils.VOUCHER.STATUS'), "=", "private");
+
+        return response()->json(["private_vouchers" => VouchersResource::collection($vouchers)]);
+    }
+
+    /**
+     * Displays a listing of the voucher with an expired status
+     *
+     * @return JsonResponse
+     *
+     * @throws AuthorizationException
+     */
+    public function GetExpiredVouchers(): JsonResponse
+    {
+        $this->authorize("viewAny", Voucher::class);
+
+        $vouchers = Voucher::all()
+            ->where(config('utils.VOUCHER.STATUS'), "=", "expired");
+
+        return response()->json(["expired_vouchers" => VouchersResource::collection($vouchers)]);
     }
 
     /**

@@ -27,4 +27,3 @@ export function CheckBox ({ remember, onClick }:CheckBoxProps) {
         </div>
     );
 }
-

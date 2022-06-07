@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {FiArrowLeft} from "react-icons/fi";
 import CryptoJS from "crypto-js";
 
-import {ROUTE_HOME, ROUTE_REGISTER} from "../../utils/routes";
+import {ROUTE_ADMIN, ROUTE_HOME, ROUTE_REGISTER} from "../../utils/routes";
 import {ERememberMe} from "../../utils/types";
 import {UserContext} from "../../utils/context/UserContext";
 import {Input} from "../../components/Global/Input";
@@ -71,6 +71,9 @@ export default function LoginPage() {
                 // saves user-login after credentials are accepted
                 if(remember) saveUserLogin();
 
+                console.log(userContext?.user?.is_admin)
+                if (userContext?.user?.is_admin) navigate(ROUTE_ADMIN);
+
                 navigate(ROUTE_HOME);
             });
     };
@@ -96,7 +99,10 @@ export default function LoginPage() {
      */
     function handleRemember(event: MouseEvent<HTMLDivElement>) {
         event.preventDefault();
-        LocalStorageService.setRememberMe(ERememberMe.REMEMBER);
+
+        if (remember) LocalStorageService.setRememberMe(ERememberMe.REMEMBER);
+        if (!remember) LocalStorageService.setRememberMe(ERememberMe.FORGET);
+
         setRemember(!remember);
     }
 

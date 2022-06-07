@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import Newsletter from "../../components/Account/Newletter/Newsletter";
 import Settings from "../../components/Account/Settings/Settings";
@@ -7,9 +7,24 @@ import Header from "../../components/Header/Header";
 
 import { ISubNav } from "../../utils/types";
 import {UserContext} from "../../utils/context/UserContext";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_LOGIN} from "../../utils/routes";
 
 export default function AccountPage() {
     const userContext = useContext(UserContext);
+    const navigate = useNavigate()
+
+    /**
+     * Checks if a user is logged
+     */
+    useEffect(() => {
+        console.log(["out", !userContext?.loggedIn])
+        if (userContext?.loggedIn === false) {
+            console.log(["in", !userContext?.loggedIn])
+            navigate(ROUTE_LOGIN);
+        }
+    }, []);
+
 
     const [subNav, setSubNav] = useState<ISubNav>({
     vouchers: true,

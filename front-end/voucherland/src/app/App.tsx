@@ -113,11 +113,10 @@ const routes = ( user: IUserContext | null ) => [
             },
             {
                 path: ROUTE_ACCOUNT,
-                element: !user!.loggedIn ? <Navigate to={ROUTE_LOGIN}/> : <AccountPage/>,
+                element: <AccountPage/>,
             },
             {
                 path: ROUTE_ADMIN,
-                element: <Outlet/>,
                 children: [
                     {
                         path: ROUTE_ADMIN,
@@ -152,10 +151,10 @@ const routes = ( user: IUserContext | null ) => [
 const Routes: FC = () => {
     const userContext = useContext(UserContext);
 
-    return useRoutes(routes(userContext!));
+    return useRoutes(routes(userContext));
 };
 
-function App() {
+function App(): JSX.Element {
     const [cookies, setCookies] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null);
     const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -173,7 +172,7 @@ function App() {
                 .then(response => {
                     if (response.status === 200) {
                         setUser(response.data.user);
-                        setLoggedIn(true) ;
+                        setLoggedIn(true);
                     }
                 })
                 .catch(error => {
@@ -211,7 +210,7 @@ function App() {
                 }}
             >
                 <Router>
-                    <Routes/>
+                    <Routes />
                 </Router>
             </UserContext.Provider>
         </section>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { FiArrowRight } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import { ROUTE_ARTICLES } from "../../utils/routes";
 import { IArticle } from "../../utils/types";
@@ -12,7 +12,8 @@ interface RecentArticlesProps {
   articles: IArticle[];
 }
 
-export default function RecentArticles() {
+export default function RecentArticles(): JSX.Element {
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState<boolean>(true);
     const [articles, setArticles] = useState<IArticle[]>([]);
@@ -22,7 +23,12 @@ export default function RecentArticles() {
         BasicUrl
             .get(RequestRoutes.GetAllPublicArticles)
             .then( response => {
-                setArticles(response.data.articles);
+                setArticles([
+                    response.data.articles[0],
+                    response.data.articles[1],
+                    response.data.articles[2],
+                    response.data.articles[3]
+                ]);
             });
 
         setLoading(false);
@@ -38,7 +44,7 @@ export default function RecentArticles() {
         <button
           className="articles_header_view_btn desktop"
           data-testid="recentarticles-articele-btn"
-          onClick={() => <Link to={ROUTE_ARTICLES} />}
+          onClick={() => navigate(ROUTE_ARTICLES) }
         >
           View all articles <FiArrowRight className="btn_arrow" />
         </button>
@@ -55,7 +61,7 @@ export default function RecentArticles() {
 
       <button
         className="articles_header_view_btn mobile"
-        onClick={() => <Link to={ROUTE_ARTICLES} />}
+        onClick={() => navigate(ROUTE_ARTICLES)}
       >
         View all articles <FiArrowRight className="btn_arrow" />
       </button>

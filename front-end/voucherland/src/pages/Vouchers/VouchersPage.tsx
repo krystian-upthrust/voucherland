@@ -19,11 +19,13 @@ export default function VouchersPage() {
         setLoading(true);
 
         BasicUrl
-            .get(RequestRoutes.GetVouchersByPublicStatus)
+            .get(RequestRoutes.GetAllPublicVouchers)
             .then( response => {
 
                 let vouchers = response.data.public_vouchers;
                 let filtered = [];
+
+                    //replace with function ... see utils folder
 
                     while (vouchers.length){
                         let sortOutOnDate = vouchers[0].expiry;
@@ -31,7 +33,7 @@ export default function VouchersPage() {
 
                         let voucherCollection = [...vouchers];
 
-                        voucherCollection.forEach((voucher:IVoucher) => {
+                        voucherCollection.forEach((voucher: IVoucher) => {
                             if (voucher.expiry === sortOutOnDate){
                                 newArray.push(voucher);
                                 vouchers.splice(vouchers.indexOf(voucher, 0), 1);

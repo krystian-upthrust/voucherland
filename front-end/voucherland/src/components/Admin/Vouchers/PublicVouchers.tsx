@@ -1,40 +1,58 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import Collapsable from "../Collapsable";
-import PublicVoucher from "./VoucherOptions/PublicVoucher";
+import {BasicUrl} from "../../../utils/axios/Axios";
+import {RequestRoutes} from "../../../utils/axios/RequestRoutes";
+import {AxiosResponse} from "axios";
+import {IVoucher} from "../../../utils/types";
+import {SetFullDate, SortVoucherByDate} from "../../../utils/AdminUtils";
+import {AdminVoucher} from "./VoucherOptions/AdminVoucher";
 
-const publicVouchers: JSX.Element[] = [
-  <PublicVoucher key={1} />,
-  <PublicVoucher key={2} />,
-  <PublicVoucher key={3} />,
-  <PublicVoucher key={4} />,
-];
+export default function PublicVouchers(): JSX.Element {
 
-export default function PublicVouchers() {
-  return (
-    <section className="public_vouchers">
-      <h3>Public vouchers</h3>
+    const [loading, setLoading] = useState<boolean>(true);
+    const [publicVouchers, setPublicVouchers] = useState<IVoucher[][]>([]);
 
-      <div className="public_vouchers_content">
-        <Collapsable
-          id={1}
-          title={"friday 18 march"}
-          content={publicVouchers}
-          layout={"vouchers_layout"}
-        />
-        <Collapsable
-          id={2}
-          title={"saterday 19 march"}
-          content={publicVouchers}
-          layout={"vouchers_layout"}
-        />
-        <Collapsable
-          id={3}
-          title={"monday 21 march"}
-          content={publicVouchers}
-          layout={"vouchers_layout"}
-        />
-      </div>
-    </section>
-  );
+    useEffect(() => {
+        setLoading(true);
+
+        BasicUrl
+            .get(RequestRoutes.GetAllPublicVouchers)
+            .then((response: AxiosResponse<any>) => {
+                setPublicVouchers(SortVoucherByDate(response.data.public_vouchers));
+            });
+
+        setLoading(false);
+    }, []);
+
+    return (
+        <section className="public_vouchers">
+            <h3>Public vouchers</h3>
+
+            {
+                !loading &&
+                <div className="public_vouchers_content">
+                    {
+                        publicVouchers.map((vouchers: IVoucher[], index: number) => {
+                            const date = SetFullDate(vouchers[0].expiry);
+
+                            let content = vouchers.map((voucher: IVoucher, index: number) => {
+                                return <AdminVoucher voucher={voucher} key={index}/>
+                            });
+
+                            return (
+                                <Collapsable
+                                    id={(index+1)}
+                                    title={date}
+                                    content={content}
+                                    layout={"vouchers_layout"}
+                                    key={index}
+                                />
+                            );
+                        })
+                    }
+                </div>
+            }
+        </section>
+    );
 }

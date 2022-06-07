@@ -14,20 +14,22 @@ class VoucherPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return Response
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user) : Response
     {
-        //
+        return $user->getAttribute('is_admin')
+            ? Response::allow()
+            : Response::deny("You are not authorized to access these resources!");
     }
 
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Voucher  $voucher
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @param  Voucher  $voucher
+     * @return Response
      */
     public function view(User $user, Voucher $voucher)
     {

@@ -135,24 +135,24 @@ export default function PublicArticles() {
       <h3>Public articles</h3>
 
       <div className="public_articles_content">
-        <Collapsable
-          id={1}
-          title={"Recent articles"}
-          content={publicArticles}
-          layout={"articles_layout"}
-        />
-        <Collapsable
-          id={2}
-          title={"Collaborations"}
-          content={publicArticles}
-          layout={"articles_layout"}
-        />
-        <Collapsable
-          id={3}
-          title={"Media"}
-          content={publicArticles}
-          layout={"articles_layout"}
-        />
+        {/*<Collapsable*/}
+        {/*  id={1}*/}
+        {/*  title={"Recent articles"}*/}
+        {/*  content={publicArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
+        {/*<Collapsable*/}
+        {/*  id={2}*/}
+        {/*  title={"Collaborations"}*/}
+        {/*  content={publicArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
+        {/*<Collapsable*/}
+        {/*  id={3}*/}
+        {/*  title={"Media"}*/}
+        {/*  content={publicArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
       </div>
     </section>
   );

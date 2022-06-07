@@ -15,7 +15,7 @@ interface VoucherProps {
     voucher: IVoucher;
 }
 
-export default function Voucher({voucher}: VoucherProps) {
+export default function Voucher({voucher}: VoucherProps): JSX.Element {
      const navigate = useNavigate();
     const user = useContext(UserContext);
 
@@ -23,8 +23,8 @@ export default function Voucher({voucher}: VoucherProps) {
         <article className="product">
 
             <Discount
-                discount_type={voucher!.discount_type}
-                discount={voucher!.discount}
+                discount_type={voucher?.discount_type}
+                discount={voucher?.discount}
             />
 
             <div className="product_header">

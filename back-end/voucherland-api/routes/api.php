@@ -35,9 +35,12 @@ Route::middleware(['auth'])->controller(AuthController::class)->prefix('auth')->
     Route::get('/logout', 'logout');
 });
 
-Route::middleware(['auth'])->prefix('v1')->group(function(){
+Route::middleware(["auth", "cors"])->prefix('v1')->group(function(){
 
     Route::controller(VouchersController::class)->group(function(){
+        Route::get("/vouchers/private", "GetPrivateVouchers");
+        Route::get("/vouchers/expired", "GetExpiredVouchers");
+
         Route::get('/vouchers/{voucher:id}', 'show');
 
         Route::post('/vouchers', 'store');
@@ -81,11 +84,11 @@ Route::middleware(['auth'])->prefix('v1')->group(function(){
 // Public routes
 Route::middleware('cors')->prefix('public')->group(function (){
 
-    Route::get("/vouchers/{voucher_status}", [VouchersController::class, 'GetAllVouchersByStatus']);
+    Route::get("/vouchers/public", [VouchersController::class, 'GetPublicVouchers']);
 
     Route::controller(ArticlesController::class)->group(function () {
         Route::get('/article/{article:id}', "show");
-        Route::get('/articles/{article_status}', "GetArticlesByStatus");
+        Route::get('/articles/public', "GetPublicArticles");
     });
 
     Route::get('/articles/related/{tag:id}', [TagsController::class, "GetRelatedArticlesByTag"]);

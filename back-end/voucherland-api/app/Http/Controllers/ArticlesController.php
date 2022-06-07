@@ -26,13 +26,12 @@ class ArticlesController extends Controller
     /**
      * Displays a listing of the articles with the given status
      *
-     * @param $article_status
      * @return JsonResponse
      */
-    public function GetArticlesByStatus($article_status): JsonResponse
+    public function GetPublicArticles(): JsonResponse
     {
         $articles = Article::all()
-            ->where(config('utils.ARTICLE.STATUS'), "=", $article_status);
+            ->where(config('utils.ARTICLE.STATUS'), "=", "public");
 
         return response()->json(["articles" => ArticlesResource::collection($articles)]);
     }

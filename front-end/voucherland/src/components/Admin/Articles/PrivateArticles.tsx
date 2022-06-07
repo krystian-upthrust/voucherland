@@ -116,24 +116,24 @@ export default function PrivateArticles() {
       <h3>Private aricles</h3>
 
       <div className="private_articles_content">
-        <Collapsable
-          id={1}
-          title={"Recent articles"}
-          content={privateArticles}
-          layout={"articles_layout"}
-        />
-        <Collapsable
-          id={2}
-          title={"Collaborations"}
-          content={privateArticles}
-          layout={"articles_layout"}
-        />
-        <Collapsable
-          id={3}
-          title={"Media"}
-          content={privateArticles}
-          layout={"articles_layout"}
-        />
+        {/*<Collapsable*/}
+        {/*  id={1}*/}
+        {/*  title={"Recent articles"}*/}
+        {/*  content={privateArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
+        {/*<Collapsable*/}
+        {/*  id={2}*/}
+        {/*  title={"Collaborations"}*/}
+        {/*  content={privateArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
+        {/*<Collapsable*/}
+        {/*  id={3}*/}
+        {/*  title={"Media"}*/}
+        {/*  content={privateArticles}*/}
+        {/*  layout={"articles_layout"}*/}
+        {/*/>*/}
       </div>
     </section>
   );

@@ -217,7 +217,7 @@
             background-color: $admin_green;
           }
 
-          .stat_percent_negitive {
+          .stat_percent_negative {
             background-color: $admin_red;
           }
         }
@@ -1640,9 +1640,9 @@
 
     > h4 {
       color: $dark_color;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 21px;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 30px;
     }
 
     .colapse_minus {
